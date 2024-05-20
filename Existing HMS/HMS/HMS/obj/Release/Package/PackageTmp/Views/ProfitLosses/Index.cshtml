@@ -1,0 +1,203 @@
+﻿@model IEnumerable<HMS.VeiwModels.ProfitLoss>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styleSheets{
+    <link href="~/assets/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="~/assets/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+}
+<h2>Profit Loss Statement</h2>
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
+<div class="row">
+
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label>From</label>
+            <div class="cal-icon">
+
+                @Html.Editor("From", "", new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.EditorFor(model => model.First().Date, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.First().Date, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label>To</label>
+            <div class="cal-icon">
+
+                @Html.Editor("To", "", new { htmlAttributes = new { @class = "form-control" } })
+
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3 col-9 text-right m-b-20" data-html2canvas-ignore="true">
+        <a href='' class="btn btn btn-primary btn-rounded float-right" id="filter">filter</a>
+        <a href='/ProfitLosses' class="btn btn btn-primary btn-rounded float-right" id="clearfilter" style="margin-right:10px">clear</a>
+
+    </div>
+</div>
+
+<table class="table table-border table-striped custom-table datatable mb-0 patientsTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Revenue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Expence)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.StaffSalary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DoctorSalary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProfitOrLoss)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="myTable">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    +@Html.DisplayFor(modelItem => item.Revenue)
+                </td>
+                <td>
+                    -@Html.DisplayFor(modelItem => item.Expence)
+                </td>
+
+                <td>
+                    -@Html.DisplayFor(modelItem => item.StaffSalary)
+                </td>
+                <td>
+                    -@Html.DisplayFor(modelItem => item.DoctorSalary)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProfitOrLoss)
+                </td>
+                <td>
+                    @if (item.From.ToString("dd/MM/yyyy") == "01-01-0001")
+                    {
+                        @Html.ActionLink("RevenueDetails", "RevenueDetails", new { @from = "", @to = "" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("RevenueDetails", "RevenueDetails", new { @from = item.From, @to = item.To })
+                    }
+                    |
+                    @if (item.From.ToString("dd/MM/yyyy") == "01-01-0001")
+                    {
+                        @Html.Raw(@Html.ActionLink("ExpenseDetails", "ExpenceDetails", new { @from = "", @to =""}))
+                    }
+                    else
+                    {
+                        @Html.Raw(@Html.ActionLink("ExpenseDetails", "ExpenceDetails", new { @from = item.From, @to = item.To }))
+                    }
+                    |
+                    @if (item.From.ToString("dd/MM/yyyy") == "01-01-0001")
+                    {
+                        @Html.ActionLink("DoctorSalary", "Index", "DoctorSalaries", new { @doctor = "", @from = "", @to = "", @department = "" }, null)
+
+                    }
+                    else
+                    {
+                        @Html.ActionLink("DoctorSalary", "Index", "DoctorSalaries", new { @doctor = "", @from = item.From.ToString("dd/MM/yyyy"), @to = item.To.AddDays(-1).ToString("dd/MM/yyyy"), @department = "" }, null)
+                    }
+                    |
+                    @if (item.From.ToString("dd/MM/yyyy") == "01-01-0001")
+                    {
+                        @Html.ActionLink("StaffSalary", "Index", "StaffSalaries", new { @staff = "", @from = "", @to = "", @department = "" }, null)
+                    }
+                    else
+                    {
+                        @Html.ActionLink("StaffSalary", "Index", "StaffSalaries", new { @staff = "", @from = item.From.ToString("dd/MM/yyyy"), @to = item.To.AddDays(-1).ToString("dd/MM/yyyy"), @department = "" }, null)
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script src="~/assets/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#From").daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            minYear: 1901,
+            maxDate: moment(),
+            autoUpdateInput: false,
+            maxYear: parseInt(moment().format('YYYY'), 10),
+            locale: {
+                format: 'DD-MM-YYYY'
+            }
+        }, function (start, end, label) {
+
+        });
+        $('#From').on('apply.daterangepicker', function (ev, picker) {
+            $(this).val(picker.startDate.format('DD-MM-YYYY'));
+        });
+
+        $('#From').on('cancel.daterangepicker', function (ev, picker) {
+            $(this).val('');
+        });
+        $("#To").daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            minYear: 1901,
+            maxDate: moment(),
+            autoUpdateInput: false,
+            maxYear: parseInt(moment().format('YYYY'), 10),
+            locale: {
+                format: 'DD-MM-YYYY'
+            }
+        }, function (start, end, label) {
+
+
+        });
+        $('#To').on('apply.daterangepicker', function (ev, picker) {
+            $(this).val(picker.startDate.format('DD-MM-YYYY'));
+        });
+
+        $('#To').on('cancel.daterangepicker', function (ev, picker) {
+            $(this).val('');
+        });
+    });
+    $("#filter").click(function(event)
+{
+
+  event.preventDefault();
+  var url = '@Html.Raw(@Url.Action("Index",  new {@from="From_value",@to="To_value"}))';
+
+        url = url.replace("From_value", $("#From").val());
+        url = url.replace("To_value", $("#To").val());
+
+  window.location.href = url;
+});
+
+</script>
+
+
+<script src="~/assets/js/jquery.dataTables.min.js"></script>
+
+<script src="~/assets/plugins/SweetAlert/sweetalert2@10.js"></script>
+<script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>

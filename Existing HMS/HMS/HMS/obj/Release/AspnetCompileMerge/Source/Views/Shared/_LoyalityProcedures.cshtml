@@ -1,0 +1,11 @@
+﻿@using System.Collections;
+@model List<LoyalityVMProcedure>
+
+@foreach (LoyalityVMProcedure item in Model)
+{
+    <tr>
+        <td>@item.Name</td>
+        <td>@item.Price</td>
+        <td><a href="javascript:void(0);" data-procId='@item.ID' style="color:red;" class="delProcedure"><i class="fa fa-trash"></i></a></td>
+    </tr>
+}

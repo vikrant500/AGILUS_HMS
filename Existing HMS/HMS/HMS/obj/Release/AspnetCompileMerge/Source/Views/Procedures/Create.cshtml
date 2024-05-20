@@ -1,0 +1,112 @@
+﻿@model HMS.Models.ProcedureVm
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-8 offset-lg-2">
+        <h4 class="page-title">Add Procedure</h4>
+    </div>
+</div>
+
+@using (Html.BeginForm())
+{
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Department<span class="text-danger">*</span></label>
+                                @Html.DropDownListFor(x => Model.DepartmentID, new SelectList(Model.DepartmentList, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "StateID" })
+                                @Html.ValidationMessageFor(model => model.DepartmentID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            &nbsp;
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Procedure Name<span class="text-danger">*</span></label>
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Price<span class="text-danger">*</span></label>
+                                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Description</label>
+                                @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <input type="submit" value="Add Procedure" class="btn btn-info" />
+                        </div>
+                        <div class="col-sm-6">
+                        </div>
+
+                        <div class="col-sm-6" style="margin-top:20px;">
+                            <div class="form-group">
+                                @Html.ActionLink("Back to List", "Index", null, new { @style = "font-size:12px;" })
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+<script src="~/assets/js/jquery-3.2.1.min.js"></script>
+<script src="~/assets/plugins/SweetAlert/sweetalert2@10.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $("input#Price").val('');
+        $(document).on("submit", "form", function (event) {
+
+            event.preventDefault();
+
+            var formValues = $(this).serialize();
+            url = $("form").attr('action');
+            var formPost = $.post(url, formValues);
+            formPost.done(function (data) {
+                if (data == '1') {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Saved',
+                        text: 'Procedure Saved'
+                    }).then((result) => {
+                        /* Read more about isConfirmed, isDenied below */
+                        if (result.value==true) {
+                            $("input#Name").val('');
+                            $("input#Price").val('');
+                            $("textarea#Description").val('');
+                            $("input#Name").focus();
+                        }
+                    });
+                }
+                else if (data == '0') {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'An error occurred'
+                    });
+                }
+            });
+        });
+    });
+</script>

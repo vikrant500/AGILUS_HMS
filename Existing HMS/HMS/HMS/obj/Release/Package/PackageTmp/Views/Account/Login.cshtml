@@ -1,0 +1,56 @@
+﻿@model  HMS.Models.LoginModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/assets/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/assets/css/style.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="main-wrapper account-wrapper">
+        <div class="account-page">
+            <div class="account-center">
+                <div class="account-box">
+                    @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+                    {
+                        <div class="account-logo">
+                            <img src="~/assets/img/logo.png" alt="">
+                        </div>
+                        <div class="form-group">
+                            <label>Username</label>
+
+                            @Html.TextBoxFor(x => x.Name, new { @class = "form-control", placeholder = "Username" })
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            @Html.PasswordFor(x => x.Password, new { @class = "form-control", placeholder = "Password" })
+                        </div>
+                        @*<div class="form-group text-right">
+                            <a href="forgot-password.html">Forgot your password?</a>
+                        </div>*@
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn-primary account-btn">Login</button>
+                        </div>
+                        @*<div class="text-center register-link">
+                            Don’t have an account? <a href="register.html">Register Now</a>
+                        </div>*@
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/assets/js/jquery-3.2.1.min.js"></script>
+    <script src="~/assets/js/popper.min.js"></script>
+    <script src="~/assets/js/bootstrap.min.js"></script>
+    <script src="~/assets/js/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</body>
+</html>

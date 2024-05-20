@@ -1,0 +1,53 @@
+﻿@model IEnumerable<HMS.Models.Department>
+
+@{
+    ViewBag.Title = "Departments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section styleSheets{
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="~/assets/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+
+}
+
+<div class="row">
+    <div class="col-sm-4 col-3">
+        <h4 class="page-title">Departments</h4>
+    </div>
+    <div class="col-sm-8 col-9 text-right m-b-20">
+        <a href='@Url.Action("Create")' class="btn btn btn-primary btn-rounded float-right"><i class="fa fa-plus"></i> Add Department</a>
+    </div>
+</div>
+<div class="">
+    <table class="table table-border table-hover table-striped custom-table datatable mb-0 patientsTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="myTable">
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        <a href='@Url.Action("Edit",new { id=item.ID})'><i class="fa fa-pencil"></i></a><span style="padding-left:10px;"></span>
+                        <a href='@Url.Action("Delete",new { id=item.ID})'><i class="fa fa-trash"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script src="~/assets/js/jquery-3.2.1.min.js"></script>
+
+<script src="~/assets/js/jquery.dataTables.min.js"></script>
+
+
+<script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>

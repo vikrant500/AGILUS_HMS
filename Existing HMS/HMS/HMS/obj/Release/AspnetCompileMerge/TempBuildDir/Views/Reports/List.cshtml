@@ -1,0 +1,64 @@
+﻿@model IEnumerable<HMS.VeiwModels.CustomerReportsListVm>
+@{
+
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h4 class="page-title">Reports</h4>
+    </div>
+</div>
+
+
+
+                        <table class="table table-border table-striped custom-table datatable mb-0 patientsTable">
+                            <thead>
+                                <tr>
+                                    <th>Patient Name</th>
+                                    <th>Test Date</th>
+                                    <th>Test Name</th>
+                                    <th>Status</th>
+                                    <th>Report</th>
+                                </tr>
+                            </thead>
+                            <tbody id="myTable">
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.FirstName @item.LastName</td>
+                                        <td>@item.TestDate.ToString("dd-MMM-yyyy")</td>
+                                        <td>@item.TestName</td>
+                                        <td>@item.Status</td>
+                                        <td><a href='~/TestReportsPDFs/@item.FileName' target="_blank" data-ReportID='@item.ReportID' class="DownloadLink">@(item.Downloaded? "Downloaded":"Download")</a></td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    
+
+<script src="~/assets/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+
+        $(".DownloadLink").on('click', function () {
+            $.ajax({
+                method: "POST",
+                url: '@Url.Action("UpdateStatus", "Reports")',
+                data: {
+                    ID: $(this).attr("data-ReportID") },
+                error: function () {
+                    location.reload();
+                },
+                beforeSend: function () {
+                    //$("#OrderOverlay").show()
+                },
+                success: function (response) {
+                    location.reload();
+                },
+                complete: function () {
+                    location.reload();}
+            })
+        });
+    });
+</script>

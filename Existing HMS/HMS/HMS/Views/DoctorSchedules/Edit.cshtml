@@ -1,0 +1,342 @@
+﻿@model HMS.Models.DoctorSchedule
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styleSheets{
+    <link href="~/assets/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="~/assets/css/style.css">
+    <link href="~/assets/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />
+    <link href="~/assets/plugins/EasyAutocomplete/easy-autocomplete.css" rel="stylesheet" />
+    <link href="~/assets/plugins/EasyAutocomplete/easy-autocomplete.themes.css" rel="stylesheet" />
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+     
+
+    <div class="form-horizontal">
+        <h4>DoctorSchedule</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID,new { @id="id"})
+        @Html.HiddenFor(model => model.Days)
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <h4 class="page-title">Add Schedule</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <form>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Doctor.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                                @Html.EditorFor(model => model.Doctor.Name, "doctorName", new { htmlAttributes = new { @class = "form-control", @id = "doctorName" } })
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Available Days</label>
+                                <select class="select" multiple id="days">
+                                    <option>Select Days</option>
+                                    <option>Sunday</option>
+                                    <option>Monday</option>
+                                    <option>Tuesday</option>
+                                    <option>Wednesday</option>
+                                    <option>Thursday</option>
+                                    <option>Friday</option>
+                                    <option>Saturday</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Doctor.ID, htmlAttributes: new { @class = "control-label col-md-2" })
+
+                                @Html.EditorFor(model => model.Doctor.ID, "doctorID", new { htmlAttributes = new { @class = "form-control", @id = "doctorID", @readonly = "readonly" } })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Start Time</label>
+                                <div class="time-icon">
+                                    @Html.EditorFor(model => model.From, "", new { htmlAttributes = new { @class = "form-control", @id = "from" } })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>End Time</label>
+                                <div class="time-icon">
+
+                                    @Html.EditorFor(model => model.To, "", new { htmlAttributes = new { @class = "form-control", @id = "to" } })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+  <textarea cols="30" rows="4" class="form-control" id="message" >@Model.Message</textarea>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="display-block">Schedule Status</label>
+                        <div class="form-check form-check-inline">
+                            @Html.RadioButtonFor(Model => Model.Status, "Active")
+                            <label class="form-check-label" for="product_active">
+                                Active
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            @Html.RadioButtonFor(Model => Model.Status, "Inactive")
+                            <label class="form-check-label" for="product_inactive">
+                                Inactive
+                            </label>
+                        </div>
+                    </div>
+                    <div class="m-t-20 text-center">
+
+                        <button id="submit" class="btn btn-primary submit-btn">Edit Schedule</button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+}
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="~/assets/plugins/SweetAlert/sweetalert2@10.js"></script>
+
+<script src="~/assets/js/popper.min.js"></script>
+<script src="~/assets/js/bootstrap.min.js"></script>
+<script src="~/assets/js/jquery.slimscroll.js"></script>
+<script src="~/assets/js/select2.min.js"></script>
+<script src="~/assets/js/moment.min.js"></script>
+<script src="~/assets/js/bootstrap-datetimepicker.min.js"></script>
+<script src="~/assets/js/app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script src="assets/js/Requests.js"></script>
+<script>
+    $(function () {
+        $('#from').datetimepicker({
+            stepping: 15,
+            format: 'LT',
+            icons: {
+                up: "fa fa-arrow-up",
+                down: "fa fa-arrow-down"
+            }
+
+        });
+        $('#to').datetimepicker({
+            stepping: 15,
+            format: 'LT',
+            icons: {
+                up: "fa fa-arrow-up",
+                down: "fa fa-arrow-down"
+            }
+        });
+
+    });
+
+</script>
+
+
+<script src="~/assets/plugins/EasyAutocomplete/jquery.easy-autocomplete.js"></script>
+
+<script type="text/javascript">
+
+    //$(function () {
+    //    $('#from').daterangepicker({
+    //        timePicker: true,
+    //        singleDatePicker: true,
+    //        timePicker24Hour: false,
+    //        timePickerIncrement: 30,
+    //        timePickerSeconds: false,
+    //        locale: {
+    //            format: 'hh:mm A'
+    //        }
+    //    }).on('show.daterangepicker', function (ev, picker) {
+    //        picker.container.find(".calendar-table").hide();
+    //    });
+    //})
+    //$(function () {
+    //    $('#to').daterangepicker({
+    //        timePicker: true,
+    //        singleDatePicker: true,
+    //        timePicker24Hour: false,
+    //        timePickerIncrement: 1,
+    //        timePickerSeconds: false,
+    //        locale: {
+    //            format: 'hh:mm A'
+    //        }
+    //    }).on('show.daterangepicker', function (ev, picker) {
+    //        picker.container.find(".calendar-table").hide();
+    //    });
+    //})
+    var doctorOptions = {
+            url: function (doctorName) {
+                var ajaxURL = '@Url.Action("GetDoctorACData", "DoctorSalaries")' + '?doctorName=' + doctorName;
+                return ajaxURL;
+            },
+            getValue: "Name",
+            template: {
+                type: "description",
+                fields: {
+                    description: "ID"
+                }
+            },
+
+            list: {
+                onSelectItemEvent: function () {
+                    var value = $("#doctorName").getSelectedItemData().ID;
+                    $("#doctorName").attr("dataDocId", value);
+
+                    $.ajax({
+                        method: "GET",
+                        url: '@Url.Action("GetDoctorData", "DoctorSalaries")',
+                        data: { ID: value },
+                        error: function () {
+                            $("#PatientID").val('');
+                            $("#Gender").val('');
+                            $("#ContactNumber").val('');
+                            $("#Address").val('');
+                        },
+                        beforeSend: function () {
+                            //$("#OrderOverlay").show()
+                        },
+                        success: function (response) {
+                            $("#doctorID").val(response.ID);
+                            $("#Amount").val(response.Charges);
+
+                        },
+                        complete: function () { $("#OrderOverlay").hide(); }
+                    });
+                },
+                onShowListEvent: function () {
+                    $("#doctorName").attr("dataDocId", "");
+                }
+            }
+        };
+        $("#doctorName").easyAutocomplete(doctorOptions);
+     $("#create").click(function(event)
+    {
+
+         event.preventDefault();
+         console.log('stopped')
+            $.ajax({
+                method: "GET",
+                url: '@Url.Action("GetAppointmentData", "Appointments")',
+                data: { doctor: $("#Doctor").val(), department: $("#Department").val(), patientName: $("#PatientName").val(), phoneNumber:$("#PhoneNumber").val() },
+                //contentType:"html",
+                error: function () {
+                    //$("#wgtFirstChart").empty();
+                    //$("#wgtFirstChart").html('<div style="text-align:center;">An error occurred</div>');
+                },
+                beforeSend: function () {
+                    //$("#ChartOverlay").show()
+                },
+                success: function (response) {
+
+                },
+
+            });
+
+    });
+
+</script>
+@*<script src="~/assets/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#from").daterangepicker({
+                timePicker: true,
+                timePicker24Hour: true,
+                timePickerIncrement: 1,
+                timePickerSeconds: true,
+                locale: {
+                    format: 'HH:mm:ss'
+                }
+            }).on('show.daterangepicker', function (ev, picker) {
+                picker.container.find(".calendar-table").hide();
+            });
+            $("#to").daterangepicker({
+                        singleDatePicker: true,
+                        showDropdowns: true,
+                        minYear: 1901,
+                        maxDate: moment(),
+                        maxYear: parseInt(moment().format('YYYY'), 10),
+                        locale: {
+                            format: 'LT'
+                        }
+                    }, function (start, end, label) {
+
+            });
+        });
+        $("#filter").click(function(event)
+    {
+
+      event.preventDefault();
+      var url = '@Html.Raw(@Url.Action("Index",  new {@from="From_value",@to="To_value"}))';
+
+            url = url.replace("From_value", $("#From").val());
+            url = url.replace("To_value", $("#To").val());
+
+      window.location.href = url;
+    });
+
+    </script>*@
+<script type="text/javascript">
+$("#submit").click(function(event)
+    {
+
+  event.preventDefault();
+  var url = '@Html.Raw(@Url.Action("EditDocSchedule", new { @ID="id_value" , @doctorID = "docid_value", @availabledays = "availabledays_value", @from = "from_value" ,@to="to_value",@message="message_value",@status="status_value"}))';
+
+        url = url.replace("docid_value", $("#doctorID").val());
+    url = url.replace("id_value", @Model.ID);
+    url = url.replace("availabledays_value", $("#days").val());
+        url = url.replace("from_value", $("#from").val());
+        url = url.replace("to_value", $("#to").val());
+        url = url.replace("message_value", $("#message").val());
+    url = url.replace("status_value", $('input[name="Status"]:checked').val());
+    
+  window.location.href = url;
+});
+</script>
+<script type="text/javascript">
+    $("#days").select2().select2("val", null);
+    var s2 = $("#days").select2({
+        
+        tags: true
+    });
+    var str = '@Model.DaysAvailable';
+    
+    var vals = str.split(',');
+    s2.val(vals).trigger("change");
+</script>

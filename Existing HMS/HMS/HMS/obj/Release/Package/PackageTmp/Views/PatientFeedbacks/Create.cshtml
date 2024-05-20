@@ -1,0 +1,206 @@
+﻿@model HMS.Models.PatientFeedback
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styleSheets{
+    <link href="~/assets/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />
+
+}
+
+<div class="row">
+    <div class="col-lg-8 offset-lg-2">
+        <h4 class="page-title">Patient's Feedback Form</h4>
+    </div>
+</div>
+
+@using (Html.BeginForm())
+{
+     
+
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Patient Name</label>
+                                @Html.EditorFor(model => model.PatientName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.PatientName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Patient Address</label>
+                                @Html.EditorFor(model => model.PatientAddress, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.PatientAddress, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Consulted Doctor</label>
+                                @Html.EditorFor(model => model.ConsultedDoctor, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ConsultedDoctor, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Patient Email</label>
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Patient Phone Number</label>
+                                @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Receptionist Behaviour :</label>
+                        <div class="col-md-10">
+
+                            @Html.RadioButtonFor(model => model.Receptionist_Behaviour, 3)
+                            Pleasant
+
+                            @Html.RadioButtonFor(model => model.Receptionist_Behaviour, 2)
+                            Good
+                            @Html.RadioButtonFor(model => model.Receptionist_Behaviour, 1)
+                            Poor
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Waiting Time :</label>
+                        <div class="col-md-10">
+                            @Html.RadioButtonFor(model => model.WaitingTime, 3)
+
+                            Pleasant
+                            @Html.RadioButtonFor(model => model.WaitingTime, 2)
+
+                            Average
+                            @Html.RadioButtonFor(model => model.WaitingTime, 1)
+
+                            Poor
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Hygiene & Cleanliness of Centre :</label>
+                        <div class="col-md-10">
+                            @Html.RadioButtonFor(model => model.Hygiene, 3)
+
+                            Pleasant
+                            @Html.RadioButtonFor(model => model.Hygiene, 2)
+
+                            Average
+                            @Html.RadioButtonFor(model => model.Hygiene, 1)
+
+                            Poor
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Exprience with Doctor</label>
+                        <div class="col-md-10">
+                            @Html.RadioButtonFor(model => model.ExperienceWithDoc, 3)
+
+                            Pleasant
+                            @Html.RadioButtonFor(model => model.ExperienceWithDoc, 2)
+
+                            Average
+                            @Html.RadioButtonFor(model => model.ExperienceWithDoc, 1)
+
+                            Poor
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Charges and Billing :</label>
+                        <div class="col-md-10">
+                            @Html.RadioButtonFor(model => model.Billing, 3)
+
+                            Pleasant
+                            @Html.RadioButtonFor(model => model.Billing, 2)
+
+                            Average
+                            @Html.RadioButtonFor(model => model.Billing, 1)
+
+                            Poor
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Your Review</label>
+                                @Html.TextAreaFor(model => model.SujjestionsToImprove, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.SujjestionsToImprove, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <input type="submit" value="Submit Feedback" class="btn btn-primary submit-btn"/>
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-6">
+                            &nbsp;
+                        </div>
+
+                        @*<div class="col-sm-6">
+                            <div class="form-group">
+                                @Html.ActionLink("Back to List", "Index", null, new { @style = "font-size:12px;" })
+                            </div>
+                        </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script src="~/assets/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('input[name="DateOfBirth"]').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            minYear: 1901,
+            maxDate: moment(),
+            maxYear: parseInt(moment().format('YYYY'), 10),
+            locale: {
+                format: 'YYYY-MM-DD'
+            }
+        }, function (start, end, label) {
+            var years = moment().diff(start, 'years');
+            $("#Age").val(years);
+        });
+
+
+        $('input[name="DateOfJoining"]').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            minYear: 1901,
+            maxDate: moment(),
+            maxYear: parseInt(moment().format('YYYY'), 10),
+            locale: {
+                format: 'YYYY-MM-DD'
+            }
+        }, function (start, end, label) {
+            //var years = moment().diff(start, 'years');
+            //$("#Age").val(years);
+        });
+
+    });
+</script><script src="~/assets/js/jquery-3.2.1.min.js"></script>

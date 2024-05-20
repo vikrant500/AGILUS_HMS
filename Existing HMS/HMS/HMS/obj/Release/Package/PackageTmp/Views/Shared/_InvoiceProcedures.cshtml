@@ -1,0 +1,25 @@
+﻿@using System.Collections;
+@model List<InvoiceProcedures>
+
+@foreach (InvoiceProcedures item in Model)
+{
+    <tr>
+        <td>@item.ProcedureName</td>
+        <td>@item.Price</td>
+        <td>@item.Units</td>
+        <td>@item.Total</td>
+        
+        <td>@item.NetAmount</td>
+        <td><a href="javascript:void(0);" data-procId='@item.ID' style="color:red;" class="delProcedure"><i class="fa fa-trash"></i></a></td>
+    </tr>
+}
+<tr>
+    <td> </td>
+    <td> </td>
+    <td> </td>
+   
+
+    <td>Net Total </td>
+    <td id="SumAmount">@Model.Sum(x => x.NetAmount) </td>
+    <td> </td>
+</tr>

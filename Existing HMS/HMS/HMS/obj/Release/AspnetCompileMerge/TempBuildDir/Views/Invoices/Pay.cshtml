@@ -1,0 +1,319 @@
+﻿@model InvoiceBill
+
+@{
+    ViewBag.Title = "Pay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Pay For</h2>
+
+<div>
+    <h4>Invoice</h4>
+    <hr />
+    <div id="pdf">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+
+                    <div id="invoice-number">
+                        <b><label>InvoiceNo:&nbsp;&nbsp;</label></b>
+                        @Html.DisplayFor(model => model.ID)
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+
+                </div>
+            </div>
+            <div class="col-sm-3 ">
+                <div class="form-group">
+                    <b><label>Created Date:&nbsp;&nbsp;</label></b>
+                    @Html.DisplayFor(model => model.CreatedDate)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <b><label>Patient Name:&nbsp;&nbsp;</label></b>
+                    @Html.DisplayFor(model => model.Patient.Salutation) &nbsp;@(Html.DisplayFor(model => model.Patient.FirstName)) &nbsp; @(Html.DisplayFor(model=>model.Patient.LastName))
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+
+                </div>
+            </div>
+
+            <div class="col-sm-3 ">
+                <div class="form-group">
+                    <b><label>Prescibed Doctor:&nbsp;&nbsp;</label></b>
+                    @Html.DisplayFor(model => model.Doctor)
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <table class="table table-border table-striped custom-table datatable mb-0 patientsTable">
+                <thead>
+                    <tr>
+
+                        <th>Procedure Name</th>
+                        <th>No.of Units</th>
+                        @*<th>Discount percentage</th>
+                        <th>Discount amount</th>*@
+
+                        <th>net amount</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="myTable">
+
+                    @foreach (var item in Model.InvoiceItems)
+                    {
+                        <tr>
+
+                            <td>
+                                @item.Procedure.Name
+                            </td>
+                            <td>@item.Units</td>
+                            @*<td>@item.Discount%</td>
+                            <td>-@((item.Discount/100)*item.Units*item.Procedure.Price)</td>*@
+                            <td>
+                                @(item.Units*item.Procedure.Price)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <thead>
+                    <tr>
+                        @*<td>
+            </td>
+            <td>
+            </td>*@
+                        <td>
+                        </td>
+                        <th>
+                            <b>Total:</b>
+                        </th>
+                        <th>
+                            @Html.DisplayFor(model => model.Total)
+                        <th>
+
+                    </tr>
+                    <tr>
+                        @*<td>
+            </td>
+            <td>
+            </td>*@
+                        <td>
+                        </td>
+                        <th>
+                            <b>Discount:</b>
+                        </th>
+                        <th>
+                            @Html.DisplayFor(model => model.DiscountAmount)
+                        <th>
+
+                    </tr>
+                    <tr>
+                        @*<td>
+            </td>
+            <td>
+            </td>*@
+                        <td>
+                        </td>
+                        <th>
+                            <b>Total After Discount:</b>
+                        </th>
+                        <th>
+                            @Html.DisplayFor(model => model.DiscountedTotal)
+                        <th>
+
+                    </tr>
+                    <tr>
+                        @*<td>
+            </td>
+            <td>
+            </td>*@
+                        <td>
+                        </td>
+
+                        <th>
+                            <b>%Tax:</b>
+                        </th>
+                        <th>
+                            @Html.DisplayFor(model => model.Tax)%
+                        <th>
+
+                    </tr>
+                    <tr>
+                        @*<th>
+            </th>
+            <th>
+            </th>*@
+                        <th>
+                        </th>
+
+                        <th>
+                            <b>Total Amount:</b>
+                        </th>
+                        <th>
+                            @Html.DisplayFor(model => model.NetTotal)
+                        <th>
+
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <hr>
+        <h4>Transaction Details:&nbsp;&nbsp;</h4>
+        <div>
+            <table class="table table-border table-striped custom-table datatable mb-0 patientsTable">
+                <thead>
+                    <tr>
+                        <th>S No.</th>
+                        <th>Payment Mode</th>
+                        <th>Paid Date</th>
+                        <th>Amount Paid</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
+                <tbody id="myTable">
+                    @{int count = 1;}
+                    @foreach (var item in Model.InvoiceTransactions)
+                    {
+                    <tr>
+
+                        <td>
+                            @count
+                        </td>
+                        <td>@item.ModeOfPayment</td>
+                        <td>@item.DateCreated</td>
+                        <td>@item.Amount</td>
+                        @{count = count + 1;}
+                    <td><a href='@Url.Action("Edit","InvoiceTransactions",new { id=item.ID})'><i class="fa fa-pencil"></i></a><span style="padding-left:10px;"></span> <a href='@Url.Action("Delete","InvoiceTransactions",new { id=item.ID})'><i class="fa fa-trash"></i></a><span style="padding-left:10px;"></span></td>
+                    </tr>
+                    }
+                </tbody>
+                <thead>
+                    <tr>
+                        <th>
+                        </th>
+                        <th>
+                        </th>
+
+                        <th>
+                            <b>Total:</b>
+                        </th>
+                        <th>
+                            @Html.DisplayFor(model => model.AmountPaid)
+                        </th>
+                        <th>
+                        </th>
+                    </tr>
+
+                </thead>
+            </table>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label>Total Amount</label>
+                @Html.EditorFor(model => model.NetTotal, "", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label>Amount Paid</label>
+                @Html.EditorFor(model => model.AmountPaid, "", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label>Balance</label>
+                @Html.Editor("Balance", "", new { htmlAttributes = new { @type = "number", @step = "0.01", @class = "form-control", @placeholder = Math.Round((Model.NetTotal - Model.AmountPaid),2), @readonly = "readonly" } })
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label>Payment Mode</label>
+                @Html.DropDownList("paymentMode", new List<SelectListItem> {
+               new SelectListItem() { Text = "CASH", Value = "CASH" },
+                                                                                    new SelectListItem() { Text = "PAYTM", Value = "PAYTM" },
+                                                                                    new SelectListItem() { Text = "DEBIT CARD", Value = "DEBIT CARD" },
+           new SelectListItem() { Text = "CREDIT CARD", Value = "CREDIT CARD" },
+           new SelectListItem() { Text = "UPI", Value = "UPI" },
+           new SelectListItem() { Text = "BHARATH PAY", Value = "BHARATH PAY" },
+           new SelectListItem() { Text = "PHONE PAY", Value = "PHONE PAY" },
+           new SelectListItem() { Text = "ACCOUNT PAY", Value = "ACCOUNT PAY" }}, htmlAttributes: new { @class = "form-control", id = "paymentMode" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <p class="col-sm-3">
+
+            @Html.ActionLink("Back to List", "Index")
+        </p><div class="col-sm-3">
+            <div class="form-group" style="text-align:right">
+                <label></label>
+                <label style="text-align:right; margin-top:10px">Now Pay:</label>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <div class="form-group">
+
+                    @Html.Editor("pay", "", new { htmlAttributes = new { @type = "number",
+                   @oninput = "javascript: if (parseFloat(this.value) > parseFloat(this.max)) this.value = this.max;"
+
+                   ,
+                   @step = "0.01", @min = (-Model.NetTotal).ToString(), @max = Math.Round((Model.NetTotal - Model.AmountPaid), 2), @class = "form-control", @id = "pay", @placeholder = "0"} })
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <input id="submit" value="Pay" class="btn btn-info" />
+        </div>
+
+    </div>
+</div>
+
+
+<script src="~/assets/js/jquery-3.2.1.min.js"></script>
+<script src="~/assets/plugins/SweetAlert/sweetalert2@10.js"></script>
+<script src="~/assets/plugins/EasyAutocomplete/jquery.easy-autocomplete.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.69/vfs_fonts.min.js"></script>
+<script type="text/javascript">
+
+    $("#submit").click(function(event)
+    {
+
+     event.preventDefault();
+           var url = '@Html.Raw(@Url.Action("UpdatePay",  new {@id="id_value",@pay="From_value",@mode="mode_value"}))';
+
+        url = url.replace("From_value", $("#pay").val());
+        url = url.replace("mode_value", $("#paymentMode").val());
+        url = url.replace("id_value", document.getElementById("invoice-number").innerText.substring(13));
+
+  window.location.href = url;
+
+    });
+</script>
+
+<script src="~/assets/js/jquery.dataTables.min.js"></script>
+
+
+<script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>

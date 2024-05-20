@@ -1,0 +1,153 @@
+﻿@model List<HMS.Models.DoctorSchedule>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styleSheets{
+
+    <link href="~/assets/plugins/EasyAutocomplete/easy-autocomplete.css" rel="stylesheet" />
+    <link href="~/assets/plugins/EasyAutocomplete/easy-autocomplete.themes.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="~/assets/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+}
+<h2>Index</h2>
+
+<div class="content">
+    <div class="row">
+        <div class="col-sm-4 col-3">
+            <h4 class="page-title">Schedule</h4>
+        </div>
+        <div class="col-sm-8 col-9 text-right m-b-20">
+            <a href='/DoctorSchedules/Create' class="btn btn btn-primary btn-rounded float-right"><i class="fa fa-plus"></i> Add Schedule</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label>Doctor Name</label>
+                @Html.Editor("Doctor", "", new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label>Department</label>
+                @Html.Editor("Department", "", new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="col-sm-3 col-9 text-right m-b-20" data-html2canvas-ignore="true">
+            <a href='' class="btn btn btn-primary btn-rounded float-right" id="filter">filter</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-border table-striped custom-table datatable mb-0 patientsTable">
+                    <thead>
+                        <tr>
+                            <th>Doctor Name</th>
+                            <th>Department</th>
+                            <th>Available Days</th>
+                            <th>Available Time</th>
+                            <th>Status</th>
+                            <th class="text-right">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="myTable">
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td><img width="28" height="28" src="~/assets/img/user.jpg" class="rounded-circle m-r-5" alt="">@item.Doctor.Name</td>
+                                <td>@item.Doctor.Department.Name</td>
+                                <td>@item.DaysAvailable</td>
+                                <td>@item.From - @item.To</td>
+                                <td><span class='@(item.Status=="Active"?"custom-badge status-green":item.Status=="Inactive"?"custom-badge status-red":"badge badge-warning")'>@item.Status</span></td>
+                                <td class="text-right">
+                                    <div class="dropdown dropdown-action">
+                                        <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="@Url.Action("Edit",new { id=item.ID})"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                            <a class="dropdown-item" href="@Url.Action("Delete",new { id=item.ID})"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/assets/js/jquery-3.2.1.min.js"></script>
+<script src="~/assets/plugins/EasyAutocomplete/jquery.easy-autocomplete.js"></script>
+<script src="~/assets/js/jquery.dataTables.min.js"></script>
+
+
+<script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+
+<script>
+         var deptOptions = {
+             url: function (departmentName) {
+                 var ajaxURL = '@Url.Action("GetDepartmentsData","InvoiceReports")' + '?departmentName=' + departmentName;
+                return ajaxURL;
+            },
+            getValue: "Name",
+            template: {
+                type: "description",
+                fields: {
+                    description: "ID"
+                }
+            },
+
+            list: {
+                onSelectItemEvent: function () {
+                    //var value = $("#Department").getSelectedItemData().ID;
+                    //$("#Department").attr("data-procId", value);
+                },
+                onShowListEvent: function () {
+                    $("#Department").attr("data-procId", "");
+                }
+            }
+        };
+        $("#Department").easyAutocomplete(deptOptions);
+
+        var docOptions = {
+            url: function (doctorName) {
+                var ajaxURL = '@Url.Action("GetDoctorsData","InvoiceReports")' + '?doctorName=' + doctorName;
+                return ajaxURL;
+            },
+            getValue: "Name",
+            template: {
+                type: "description",
+                fields: {
+                    description: "ID"
+                }
+            },
+
+            list: {
+                onSelectItemEvent: function () {
+
+
+                },
+                onShowListEvent: function () {
+                    $("#Doctor").attr("data-procId", "");
+                }
+            }
+        };
+    $("#Doctor").easyAutocomplete(docOptions);
+     $("#filter").click(function(event)
+    {
+
+     event.preventDefault();
+           var url = '@Html.Raw(@Url.Action("Index",  new {@doctor="From_value",@department="To_value"}))';
+
+        url = url.replace("From_value", $("#Doctor").val());
+        url = url.replace("To_value", $("#Department").val());
+
+  window.location.href = url;
+
+    });
+</script>

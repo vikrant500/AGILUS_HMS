@@ -1,0 +1,75 @@
+﻿@model IEnumerable<HMS.VeiwModels.ExpenceDetails>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section styleSheets{
+    <link href="~/assets/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="~/assets/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+}
+
+<h2>Details</h2>
+
+<div class="row">
+    <div class="col-sm-4 col-3">
+        <h4 class="page-title">ProfitLoss Expence Details</h4>
+    </div>
+</div>
+<table class="table table-border table-striped custom-table datatable mb-0 patientsTable">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ItemName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CostPerItem)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalCost)
+            </th>
+        </tr>
+    </thead>
+    <tbody id="myTable">
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CostPerItem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalCost)
+            </td>
+        </tr>
+        }
+    </tbody>
+
+</table>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |*@
+    @Html.ActionLink("Back to List", "Index")
+</p>
+<script src="~/assets/js/jquery-3.2.1.min.js"></script>
+
+<script src="~/assets/js/jquery.dataTables.min.js"></script>
+
+<script src="~/assets/plugins/SweetAlert/sweetalert2@10.js"></script>
+<script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>

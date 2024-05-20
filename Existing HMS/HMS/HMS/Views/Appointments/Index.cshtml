@@ -1,0 +1,321 @@
+﻿@model IEnumerable<HMS.Models.Appointment>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styleSheets{
+    <link href="~/assets/plugins/FullCalendar/main.css" rel="stylesheet" />
+    <link href="~/assets/plugins/EasyAutocomplete/easy-autocomplete.css" rel="stylesheet" />
+    <link href="~/assets/plugins/EasyAutocomplete/easy-autocomplete.themes.css" rel="stylesheet" />
+}
+
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="row">
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label>Doctor Name</label>
+            @Html.Editor("Doctor", "", new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label>Department</label>
+            @Html.Editor("Department", "", new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="col-sm-3 col-9 text-right m-b-20" data-html2canvas-ignore="true">
+        <a href='' class="btn btn btn-primary btn-rounded float-right" id="filter">filter</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label>Patient Name</label>
+            @Html.Editor("PatientName", "", new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label>Phone Number</label>
+            @Html.Editor("PhoneNumber", "", new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+    
+</div>
+<div id='calendar'></div>
+
+
+<script src="~/assets/js/jquery-3.2.1.min.js"></script>
+<script src="~/assets/plugins/FullCalendar/main.js"></script>
+<script src="~/assets/plugins/EasyAutocomplete/jquery.easy-autocomplete.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+ 
+    var columnWidth = jQuery('#single-day-container td.last').width();
+
+        jQuery('fc-event-title-container').each(function () {
+
+        var width = jQuery(this).width();
+        width = (width / columnWidth * 100) + '%';
+
+        var marginLeft = jQuery(this).css('margin-left');
+        var marginArray = marginLeft.split("p");
+        marginLeft = (marginArray[0] / columnWidth * 100) + '%';
+
+        var marginRight = jQuery(this).css('margin-right');
+        marginArray = marginRight.split("p");
+        marginRight = (marginArray[0] / columnWidth * 100) + '%';
+
+        var parentItem = jQuery(this).parent();
+        parentItem.css('width', width).css('margin-left', marginLeft).css('margin-right', marginRight);
+        jQuery(this).css('margin-left', '0').css('margin-right', '0').attr('style', function (i, s) { return s + 'width: 100% !important;' });
+
+    });
+        
+        });
+</script>
+<script type="text/javascript">
+        $(function () {
+            $.ajax({
+                method: "GET",
+                url: '@Url.Action("GetAppointmentData", "Appointments")',
+                error: function () {
+                    //$("#wgtFirstChart").empty();
+                    //$("#wgtFirstChart").html('<div style="text-align:center;">An error occurred</div>');
+                },
+                beforeSend: function () {
+                    //$("#ChartOverlay").show()
+                },
+                success: function (response) {
+                    var calendarEl = document.getElementById('calendar');
+
+                    window.calendar = new FullCalendar.Calendar(calendarEl, {
+                        slotDuration: '00:05:00',
+                        slotLabelInterval:'00:10:00',
+                        headerToolbar: {
+                            left: 'prev,next today',
+                            center: 'title',
+                            right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+                        },
+                        initialDate: moment().format("yyyy-MM-DD"),
+                        navLinks: true, // can click day/week names to navigate views
+                        businessHours: true, // display business hours
+                        editable: true,
+                        dayMaxEvents: true,
+                        selectable: true,
+                        slotEventOverlap: false,
+                        defaultTimedEventDuration: '00:15:00',
+                        eventTimeFormat: { // like '14:30:00'
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            meridiem: 'short'
+                           
+                        },
+                        events: response.data
+                    });
+
+                    calendar.render();
+                },
+
+            });
+        });
+     var deptOptions = {
+             url: function (departmentName) {
+                 var ajaxURL = '@Url.Action("GetDepartmentsData","InvoiceReports")' + '?departmentName=' + departmentName;
+                return ajaxURL;
+            },
+            getValue: "Name",
+            template: {
+                type: "description",
+                fields: {
+                    description: "ID"
+                }
+            },
+
+            list: {
+                onSelectItemEvent: function () {
+                    //var value = $("#Department").getSelectedItemData().ID;
+                    //$("#Department").attr("data-procId", value);
+                },
+                onShowListEvent: function () {
+                    $("#Department").attr("data-procId", "");
+                }
+            }
+        };
+        $("#Department").easyAutocomplete(deptOptions);
+
+        var docOptions = {
+            url: function (doctorName) {
+                var ajaxURL = '@Url.Action("GetDoctorsData","InvoiceReports")' + '?doctorName=' + doctorName;
+                return ajaxURL;
+            },
+            getValue: "Name",
+            template: {
+                type: "description",
+                fields: {
+                    description: "ID"
+                }
+            },
+
+            list: {
+                onSelectItemEvent: function () {
+
+
+                },
+                onShowListEvent: function () {
+                    $("#Doctor").attr("data-procId", "");
+                }
+            }
+        };
+    $("#Doctor").easyAutocomplete(docOptions);
+    var patientOptions = {
+            url: function (patientName) {
+                var ajaxURL = '@Url.Action("GetPatientACData", "Invoices")' + '?patientName=' + patientName;
+                return ajaxURL;
+            },
+            getValue: "Name",
+            template: {
+                type: "description",
+                fields: {
+                    description: "ID"
+                }
+            },
+
+            list: {
+                onSelectItemEvent: function () {
+                    console.log($("#PatientName").getSelectedItemData())
+                    var value = $("#PatientName").getSelectedItemData().ID;
+                    $("#PatientName").attr("dataPatId", value);
+
+                    $.ajax({
+                        method: "GET",
+                        url: '@Url.Action("GetPatientData", "Invoices")',
+                        data: { ID: value },
+                        error: function () {
+                            $("#PatientID").val('');
+                            $("#Gender").val('');
+                            $("#ContactNumber").val('');
+                            $("#Address").val('');
+                        },
+                        beforeSend: function () {
+                            //$("#OrderOverlay").show()
+                        },
+                        success: function (response) {
+                            $("#PatientID").val(response.ID);
+                            $("#Gender").val(response.Gender);
+                            $("#ContactNumber").val(response.ContactNumber);
+                            $("#Address").val(response.Address);
+
+                        },
+                        complete: function () { $("#OrderOverlay").hide(); }
+                    });
+                },
+                onShowListEvent: function () {
+                    $("#PatientName").attr("dataPatId", "");
+                }
+            }
+        };
+        $("#PatientName").easyAutocomplete(patientOptions);
+    $("#filter").click(function(event)
+    {
+        
+        var date = (window.calendar.getDate())
+        console.log(date)
+        //var view = calendar.fullCalendar('getView');
+        var veiw = window.calendar.view.type
+        console.log(calendar.view)
+
+     event.preventDefault();
+            $.ajax({
+                method: "GET",
+                url: '@Url.Action("GetAppointmentData", "Appointments")',
+                data: { doctor: $("#Doctor").val(), department: $("#Department").val(), patient: $("#PatientName").val() ,phone: $("#PhoneNumber").val() },
+                //contentType:"html",
+                error: function () {
+                    //$("#wgtFirstChart").empty();
+                    //$("#wgtFirstChart").html('<div style="text-align:center;">An error occurred</div>');
+                },
+                beforeSend: function () {
+                    //$("#ChartOverlay").show()
+                },
+                success: function (response) {
+                    var calendarEl = document.getElementById('calendar');
+
+                     window.calendar = new FullCalendar.Calendar(calendarEl, {
+                        initialView: veiw,
+
+                        slotDuration: '00:05:00',
+                        slotLabelInterval: '00:10:00',
+                        headerToolbar: {
+                            left: 'prev,next today',
+                            center: 'title',
+                            right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+                        },
+                        initialDate: date,
+                        navLinks: true, // can click day/week names to navigate views
+                        businessHours: true, // display business hours
+                        editable: true,
+                        dayMaxEvents: true,
+                        selectable: true,
+                        slotEventOverlap: false,
+                        defaultTimedEventDuration: '00:15:00',
+                        eventTimeFormat: { // like '14:30:00'
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            meridiem: 'short'
+
+                        },
+                        events: response.data
+                    });
+
+                    
+                    
+                    calendar.render();
+                },
+
+            });
+
+    });
+
+</script>
+
+@*<table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AppointmentDate)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Message)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AppointmentDate)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Message)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            </td>
+        </tr>
+    }
+
+    </table>*@

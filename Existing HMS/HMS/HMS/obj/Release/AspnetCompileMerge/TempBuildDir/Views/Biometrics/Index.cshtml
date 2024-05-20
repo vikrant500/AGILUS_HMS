@@ -1,0 +1,75 @@
+﻿@model IEnumerable<HMS.Models.Biometric>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section styleSheets{
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="~/assets/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+}
+<script src="~/assets/js/jquery-3.2.1.min.js"></script>
+<script src="~/assets/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+<h2>Biomteric Details</h2>
+<table class="table table-border table-striped custom-table datatable mb-0 biometricable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                Time In
+            </th>
+            <th>
+                Time Out
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Attendance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Overtime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Center)
+            </th>
+            <th>
+                Working Hours
+            </th>
+        </tr>
+    </thead>
+    <tbody id="myTable">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TimeIn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TimeOut)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Attendance)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Overtime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Center)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WorkingHour)
+                </td>
+                @*<td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    </td>*@
+            </tr>
+        }
+        </tbody>
+</table>

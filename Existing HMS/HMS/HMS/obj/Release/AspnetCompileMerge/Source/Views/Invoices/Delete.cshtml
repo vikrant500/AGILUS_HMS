@@ -1,0 +1,236 @@
+﻿@model InvoiceBill
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Invoice</h4>
+    <hr />
+    <div id="pdf">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+
+                    <div id="invoice-number">
+                        <b><label>InvoiceNo:&nbsp;&nbsp;</label></b>
+                        @Html.DisplayFor(model => model.ID)
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="form-group">
+
+                </div>
+            </div>
+            <div class="col-sm-3 ">
+                <div class="form-group">
+                    <b><label>Created Date:&nbsp;&nbsp;</label></b>
+                    @Html.DisplayFor(model => model.CreatedDate)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <b><label>Patient Name:&nbsp;&nbsp;</label></b>
+                    @Html.DisplayFor(model => model.Patient.Salutation) &nbsp;@(Html.DisplayFor(model => model.Patient.FirstName)) &nbsp;@(Html.DisplayFor(model=>model.Patient.MiddleName)) &nbsp;@(Html.DisplayFor(model=>model.Patient.LastName))
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+
+                </div>
+            </div>
+
+            <div class="col-sm-3 ">
+                <div class="form-group">
+                    <b><label>Prescibed Doctor:&nbsp;&nbsp;</label></b>
+                    @Html.DisplayFor(model => model.Doctor)
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <b><label>Patient Adress:&nbsp;&nbsp;</label></b>
+                    @Html.DisplayFor(model => model.Patient.Address)
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+
+                </div>
+            </div>
+
+            <div class="col-sm-3 ">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <b><label> Phone Number:&nbsp;&nbsp;</label></b>
+                    @Html.DisplayFor(model => model.Patient.CallingNumber)
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+
+                </div>
+            </div>
+
+            <div class="col-sm-3 ">
+
+            </div>
+        </div>
+
+        <div>
+            <table class="table table-border table-striped custom-table datatable mb-0 patientsTable">
+                <thead>
+                    <tr>
+
+                        <th>Procedure Name</th>
+                        <th>No.of Units</th>
+                        <th>Discount percentage</th>
+                        <th>Discount amount</th>
+
+                        <th>net amount</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="myTable">
+
+                    @foreach (var item in Model.InvoiceItems)
+                    {
+                        <tr>
+
+                            <td>
+                                @item.Procedure.Name
+                            </td>
+                            <td>@item.Units</td>
+                            <td>@item.Discount%</td>
+                            <td>-@((item.Discount/100)*item.Units*item.Procedure.Price)</td>
+                            <td>
+                                @((1-(item.Discount/100))*item.Units*item.Procedure.Price)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <thead>
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <th>
+                            <b>Total:</b>
+                        </th>
+                        <th>
+                            @Html.DisplayFor(model => model.Total)
+                        <th>
+
+                    </tr>
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+
+                        <th>
+                            <b>%Tax:</b>
+                        </th>
+                        <th>
+                            @Html.DisplayFor(model => model.Tax)%
+                        <th>
+
+                    </tr>
+                    <tr>
+                        <th>
+                        </th>
+                        <th>
+                        </th>
+                        <th>
+                        </th>
+
+                        <th>
+                            <b>Total Amount:</b>
+                        </th>
+                        <th>
+                            @Html.DisplayFor(model => model.NetTotal)
+                        <th>
+
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <hr />
+    
+    @using (Html.BeginForm())
+    {
+         
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Cancel" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.69/vfs_fonts.min.js"></script>
+<script type="text/javascript">
+    function Export() {
+
+        html2canvas(document.getElementById('pdf'), {
+            onrendered: function (canvas) {
+                var data = canvas.toDataURL();
+                var docDefinition = {
+                    content: [
+                        {
+                            text: "Sharanya Polyclinic\n\n",
+
+                            style: 'header',
+                            alignment: 'center'
+                        },
+
+                        {
+                            text: '\n'
+                        },
+                        {
+                            image: data,
+                            width: 500
+                        }
+
+                    ],
+                    styles: {
+                        header: {
+                            fontSize: 25,
+                            bold: true,
+                            alignment: 'justify',
+                            color: '#00a79d'
+                        }
+                    }
+                };
+                pdfMake.createPdf(docDefinition).download("Invoice_".concat(document.getElementById("invoice-number").innerText.substring(13)));
+            }
+        });
+    }
+</script>
+
+
+<script src="~/assets/js/jquery-3.2.1.min.js"></script>

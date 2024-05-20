@@ -1,0 +1,187 @@
+﻿@model HMS.VeiwModels.LabTestVm
+@{
+
+}
+
+@section styleSheets{
+    <link href="~/assets/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />
+    <link href="~/assets/plugins/EasyAutocomplete/easy-autocomplete.css" rel="stylesheet" />
+    <link href="~/assets/plugins/EasyAutocomplete/easy-autocomplete.themes.css" rel="stylesheet" />
+
+}
+
+@using (Html.BeginForm())
+{
+
+
+
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <h4 class="page-title">Add Test Information</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <form class="patient-register-form">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="form-group">
+                            <label>Patient Name<span class="text-danger">*</span></label>
+                            @Html.Editor("PatientName", "", new { htmlAttributes = new { @class = "form-control", @dataPatId = "", @style = "width:100% !important" } })
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Patient ID<span class="text-danger">*</span></label>
+                            @Html.EditorFor(model => model.PatientID, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.PatientID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Patient Phone<span class="text-danger">*</span></label>
+                            @Html.TextBox("PatientPhone", "", new { @readonly = "readonly", @class = "form-control", @style = "background-color:#fff" })
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Patient Email</label>
+                            @Html.TextBox("PatientEmail", "", new { @readonly = "readonly", @class = "form-control", @style = "background-color:#fff" })
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Lab<span class="text-danger">*</span></label>
+                            @Html.DropDownListFor(x => Model.DepartmentID, new SelectList(Model.LabsList, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "DepartmentID" })
+                            @Html.ValidationMessageFor(model => model.DepartmentID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="col-sm-6">
+                        &nbsp;
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Test Name</label>
+                            @Html.EditorFor(x => Model.TestName, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Test Date<span class="text-danger">*</span></label>
+                            @Html.EditorFor(model => model.TestDate, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.TestDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>Message</label>
+                            @Html.TextAreaFor(model => model.Comment, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="submit" value="Submit" class="btn btn-primary submit-btn" />
+                    </div>
+                    <div class="col-sm-6">
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            @Html.ActionLink("Back to List", "Index")
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+}
+
+<script src="~/assets/js/jquery-3.2.1.min.js"></script>
+<script src="~/assets/plugins/EasyAutocomplete/jquery.easy-autocomplete.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#PatientID").on('change', function () {
+            $.ajax({
+                method: "GET",
+                url: '@Url.Action("GetPatientData", "Appointments")',
+                data: { ID: $(this).val() },
+                error: function () {
+                    $("#PatientPhone").val('');
+                    $("#PatientEmail").val('');
+                },
+                beforeSend: function () {
+                    //$("#OrderOverlay").show()
+                },
+                success: function (response) {
+                    $("#PatientPhone").val(response.data.PatientPhone);
+                    $("#PatientEmail").val(response.data.PatientEmail);
+                },
+                complete: function () { $("#OrderOverlay").hide(); }
+            })
+        });
+
+        $('input[name="TestDate"]').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            timePicker: true,
+            startDate: moment(),
+            timePickerIncrement: 10,
+            minDate: moment().add(-5, 'days'),
+            maxYear: parseInt((moment().add(12, 'months').format('yyyy')), 10),
+            locale: {
+                format: 'YYYY-MM-DD HH:mm:ss'
+            }
+        }, function (start, end, label) {
+            var years = moment().diff(start, 'years');
+
+        });
+    });
+     var patientOptions = {
+            url: function (patientName) {
+                var ajaxURL = '@Url.Action("GetPatientACCData", "Invoices")' + '?patientName=' + patientName;
+                return ajaxURL;
+            },
+            getValue: "Name",
+            template: {
+                type: "description",
+                fields: {
+                    description: "ID"
+                }
+            },
+
+            list: {
+                onSelectItemEvent: function () {
+                    console.log($("#PatientName").getSelectedItemData())
+                    var value = $("#PatientName").getSelectedItemData().ID;
+                    $("#PatientName").attr("dataPatId", value);
+
+                    $.ajax({
+                        method: "GET",
+                        url: '@Url.Action("GetPatientData", "Invoices")',
+                        data: { ID: value },
+                        error: function () {
+                            $("#PatientID").val('');
+                        },
+                        beforeSend: function () {
+                            //$("#OrderOverlay").show()
+                        },
+                        success: function (response) {
+                            $("#PatientID").val(response.ID);
+                            $("#PatientPhone").val(response.ContactNumber);
+                            $("#PatientEmail").val(response.Email);
+                        },
+                        complete: function () { $("#OrderOverlay").hide(); }
+                    });
+                },
+                onShowListEvent: function () {
+                    $("#PatientName").attr("dataPatId", "");
+                }
+            }
+        };
+    $("#PatientName").easyAutocomplete(patientOptions);
+
+</script>

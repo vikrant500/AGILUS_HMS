@@ -1,0 +1,170 @@
+﻿@model HMS.Models.DoctorViewModel
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+     
+
+    <div class="form-horizontal">
+        <h4>Doctor</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Department<span class="text-danger">*</span></label>
+                                    @Html.DropDownListFor(x => Model.DepartmentID, new SelectList(Model.DepartmentList, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "StateID" })
+                                    @Html.ValidationMessageFor(model => model.DepartmentID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Doctor Name<span class="text-danger">*</span></label>
+                                    @Html.EditorFor(model => model.DoctorName, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.DoctorName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Email<span class="text-danger">*</span></label>
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Phone<span class="text-danger">*</span></label>
+                                    @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Date of Birth<span class="text-danger">*</span></label>
+                                    @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Age<span class="text-danger">*</span></label>
+                                    @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Payment Type<span class="text-danger">*</span></label>
+                                    @Html.DropDownListFor(x => Model.PaymentType, new List<SelectListItem> { new SelectListItem() { Text = "-Select Payment Type-", Value = "" },
+                                                                                                     new SelectListItem() { Text = "Visit Charge", Value = "Visit Charge" },
+                                                                                                     new SelectListItem() { Text = "Salary", Value = "Salary" } }, htmlAttributes: new { @class = "form-control", id = "AppointmentType" })
+                                    @Html.ValidationMessageFor(model => model.PaymentType, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Charges<span class="text-danger">*</span></label>
+                                    @Html.EditorFor(model => model.Charges, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Charges, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Speciality<span class="text-danger">*</span></label>
+                                    @Html.EditorFor(model => model.Speciality, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Speciality, "", new { @class = "text-danger" })
+                                </div>
+                            </div><div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Qualification<span class="text-danger">*</span></label>
+                                    @Html.EditorFor(model => model.Qualification, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Qualification, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Date of Joining<span class="text-danger">*</span></label>
+                                    @Html.EditorFor(model => model.DateOfJoining, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.DateOfJoining, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Address<span class="text-danger">*</span></label>
+                                    @Html.TextAreaFor(model => model.Address, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <input type="submit" value="Edit" class="btn btn-info" />
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                &nbsp;
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    @Html.ActionLink("Back to List", "Index", null, new { @style = "font-size:12px;" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+<script src="~/assets/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('input[name="DateOfBirth"]').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            minYear: 1901,
+            maxDate: moment(),
+            maxYear: parseInt(moment().format('YYYY'), 10),
+            locale: {
+                format: 'YYYY-MM-DD'
+            }
+        }, function (start, end, label) {
+            var years = moment().diff(start, 'years');
+            $("#Age").val(years);
+        });
+
+
+        $('input[name="DateOfJoining"]').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            minYear: 1901,
+            maxDate: moment(),
+            maxYear: parseInt(moment().format('YYYY'), 10),
+            locale: {
+                format: 'YYYY-MM-DD'
+            }
+        }, function (start, end, label) {
+            //var years = moment().diff(start, 'years');
+            //$("#Age").val(years);
+        });
+
+    });
+</script>

@@ -1,0 +1,79 @@
+﻿@model HMS.Models.InvoiceTransactions
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+     
+
+<div class="form-horizontal">
+    <h4>InvoiceTransactions</h4>
+    <hr />
+    <div class="row">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID)
+        <div class="col-sm-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.DateCreated, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DateCreated, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                    @Html.ValidationMessageFor(model => model.DateCreated, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label>Payment Mode</label>
+                @Html.DropDownListFor(model => model.ModeOfPayment, new List<SelectListItem> { new SelectListItem() { Text = "--Select Mode--", Value = "" },
+               new SelectListItem() { Text = "CASH", Value = "CASH" },
+                                                                                    new SelectListItem() { Text = "PAYTM", Value = "PAYTM" },
+                                                                                    new SelectListItem() { Text = "DEBIT CARD", Value = "DEBIT CARD" },
+           new SelectListItem() { Text = "CREDIT CARD", Value = "CREDIT CARD" },
+           new SelectListItem() { Text = "UPI", Value = "UPI" },
+           new SelectListItem() { Text = "BHARAT PAY", Value = "BHARATH PAY" },
+           new SelectListItem() { Text = "PHONE PAY", Value = "PHONE PAY" },
+           new SelectListItem() { Text = "ACCOUNT PAY", Value = "ACCOUNT PAY" }}, htmlAttributes: new { @class = "form-control", id = "paymentMode" })
+            </div>
+        </div>
+        @*
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LastModified, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LastModified, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LastModified, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+                <div>
+                    @Html.ActionLink("Back to List", "Index","Invoices")
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+}
+
+

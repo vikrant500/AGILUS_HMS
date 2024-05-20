@@ -1,0 +1,1252 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7D2E05B3-8F4E-4D29-A9BB-826056DB1FBA}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HMS</RootNamespace>
+    <AssemblyName>HMS</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44303</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.0.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.0.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.0.0\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=1.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Logging.1.1.2\lib\net451\Microsoft.IdentityModel.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=5.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.5.1.2\lib\net451\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.2.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=5.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.5.1.2\lib\net451\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Twilio, Version=5.52.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Twilio.5.52.1\lib\net451\Twilio.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\css\bootstrap-datetimepicker.min.css" />
+    <Content Include="assets\css\bootstrap.min.css" />
+    <Content Include="assets\css\dataTables.bootstrap4.min.css" />
+    <Content Include="assets\css\font-awesome.min.css" />
+    <Content Include="assets\css\fullcalendar.min.css" />
+    <Content Include="assets\css\select2.min.css" />
+    <Content Include="assets\css\style.css" />
+    <Content Include="assets\css\tagsinput.css" />
+    <Content Include="assets\fonts\fontawesome-webfont3e6e.html" />
+    <Content Include="assets\fonts\fontawesome-webfont3e6e.svg" />
+    <Content Include="assets\img\attachment.png" />
+    <Content Include="assets\img\blog\blog-01.jpg" />
+    <Content Include="assets\img\blog\blog-02.jpg" />
+    <Content Include="assets\img\blog\blog-03.jpg" />
+    <Content Include="assets\img\blog\blog-04.jpg" />
+    <Content Include="assets\img\blog\blog-thumb-01.jpg" />
+    <Content Include="assets\img\blog\blog-thumb-02.jpg" />
+    <Content Include="assets\img\blog\blog-thumb-03.jpg" />
+    <Content Include="assets\img\blog\blog-thumb-04.jpg" />
+    <Content Include="assets\img\calander.png" />
+    <Content Include="assets\img\clock.png" />
+    <Content Include="assets\img\doctor-03.jpg" />
+    <Content Include="assets\img\doctor-thumb-01.jpg" />
+    <Content Include="assets\img\doctor-thumb-02.jpg" />
+    <Content Include="assets\img\doctor-thumb-03.jpg" />
+    <Content Include="assets\img\doctor-thumb-04.jpg" />
+    <Content Include="assets\img\doctor-thumb-05.jpg" />
+    <Content Include="assets\img\doctor-thumb-06.jpg" />
+    <Content Include="assets\img\doctor-thumb-07.jpg" />
+    <Content Include="assets\img\doctor-thumb-08.jpg" />
+    <Content Include="assets\img\doctor-thumb-09.jpg" />
+    <Content Include="assets\img\doctor-thumb-10.jpg" />
+    <Content Include="assets\img\doctor-thumb-11.jpg" />
+    <Content Include="assets\img\doctor-thumb-12.jpg" />
+    <Content Include="assets\img\favicon.ico" />
+    <Content Include="assets\img\logo-dark.png" />
+    <Content Include="assets\img\logo.png" />
+    <Content Include="assets\img\logo2.png" />
+    <Content Include="assets\img\patient-thumb-01.jpg" />
+    <Content Include="assets\img\patient-thumb-02.jpg" />
+    <Content Include="assets\img\pdfIcon.png" />
+    <Content Include="assets\img\placeholder-thumb.jpg" />
+    <Content Include="assets\img\placeholder.jpg" />
+    <Content Include="assets\img\sent.png" />
+    <Content Include="assets\img\user-02.jpg" />
+    <Content Include="assets\img\user-03.jpg" />
+    <Content Include="assets\img\user-04.jpg" />
+    <Content Include="assets\img\user-05.jpg" />
+    <Content Include="assets\img\user-06.jpg" />
+    <Content Include="assets\img\user.jpg" />
+    <Content Include="assets\img\video-call.jpg" />
+    <Content Include="assets\js\app.js" />
+    <Content Include="assets\js\bootstrap-datetimepicker.min.js" />
+    <Content Include="assets\js\bootstrap.min.js" />
+    <Content Include="assets\js\Chart.bundle.js" />
+    <Content Include="assets\js\chart.js" />
+    <Content Include="assets\js\dataTables.bootstrap4.min.js" />
+    <Content Include="assets\js\fullcalendar.min.js" />
+    <Content Include="assets\js\jquery-3.2.1.min.js" />
+    <Content Include="assets\js\jquery-ui.min.html" />
+    <Content Include="assets\js\jquery.dataTables.min.js" />
+    <Content Include="assets\js\jquery.fullcalendar.js" />
+    <Content Include="assets\js\jquery.slimscroll.js" />
+    <Content Include="assets\js\moment.min.js" />
+    <Content Include="assets\js\popper.min.js" />
+    <Content Include="assets\js\select2.min.js" />
+    <Content Include="assets\js\tagsinput.js" />
+    <Content Include="assets\plugins\daterangepicker\daterangepicker.css" />
+    <Content Include="assets\plugins\daterangepicker\daterangepicker.js" />
+    <Content Include="assets\plugins\EasyAutocomplete\easy-autocomplete.css" />
+    <Content Include="assets\plugins\EasyAutocomplete\easy-autocomplete.themes.css" />
+    <Content Include="assets\plugins\EasyAutocomplete\jquery.easy-autocomplete.js" />
+    <Content Include="assets\plugins\FullCalendar\main.css" />
+    <Content Include="assets\plugins\FullCalendar\main.js" />
+    <Content Include="assets\plugins\light-gallery\css\lightgallery.min.css" />
+    <Content Include="assets\plugins\light-gallery\fonts\lgd641.svg" />
+    <Content Include="assets\plugins\light-gallery\img\loading.gif" />
+    <Content Include="assets\plugins\light-gallery\img\video-play.png" />
+    <Content Include="assets\plugins\light-gallery\img\vimeo-play.png" />
+    <Content Include="assets\plugins\light-gallery\img\youtube-play.png" />
+    <Content Include="assets\plugins\light-gallery\js\lightgallery-all.min.js" />
+    <Content Include="assets\plugins\moment\locales.js" />
+    <Content Include="assets\plugins\moment\locales.min.js" />
+    <Content Include="assets\plugins\moment\locale\af.js" />
+    <Content Include="assets\plugins\moment\locale\ar-dz.js" />
+    <Content Include="assets\plugins\moment\locale\ar-kw.js" />
+    <Content Include="assets\plugins\moment\locale\ar-ly.js" />
+    <Content Include="assets\plugins\moment\locale\ar-ma.js" />
+    <Content Include="assets\plugins\moment\locale\ar-sa.js" />
+    <Content Include="assets\plugins\moment\locale\ar-tn.js" />
+    <Content Include="assets\plugins\moment\locale\ar.js" />
+    <Content Include="assets\plugins\moment\locale\az.js" />
+    <Content Include="assets\plugins\moment\locale\be.js" />
+    <Content Include="assets\plugins\moment\locale\bg.js" />
+    <Content Include="assets\plugins\moment\locale\bm.js" />
+    <Content Include="assets\plugins\moment\locale\bn.js" />
+    <Content Include="assets\plugins\moment\locale\bo.js" />
+    <Content Include="assets\plugins\moment\locale\br.js" />
+    <Content Include="assets\plugins\moment\locale\bs.js" />
+    <Content Include="assets\plugins\moment\locale\ca.js" />
+    <Content Include="assets\plugins\moment\locale\cs.js" />
+    <Content Include="assets\plugins\moment\locale\cv.js" />
+    <Content Include="assets\plugins\moment\locale\cy.js" />
+    <Content Include="assets\plugins\moment\locale\da.js" />
+    <Content Include="assets\plugins\moment\locale\de-at.js" />
+    <Content Include="assets\plugins\moment\locale\de-ch.js" />
+    <Content Include="assets\plugins\moment\locale\de.js" />
+    <Content Include="assets\plugins\moment\locale\dv.js" />
+    <Content Include="assets\plugins\moment\locale\el.js" />
+    <Content Include="assets\plugins\moment\locale\en-au.js" />
+    <Content Include="assets\plugins\moment\locale\en-ca.js" />
+    <Content Include="assets\plugins\moment\locale\en-gb.js" />
+    <Content Include="assets\plugins\moment\locale\en-ie.js" />
+    <Content Include="assets\plugins\moment\locale\en-il.js" />
+    <Content Include="assets\plugins\moment\locale\en-in.js" />
+    <Content Include="assets\plugins\moment\locale\en-nz.js" />
+    <Content Include="assets\plugins\moment\locale\en-SG.js" />
+    <Content Include="assets\plugins\moment\locale\eo.js" />
+    <Content Include="assets\plugins\moment\locale\es-do.js" />
+    <Content Include="assets\plugins\moment\locale\es-us.js" />
+    <Content Include="assets\plugins\moment\locale\es.js" />
+    <Content Include="assets\plugins\moment\locale\et.js" />
+    <Content Include="assets\plugins\moment\locale\eu.js" />
+    <Content Include="assets\plugins\moment\locale\fa.js" />
+    <Content Include="assets\plugins\moment\locale\fi.js" />
+    <Content Include="assets\plugins\moment\locale\fil.js" />
+    <Content Include="assets\plugins\moment\locale\fo.js" />
+    <Content Include="assets\plugins\moment\locale\fr-ca.js" />
+    <Content Include="assets\plugins\moment\locale\fr-ch.js" />
+    <Content Include="assets\plugins\moment\locale\fr.js" />
+    <Content Include="assets\plugins\moment\locale\fy.js" />
+    <Content Include="assets\plugins\moment\locale\ga.js" />
+    <Content Include="assets\plugins\moment\locale\gd.js" />
+    <Content Include="assets\plugins\moment\locale\gl.js" />
+    <Content Include="assets\plugins\moment\locale\gom-deva.js" />
+    <Content Include="assets\plugins\moment\locale\gom-latn.js" />
+    <Content Include="assets\plugins\moment\locale\gu.js" />
+    <Content Include="assets\plugins\moment\locale\he.js" />
+    <Content Include="assets\plugins\moment\locale\hi.js" />
+    <Content Include="assets\plugins\moment\locale\hr.js" />
+    <Content Include="assets\plugins\moment\locale\hu.js" />
+    <Content Include="assets\plugins\moment\locale\hy-am.js" />
+    <Content Include="assets\plugins\moment\locale\id.js" />
+    <Content Include="assets\plugins\moment\locale\is.js" />
+    <Content Include="assets\plugins\moment\locale\it-ch.js" />
+    <Content Include="assets\plugins\moment\locale\it.js" />
+    <Content Include="assets\plugins\moment\locale\ja.js" />
+    <Content Include="assets\plugins\moment\locale\jv.js" />
+    <Content Include="assets\plugins\moment\locale\ka.js" />
+    <Content Include="assets\plugins\moment\locale\kk.js" />
+    <Content Include="assets\plugins\moment\locale\km.js" />
+    <Content Include="assets\plugins\moment\locale\kn.js" />
+    <Content Include="assets\plugins\moment\locale\ko.js" />
+    <Content Include="assets\plugins\moment\locale\ku.js" />
+    <Content Include="assets\plugins\moment\locale\ky.js" />
+    <Content Include="assets\plugins\moment\locale\lb.js" />
+    <Content Include="assets\plugins\moment\locale\lo.js" />
+    <Content Include="assets\plugins\moment\locale\lt.js" />
+    <Content Include="assets\plugins\moment\locale\lv.js" />
+    <Content Include="assets\plugins\moment\locale\me.js" />
+    <Content Include="assets\plugins\moment\locale\mi.js" />
+    <Content Include="assets\plugins\moment\locale\mk.js" />
+    <Content Include="assets\plugins\moment\locale\ml.js" />
+    <Content Include="assets\plugins\moment\locale\mn.js" />
+    <Content Include="assets\plugins\moment\locale\mr.js" />
+    <Content Include="assets\plugins\moment\locale\ms-my.js" />
+    <Content Include="assets\plugins\moment\locale\ms.js" />
+    <Content Include="assets\plugins\moment\locale\mt.js" />
+    <Content Include="assets\plugins\moment\locale\my.js" />
+    <Content Include="assets\plugins\moment\locale\nb.js" />
+    <Content Include="assets\plugins\moment\locale\ne.js" />
+    <Content Include="assets\plugins\moment\locale\nl-be.js" />
+    <Content Include="assets\plugins\moment\locale\nl.js" />
+    <Content Include="assets\plugins\moment\locale\nn.js" />
+    <Content Include="assets\plugins\moment\locale\oc-lnc.js" />
+    <Content Include="assets\plugins\moment\locale\pa-in.js" />
+    <Content Include="assets\plugins\moment\locale\pl.js" />
+    <Content Include="assets\plugins\moment\locale\pt-br.js" />
+    <Content Include="assets\plugins\moment\locale\pt.js" />
+    <Content Include="assets\plugins\moment\locale\ro.js" />
+    <Content Include="assets\plugins\moment\locale\ru.js" />
+    <Content Include="assets\plugins\moment\locale\sd.js" />
+    <Content Include="assets\plugins\moment\locale\se.js" />
+    <Content Include="assets\plugins\moment\locale\si.js" />
+    <Content Include="assets\plugins\moment\locale\sk.js" />
+    <Content Include="assets\plugins\moment\locale\sl.js" />
+    <Content Include="assets\plugins\moment\locale\sq.js" />
+    <Content Include="assets\plugins\moment\locale\sr-cyrl.js" />
+    <Content Include="assets\plugins\moment\locale\sr.js" />
+    <Content Include="assets\plugins\moment\locale\ss.js" />
+    <Content Include="assets\plugins\moment\locale\sv.js" />
+    <Content Include="assets\plugins\moment\locale\sw.js" />
+    <Content Include="assets\plugins\moment\locale\ta.js" />
+    <Content Include="assets\plugins\moment\locale\te.js" />
+    <Content Include="assets\plugins\moment\locale\tet.js" />
+    <Content Include="assets\plugins\moment\locale\tg.js" />
+    <Content Include="assets\plugins\moment\locale\th.js" />
+    <Content Include="assets\plugins\moment\locale\tk.js" />
+    <Content Include="assets\plugins\moment\locale\tl-ph.js" />
+    <Content Include="assets\plugins\moment\locale\tlh.js" />
+    <Content Include="assets\plugins\moment\locale\tr.js" />
+    <Content Include="assets\plugins\moment\locale\tzl.js" />
+    <Content Include="assets\plugins\moment\locale\tzm-latn.js" />
+    <Content Include="assets\plugins\moment\locale\tzm.js" />
+    <Content Include="assets\plugins\moment\locale\ug-cn.js" />
+    <Content Include="assets\plugins\moment\locale\uk.js" />
+    <Content Include="assets\plugins\moment\locale\ur.js" />
+    <Content Include="assets\plugins\moment\locale\uz-latn.js" />
+    <Content Include="assets\plugins\moment\locale\uz.js" />
+    <Content Include="assets\plugins\moment\locale\vi.js" />
+    <Content Include="assets\plugins\moment\locale\x-pseudo.js" />
+    <Content Include="assets\plugins\moment\locale\yo.js" />
+    <Content Include="assets\plugins\moment\locale\zh-cn.js" />
+    <Content Include="assets\plugins\moment\locale\zh-hk.js" />
+    <Content Include="assets\plugins\moment\locale\zh-mo.js" />
+    <Content Include="assets\plugins\moment\locale\zh-tw.js" />
+    <Content Include="assets\plugins\moment\moment-with-locales.js" />
+    <Content Include="assets\plugins\moment\moment-with-locales.min.js" />
+    <Content Include="assets\plugins\moment\moment.min.js" />
+    <Content Include="assets\plugins\summernote\dist\summernote-bs4.css" />
+    <Content Include="assets\plugins\summernote\dist\summernote-bs4.min.js" />
+    <Content Include="assets\plugins\SweetAlert\sweetalert2%4010.js" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="assets\fonts\fontawesome-webfont3e6e.eot" />
+    <Content Include="assets\fonts\fontawesome-webfont3e6e.ttf" />
+    <Content Include="assets\fonts\fontawesome-webfont3e6e.woff" />
+    <Content Include="assets\fonts\fontawesome-webfontd41d.eot" />
+    <Content Include="assets\plugins\light-gallery\fonts\lgd41d.eot" />
+    <Content Include="assets\plugins\light-gallery\fonts\lgd641.eot" />
+    <Content Include="assets\plugins\light-gallery\fonts\lgd641.ttf" />
+    <Content Include="assets\plugins\light-gallery\fonts\lgd641.woff" />
+    <Content Include="assets\plugins\summernote\dist\font\summernote4c4d.eot" />
+    <Content Include="assets\plugins\summernote\dist\font\summernote4c4d.ttf" />
+    <Content Include="assets\plugins\summernote\dist\font\summernote4c4d.woff" />
+    <Content Include="assets\plugins\summernote\dist\font\summernoted41d.eot" />
+    <Content Include="assets\plugins\moment\locales.min.js.map" />
+    <Content Include="assets\plugins\moment\moment-with-locales.min.js.map" />
+    <Content Include="assets\plugins\moment\moment.min.js.map" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="TestReportsPDFs\ReadMe.txt" />
+    <Content Include="Web.config" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AppointmentsController.cs" />
+    <Compile Include="Controllers\BiometricsController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\CentersController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\DepartmentsController.cs" />
+    <Compile Include="Controllers\DoctorSalariesController.cs" />
+    <Compile Include="Controllers\DoctorSchedulesController.cs" />
+    <Compile Include="Controllers\DoctorsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InventoryController.cs" />
+    <Compile Include="Controllers\InvoiceReportsController.cs" />
+    <Compile Include="Controllers\InvoicesController.cs" />
+    <Compile Include="Controllers\InvoiceTransactionsController.cs" />
+    <Compile Include="Controllers\JustDialsController.cs" />
+    <Compile Include="Controllers\LabTestsController.cs" />
+    <Compile Include="Controllers\LoyalitiesController.cs" />
+    <Compile Include="Controllers\LoyalityProceduresController.cs" />
+    <Compile Include="Controllers\MessagesController.cs" />
+    <Compile Include="Controllers\PatientFeedbacksController.cs" />
+    <Compile Include="Controllers\PatientRegistrationController.cs" />
+    <Compile Include="Controllers\PatientsController.cs" />
+    <Compile Include="Controllers\ProceduresController.cs" />
+    <Compile Include="Controllers\ProfitLossesController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
+    <Compile Include="Controllers\RoleAdminController.cs" />
+    <Compile Include="Controllers\StaffSalariesController.cs" />
+    <Compile Include="Controllers\StaffsController.cs" />
+    <Compile Include="Controllers\TaxesController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Infrastructure\AppIdentityDbContext.cs" />
+    <Compile Include="Infrastructure\AppRoleManager.cs" />
+    <Compile Include="Infrastructure\AppUserManager.cs" />
+    <Compile Include="Infrastructure\CustomPasswordValidator.cs" />
+    <Compile Include="Infrastructure\CustomUserValidator.cs" />
+    <Compile Include="Infrastructure\IdentityHelpers.cs" />
+    <Compile Include="Infrastructure\SendMessage.cs" />
+    <Compile Include="Migrations\202011241019080_init.cs" />
+    <Compile Include="Migrations\202011241019080_init.Designer.cs">
+      <DependentUpon>202011241019080_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011250903515_appointment.cs" />
+    <Compile Include="Migrations\202011250903515_appointment.Designer.cs">
+      <DependentUpon>202011250903515_appointment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011250937021_updatedAppointment.cs" />
+    <Compile Include="Migrations\202011250937021_updatedAppointment.Designer.cs">
+      <DependentUpon>202011250937021_updatedAppointment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011251019577_removeTime.cs" />
+    <Compile Include="Migrations\202011251019577_removeTime.Designer.cs">
+      <DependentUpon>202011251019577_removeTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011251022458_addappttype.cs" />
+    <Compile Include="Migrations\202011251022458_addappttype.Designer.cs">
+      <DependentUpon>202011251022458_addappttype.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011261919108_procedure.cs" />
+    <Compile Include="Migrations\202011261919108_procedure.Designer.cs">
+      <DependentUpon>202011261919108_procedure.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202011301128193_invoices.cs" />
+    <Compile Include="Migrations\202011301128193_invoices.Designer.cs">
+      <DependentUpon>202011301128193_invoices.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012011753064_istatus.cs" />
+    <Compile Include="Migrations\202012011753064_istatus.Designer.cs">
+      <DependentUpon>202012011753064_istatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012011755284_datestamp.cs" />
+    <Compile Include="Migrations\202012011755284_datestamp.Designer.cs">
+      <DependentUpon>202012011755284_datestamp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012020740495_deptinproc.cs" />
+    <Compile Include="Migrations\202012020740495_deptinproc.Designer.cs">
+      <DependentUpon>202012020740495_deptinproc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012021222514_updatepatdoc.cs" />
+    <Compile Include="Migrations\202012021222514_updatepatdoc.Designer.cs">
+      <DependentUpon>202012021222514_updatepatdoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101021801239_addcategory.cs" />
+    <Compile Include="Migrations\202101021801239_addcategory.Designer.cs">
+      <DependentUpon>202101021801239_addcategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101031010482_updatecategory.cs" />
+    <Compile Include="Migrations\202101031010482_updatecategory.Designer.cs">
+      <DependentUpon>202101031010482_updatecategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101031954222_invoicereports.cs" />
+    <Compile Include="Migrations\202101031954222_invoicereports.Designer.cs">
+      <DependentUpon>202101031954222_invoicereports.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101041141327_updateinvoicereports.cs" />
+    <Compile Include="Migrations\202101041141327_updateinvoicereports.Designer.cs">
+      <DependentUpon>202101041141327_updateinvoicereports.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101070811017_staff.cs" />
+    <Compile Include="Migrations\202101070811017_staff.Designer.cs">
+      <DependentUpon>202101070811017_staff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101070829298_staff1.cs" />
+    <Compile Include="Migrations\202101070829298_staff1.Designer.cs">
+      <DependentUpon>202101070829298_staff1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101070909159_updateprofitloss.cs" />
+    <Compile Include="Migrations\202101070909159_updateprofitloss.Designer.cs">
+      <DependentUpon>202101070909159_updateprofitloss.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101092035484_patientfeedback.cs" />
+    <Compile Include="Migrations\202101092035484_patientfeedback.Designer.cs">
+      <DependentUpon>202101092035484_patientfeedback.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101092118474_patientfeedbackUpdate.cs" />
+    <Compile Include="Migrations\202101092118474_patientfeedbackUpdate.Designer.cs">
+      <DependentUpon>202101092118474_patientfeedbackUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101121311247_loyality.cs" />
+    <Compile Include="Migrations\202101121311247_loyality.Designer.cs">
+      <DependentUpon>202101121311247_loyality.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101121715057_loyalitydependents.cs" />
+    <Compile Include="Migrations\202101121715057_loyalitydependents.Designer.cs">
+      <DependentUpon>202101121715057_loyalitydependents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101131150444_patient-validation.cs" />
+    <Compile Include="Migrations\202101131150444_patient-validation.Designer.cs">
+      <DependentUpon>202101131150444_patient-validation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101131200249_patient-validation-adharid.cs" />
+    <Compile Include="Migrations\202101131200249_patient-validation-adharid.Designer.cs">
+      <DependentUpon>202101131200249_patient-validation-adharid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101131207341_patient-validation-adharid1.cs" />
+    <Compile Include="Migrations\202101131207341_patient-validation-adharid1.Designer.cs">
+      <DependentUpon>202101131207341_patient-validation-adharid1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101131223368_patient-lastname.cs" />
+    <Compile Include="Migrations\202101131223368_patient-lastname.Designer.cs">
+      <DependentUpon>202101131223368_patient-lastname.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101131239406_patient-validation-phonenumber.cs" />
+    <Compile Include="Migrations\202101131239406_patient-validation-phonenumber.Designer.cs">
+      <DependentUpon>202101131239406_patient-validation-phonenumber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101131246555_patient-validation-occupatio.cs" />
+    <Compile Include="Migrations\202101131246555_patient-validation-occupatio.Designer.cs">
+      <DependentUpon>202101131246555_patient-validation-occupatio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101131637296_taxes.cs" />
+    <Compile Include="Migrations\202101131637296_taxes.Designer.cs">
+      <DependentUpon>202101131637296_taxes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101141018346_salaries.cs" />
+    <Compile Include="Migrations\202101141018346_salaries.Designer.cs">
+      <DependentUpon>202101141018346_salaries.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101141335518_profitloss-salary.cs" />
+    <Compile Include="Migrations\202101141335518_profitloss-salary.Designer.cs">
+      <DependentUpon>202101141335518_profitloss-salary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101150945177_dashboard1.cs" />
+    <Compile Include="Migrations\202101150945177_dashboard1.Designer.cs">
+      <DependentUpon>202101150945177_dashboard1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101181559388_patientnotknowndob1.cs" />
+    <Compile Include="Migrations\202101181559388_patientnotknowndob1.Designer.cs">
+      <DependentUpon>202101181559388_patientnotknowndob1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101181601374_patientnotknowndob.cs" />
+    <Compile Include="Migrations\202101181601374_patientnotknowndob.Designer.cs">
+      <DependentUpon>202101181601374_patientnotknowndob.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101181606565_patientnotknowndob2.cs" />
+    <Compile Include="Migrations\202101181606565_patientnotknowndob2.Designer.cs">
+      <DependentUpon>202101181606565_patientnotknowndob2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101181635276_qualificationfordocsandstaff.cs" />
+    <Compile Include="Migrations\202101181635276_qualificationfordocsandstaff.Designer.cs">
+      <DependentUpon>202101181635276_qualificationfordocsandstaff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101181640244_docqualification.cs" />
+    <Compile Include="Migrations\202101181640244_docqualification.Designer.cs">
+      <DependentUpon>202101181640244_docqualification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101191345515_doctorschedule.cs" />
+    <Compile Include="Migrations\202101191345515_doctorschedule.Designer.cs">
+      <DependentUpon>202101191345515_doctorschedule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101191431113_doctorschedule1.cs" />
+    <Compile Include="Migrations\202101191431113_doctorschedule1.Designer.cs">
+      <DependentUpon>202101191431113_doctorschedule1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101192109529_resetdobpatient.cs" />
+    <Compile Include="Migrations\202101192109529_resetdobpatient.Designer.cs">
+      <DependentUpon>202101192109529_resetdobpatient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101192116296_reserdobpatient.cs" />
+    <Compile Include="Migrations\202101192116296_reserdobpatient.Designer.cs">
+      <DependentUpon>202101192116296_reserdobpatient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101192140310_resetdocstaffqualification.cs" />
+    <Compile Include="Migrations\202101192140310_resetdocstaffqualification.Designer.cs">
+      <DependentUpon>202101192140310_resetdocstaffqualification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101201032450_docschedulemessage.cs" />
+    <Compile Include="Migrations\202101201032450_docschedulemessage.Designer.cs">
+      <DependentUpon>202101201032450_docschedulemessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101201328287_amountpaidinvoices.cs" />
+    <Compile Include="Migrations\202101201328287_amountpaidinvoices.Designer.cs">
+      <DependentUpon>202101201328287_amountpaidinvoices.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101201528196_referals.cs" />
+    <Compile Include="Migrations\202101201528196_referals.Designer.cs">
+      <DependentUpon>202101201528196_referals.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101202046210_inventorychanges.cs" />
+    <Compile Include="Migrations\202101202046210_inventorychanges.Designer.cs">
+      <DependentUpon>202101202046210_inventorychanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101251247409_justdials1.cs" />
+    <Compile Include="Migrations\202101251247409_justdials1.Designer.cs">
+      <DependentUpon>202101251247409_justdials1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101310715537_updatejustdial.cs" />
+    <Compile Include="Migrations\202101310715537_updatejustdial.Designer.cs">
+      <DependentUpon>202101310715537_updatejustdial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101310722126_updatepatient.cs" />
+    <Compile Include="Migrations\202101310722126_updatepatient.Designer.cs">
+      <DependentUpon>202101310722126_updatepatient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101310839247_updatepatient1.cs" />
+    <Compile Include="Migrations\202101310839247_updatepatient1.Designer.cs">
+      <DependentUpon>202101310839247_updatepatient1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101311318398_invoicesupdate.cs" />
+    <Compile Include="Migrations\202101311318398_invoicesupdate.Designer.cs">
+      <DependentUpon>202101311318398_invoicesupdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101311530092_Invoicedescription.cs" />
+    <Compile Include="Migrations\202101311530092_Invoicedescription.Designer.cs">
+      <DependentUpon>202101311530092_Invoicedescription.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101311545080_centerwisegst.cs" />
+    <Compile Include="Migrations\202101311545080_centerwisegst.Designer.cs">
+      <DependentUpon>202101311545080_centerwisegst.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102010834539_invoicetransactions.cs" />
+    <Compile Include="Migrations\202102010834539_invoicetransactions.Designer.cs">
+      <DependentUpon>202102010834539_invoicetransactions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102010945118_procedurestring.cs" />
+    <Compile Include="Migrations\202102010945118_procedurestring.Designer.cs">
+      <DependentUpon>202102010945118_procedurestring.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102011103341_paymentstring.cs" />
+    <Compile Include="Migrations\202102011103341_paymentstring.Designer.cs">
+      <DependentUpon>202102011103341_paymentstring.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102131041498_IndentityCorrection.cs" />
+    <Compile Include="Migrations\202102131041498_IndentityCorrection.Designer.cs">
+      <DependentUpon>202102131041498_IndentityCorrection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102220623031_invoiceupdate.cs" />
+    <Compile Include="Migrations\202102220623031_invoiceupdate.Designer.cs">
+      <DependentUpon>202102220623031_invoiceupdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102230548567_invoicediscount.cs" />
+    <Compile Include="Migrations\202102230548567_invoicediscount.Designer.cs">
+      <DependentUpon>202102230548567_invoicediscount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102230959202_patientsupdate.cs" />
+    <Compile Include="Migrations\202102230959202_patientsupdate.Designer.cs">
+      <DependentUpon>202102230959202_patientsupdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102240535538_reportcolumnsadd.cs" />
+    <Compile Include="Migrations\202102240535538_reportcolumnsadd.Designer.cs">
+      <DependentUpon>202102240535538_reportcolumnsadd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102240626133_invoicereportsdisplayid.cs" />
+    <Compile Include="Migrations\202102240626133_invoicereportsdisplayid.Designer.cs">
+      <DependentUpon>202102240626133_invoicereportsdisplayid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102240813247_invoicecreateduser.cs" />
+    <Compile Include="Migrations\202102240813247_invoicecreateduser.Designer.cs">
+      <DependentUpon>202102240813247_invoicecreateduser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102240845461_invoicerepotsusername.cs" />
+    <Compile Include="Migrations\202102240845461_invoicerepotsusername.Designer.cs">
+      <DependentUpon>202102240845461_invoicerepotsusername.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102271645244_invoiceDoctorAdd.cs" />
+    <Compile Include="Migrations\202102271645244_invoiceDoctorAdd.Designer.cs">
+      <DependentUpon>202102271645244_invoiceDoctorAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103070238127_patientsage.cs" />
+    <Compile Include="Migrations\202103070238127_patientsage.Designer.cs">
+      <DependentUpon>202103070238127_patientsage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103070420532_messages.cs" />
+    <Compile Include="Migrations\202103070420532_messages.Designer.cs">
+      <DependentUpon>202103070420532_messages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103300734452_invoicedepartment_addition.cs" />
+    <Compile Include="Migrations\202103300734452_invoicedepartment_addition.Designer.cs">
+      <DependentUpon>202103300734452_invoicedepartment_addition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202103300830188_inventory_modeofpayment_add.cs" />
+    <Compile Include="Migrations\202103300830188_inventory_modeofpayment_add.Designer.cs">
+      <DependentUpon>202103300830188_inventory_modeofpayment_add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105011950186_departmentTypes.cs" />
+    <Compile Include="Migrations\202105011950186_departmentTypes.Designer.cs">
+      <DependentUpon>202105011950186_departmentTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105011954012_addDeptType.cs" />
+    <Compile Include="Migrations\202105011954012_addDeptType.Designer.cs">
+      <DependentUpon>202105011954012_addDeptType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105040904546_patientReports.cs" />
+    <Compile Include="Migrations\202105040904546_patientReports.Designer.cs">
+      <DependentUpon>202105040904546_patientReports.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105050718594_labTest.cs" />
+    <Compile Include="Migrations\202105050718594_labTest.Designer.cs">
+      <DependentUpon>202105050718594_labTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105050836026_updReportTable.cs" />
+    <Compile Include="Migrations\202105050836026_updReportTable.Designer.cs">
+      <DependentUpon>202105050836026_updReportTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105090849284_reportChanges.cs" />
+    <Compile Include="Migrations\202105090849284_reportChanges.Designer.cs">
+      <DependentUpon>202105090849284_reportChanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105121852324_dateuploadnullable.cs" />
+    <Compile Include="Migrations\202105121852324_dateuploadnullable.Designer.cs">
+      <DependentUpon>202105121852324_dateuploadnullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105150914384_downloadDatetime.cs" />
+    <Compile Include="Migrations\202105150914384_downloadDatetime.Designer.cs">
+      <DependentUpon>202105150914384_downloadDatetime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105291003045_Mig_UserPatientMapping.cs" />
+    <Compile Include="Migrations\202105291003045_Mig_UserPatientMapping.Designer.cs">
+      <DependentUpon>202105291003045_Mig_UserPatientMapping.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110161754539_Update JD table.cs" />
+    <Compile Include="Migrations\202110161754539_Update JD table.designer.cs">
+      <DependentUpon>202110161754539_Update JD table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110171907476_Add_biometric_model.cs" />
+    <Compile Include="Migrations\202110171907476_Add_biometric_model.Designer.cs">
+      <DependentUpon>202110171907476_Add_biometric_model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111100954420_Update Feedback Form.cs" />
+    <Compile Include="Migrations\202111100954420_Update Feedback Form.Designer.cs">
+      <DependentUpon>202111100954420_Update Feedback Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Appointment.cs" />
+    <Compile Include="Models\AppRole.cs" />
+    <Compile Include="Models\AppUser.cs" />
+    <Compile Include="Models\Biometric.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Center.cs" />
+    <Compile Include="Models\DepartmentType.cs" />
+    <Compile Include="Models\LabTest.cs" />
+    <Compile Include="Models\Message.cs" />
+    <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\Doctor.cs" />
+    <Compile Include="Models\DoctorSalary.cs" />
+    <Compile Include="Models\DoctorSchedule.cs" />
+    <Compile Include="Models\Inventory.cs" />
+    <Compile Include="Models\Invoice.cs" />
+    <Compile Include="Models\InvoiceItem.cs" />
+    <Compile Include="Models\InvoiceTransactions.cs" />
+    <Compile Include="Models\JustDial.cs" />
+    <Compile Include="Models\Loyality.cs" />
+    <Compile Include="Models\LoyalityDependents.cs" />
+    <Compile Include="Models\LoyalityProcedure.cs" />
+    <Compile Include="Models\Patient.cs" />
+    <Compile Include="Models\PatientFeedback.cs" />
+    <Compile Include="Models\PatientReport.cs" />
+    <Compile Include="Models\Procedure.cs" />
+    <Compile Include="Models\Referal.cs" />
+    <Compile Include="Controllers\ReferalsController.cs" />
+    <Compile Include="Models\Staff.cs" />
+    <Compile Include="Models\StaffSalary.cs" />
+    <Compile Include="Models\Taxes.cs" />
+    <Compile Include="Models\TestReports.cs" />
+    <Compile Include="Models\UserPatientMapping.cs" />
+    <Compile Include="Models\UserViewModels.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VeiwModels\CustomerReportsListVm.cs" />
+    <Compile Include="VeiwModels\Dashboard.cs" />
+    <Compile Include="VeiwModels\DepartmentVm.cs" />
+    <Compile Include="VeiwModels\InvoiceReport.cs" />
+    <Compile Include="VeiwModels\LabTestListVm.cs" />
+    <Compile Include="VeiwModels\LabTestVm.cs" />
+    <Compile Include="VeiwModels\ProfitLoss.cs" />
+    <Compile Include="VeiwModels\ReportsListVm.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <None Include="packages.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="Views\Departments\Create.cshtml" />
+    <Content Include="Views\Departments\Delete.cshtml" />
+    <Content Include="Views\Departments\Details.cshtml" />
+    <Content Include="Views\Departments\Edit.cshtml" />
+    <Content Include="Views\Departments\Index.cshtml" />
+    <Content Include="Views\Doctors\Create.cshtml" />
+    <Content Include="Views\Doctors\Delete.cshtml" />
+    <Content Include="Views\Doctors\Details.cshtml" />
+    <Content Include="Views\Doctors\Edit.cshtml" />
+    <Content Include="Views\Doctors\Index.cshtml" />
+    <Content Include="Views\Patients\Create.cshtml" />
+    <Content Include="Views\Patients\Delete.cshtml" />
+    <Content Include="Views\Patients\Details.cshtml" />
+    <Content Include="Views\Patients\Edit.cshtml" />
+    <Content Include="Views\Patients\Index.cshtml" />
+    <Content Include="Views\Centers\Create.cshtml" />
+    <Content Include="Views\Centers\Delete.cshtml" />
+    <Content Include="Views\Centers\Details.cshtml" />
+    <Content Include="Views\Centers\Edit.cshtml" />
+    <Content Include="Views\Centers\Index.cshtml" />
+    <Content Include="Views\Appointments\Create.cshtml" />
+    <Content Include="Views\Appointments\Delete.cshtml" />
+    <Content Include="Views\Appointments\Details.cshtml" />
+    <Content Include="Views\Appointments\Edit.cshtml" />
+    <Content Include="Views\Appointments\Index.cshtml" />
+    <Content Include="Views\Shared\_DoctorOptions.cshtml" />
+    <Content Include="Views\Procedures\Create.cshtml" />
+    <Content Include="Views\Procedures\Delete.cshtml" />
+    <Content Include="Views\Procedures\Details.cshtml" />
+    <Content Include="Views\Procedures\Edit.cshtml" />
+    <Content Include="Views\Procedures\Index.cshtml" />
+    <Content Include="Views\Invoices\Create.cshtml" />
+    <Content Include="Views\Shared\_InvoiceProcedures.cshtml" />
+    <Content Include="Views\Invoices\Index.cshtml" />
+    <Content Include="Views\Inventory\Edit.cshtml" />
+    <Content Include="Views\Inventory\Index.cshtml" />
+    <Content Include="Views\Inventory\Details.cshtml" />
+    <Content Include="Views\Inventory\Delete.cshtml" />
+    <Content Include="Views\Inventory\Create.cshtml" />
+    <Content Include="Views\Categories\Create.cshtml" />
+    <Content Include="Views\Categories\Delete.cshtml" />
+    <Content Include="Views\Categories\Details.cshtml" />
+    <Content Include="Views\Categories\Edit.cshtml" />
+    <Content Include="Views\Categories\Index.cshtml" />
+    <Content Include="Views\ProfitLosses\Create.cshtml" />
+    <Content Include="Views\ProfitLosses\RevenueDetails.cshtml" />
+    <Content Include="Views\ProfitLosses\ExpenceDetails.cshtml" />
+    <Content Include="Views\ProfitLosses\Edit.cshtml" />
+    <Content Include="Views\ProfitLosses\Index.cshtml" />
+    <Content Include="Views\InvoiceReports\Create.cshtml" />
+    <Content Include="Views\InvoiceReports\Delete.cshtml" />
+    <Content Include="Views\InvoiceReports\Details.cshtml" />
+    <Content Include="Views\InvoiceReports\Edit.cshtml" />
+    <Content Include="Views\InvoiceReports\Index.cshtml" />
+    <Content Include="Views\Staffs\Create.cshtml" />
+    <Content Include="Views\Staffs\Delete.cshtml" />
+    <Content Include="Views\Staffs\Details.cshtml" />
+    <Content Include="Views\Staffs\Edit.cshtml" />
+    <Content Include="Views\Staffs\Index.cshtml" />
+    <Content Include="Views\PatientRegistration\Create.cshtml" />
+    <Content Include="Views\PatientRegistration\Delete.cshtml" />
+    <Content Include="Views\PatientRegistration\Details.cshtml" />
+    <Content Include="Views\PatientRegistration\Edit.cshtml" />
+    <Content Include="Views\PatientRegistration\Index.cshtml" />
+    <Content Include="Views\PatientFeedbacks\Create.cshtml" />
+    <Content Include="Views\PatientFeedbacks\Edit.cshtml" />
+    <Content Include="Views\PatientFeedbacks\Index.cshtml" />
+    <Content Include="Views\Loyalities\Create.cshtml" />
+    <Content Include="Views\Loyalities\Delete.cshtml" />
+    <Content Include="Views\Loyalities\Details.cshtml" />
+    <Content Include="Views\Loyalities\Edit.cshtml" />
+    <Content Include="Views\Loyalities\Index.cshtml" />
+    <Content Include="Views\Shared\_LoyalityProcedures.cshtml" />
+    <Content Include="Views\Shared\_LoyalityDependents.cshtml" />
+    <Content Include="Views\Taxes\Create.cshtml" />
+    <Content Include="Views\Taxes\Delete.cshtml" />
+    <Content Include="Views\Taxes\Details.cshtml" />
+    <Content Include="Views\Taxes\Edit.cshtml" />
+    <Content Include="Views\Taxes\Index.cshtml" />
+    <Content Include="Views\Invoices\Details.cshtml" />
+    <Content Include="Views\LoyalityProcedures\Create.cshtml" />
+    <Content Include="Views\LoyalityProcedures\Delete.cshtml" />
+    <Content Include="Views\LoyalityProcedures\Details.cshtml" />
+    <Content Include="Views\LoyalityProcedures\Edit.cshtml" />
+    <Content Include="Views\LoyalityProcedures\Index.cshtml" />
+    <Content Include="Views\SalaryDoctors\Create.cshtml" />
+    <Content Include="Views\SalaryDoctors\Delete.cshtml" />
+    <Content Include="Views\SalaryDoctors\Details.cshtml" />
+    <Content Include="Views\SalaryDoctors\Edit.cshtml" />
+    <Content Include="Views\SalaryDoctors\Index.cshtml" />
+    <Content Include="Views\StaffSalaries\Create.cshtml" />
+    <Content Include="Views\StaffSalaries\Delete.cshtml" />
+    <Content Include="Views\StaffSalaries\Details.cshtml" />
+    <Content Include="Views\StaffSalaries\Edit.cshtml" />
+    <Content Include="Views\StaffSalaries\Index.cshtml" />
+    <Content Include="Views\DoctorSalaries\Create.cshtml" />
+    <Content Include="Views\DoctorSalaries\Delete.cshtml" />
+    <Content Include="Views\DoctorSalaries\Details.cshtml" />
+    <Content Include="Views\DoctorSalaries\Edit.cshtml" />
+    <Content Include="Views\DoctorSalaries\Index.cshtml" />
+    <Content Include="Views\Dashboard\Create.cshtml" />
+    <Content Include="Views\Dashboard\Delete.cshtml" />
+    <Content Include="Views\Dashboard\Details.cshtml" />
+    <Content Include="Views\Dashboard\Edit.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\DoctorSchedules\Create.cshtml" />
+    <Content Include="Views\DoctorSchedules\Delete.cshtml" />
+    <Content Include="Views\DoctorSchedules\Details.cshtml" />
+    <Content Include="Views\DoctorSchedules\Edit.cshtml" />
+    <Content Include="Views\DoctorSchedules\Index.cshtml" />
+    <Content Include="Views\Invoices\Pay.cshtml" />
+    <Content Include="Views\Referals\Create.cshtml" />
+    <Content Include="Views\Referals\Delete.cshtml" />
+    <Content Include="Views\Referals\Details.cshtml" />
+    <Content Include="Views\Referals\Edit.cshtml" />
+    <Content Include="Views\Referals\Index.cshtml" />
+    <Content Include="Views\JustDials\Create.cshtml" />
+    <Content Include="Views\JustDials\Delete.cshtml" />
+    <Content Include="Views\JustDials\Details.cshtml" />
+    <Content Include="Views\JustDials\Edit.cshtml" />
+    <Content Include="Views\JustDials\Index.cshtml" />
+    <Content Include="Views\Invoices\Delete.cshtml" />
+    <Content Include="Views\Invoices\Edit.cshtml" />
+    <Content Include="Views\InvoiceTransactions\Create.cshtml" />
+    <Content Include="Views\InvoiceTransactions\Delete.cshtml" />
+    <Content Include="Views\InvoiceTransactions\Details.cshtml" />
+    <Content Include="Views\InvoiceTransactions\Edit.cshtml" />
+    <Content Include="Views\InvoiceTransactions\Index.cshtml" />
+    <Content Include="Views\ProfitLosses\DayExpenceDetails.cshtml" />
+    <Content Include="Views\ProfitLosses\DayRevenueDetails.cshtml" />
+    <Content Include="Views\Messages\Create.cshtml" />
+    <Content Include="Views\Messages\Delete.cshtml" />
+    <Content Include="Views\Messages\Details.cshtml" />
+    <Content Include="Views\Messages\Edit.cshtml" />
+    <Content Include="Views\Messages\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutCustomer.cshtml" />
+    <Content Include="Views\Reports\List.cshtml" />
+    <Content Include="Views\LabTests\Add.cshtml" />
+    <Content Include="Views\LabTests\Index.cshtml" />
+    <Content Include="Views\LabTests\AddReport.cshtml" />
+    <Content Include="Views\RoleAdmin\Create.cshtml" />
+    <Content Include="Views\RoleAdmin\Index.cshtml" />
+    <Content Include="Views\Biometrics\Index.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Properties\PublishProfiles\" />
+    <Folder Include="Views\Admin\" />
+    <Folder Include="Views\Customer\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202011241019080_init.resx">
+      <DependentUpon>202011241019080_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011250903515_appointment.resx">
+      <DependentUpon>202011250903515_appointment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011250937021_updatedAppointment.resx">
+      <DependentUpon>202011250937021_updatedAppointment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011251019577_removeTime.resx">
+      <DependentUpon>202011251019577_removeTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011251022458_addappttype.resx">
+      <DependentUpon>202011251022458_addappttype.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011261919108_procedure.resx">
+      <DependentUpon>202011261919108_procedure.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011301128193_invoices.resx">
+      <DependentUpon>202011301128193_invoices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012011753064_istatus.resx">
+      <DependentUpon>202012011753064_istatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012011755284_datestamp.resx">
+      <DependentUpon>202012011755284_datestamp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012020740495_deptinproc.resx">
+      <DependentUpon>202012020740495_deptinproc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012021222514_updatepatdoc.resx">
+      <DependentUpon>202012021222514_updatepatdoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101021801239_addcategory.resx">
+      <DependentUpon>202101021801239_addcategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101031010482_updatecategory.resx">
+      <DependentUpon>202101031010482_updatecategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101031954222_invoicereports.resx">
+      <DependentUpon>202101031954222_invoicereports.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101041141327_updateinvoicereports.resx">
+      <DependentUpon>202101041141327_updateinvoicereports.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101070811017_staff.resx">
+      <DependentUpon>202101070811017_staff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101070829298_staff1.resx">
+      <DependentUpon>202101070829298_staff1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101070909159_updateprofitloss.resx">
+      <DependentUpon>202101070909159_updateprofitloss.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101092035484_patientfeedback.resx">
+      <DependentUpon>202101092035484_patientfeedback.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101092118474_patientfeedbackUpdate.resx">
+      <DependentUpon>202101092118474_patientfeedbackUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101121311247_loyality.resx">
+      <DependentUpon>202101121311247_loyality.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101121715057_loyalitydependents.resx">
+      <DependentUpon>202101121715057_loyalitydependents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101131150444_patient-validation.resx">
+      <DependentUpon>202101131150444_patient-validation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101131200249_patient-validation-adharid.resx">
+      <DependentUpon>202101131200249_patient-validation-adharid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101131207341_patient-validation-adharid1.resx">
+      <DependentUpon>202101131207341_patient-validation-adharid1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101131223368_patient-lastname.resx">
+      <DependentUpon>202101131223368_patient-lastname.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101131239406_patient-validation-phonenumber.resx">
+      <DependentUpon>202101131239406_patient-validation-phonenumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101131246555_patient-validation-occupatio.resx">
+      <DependentUpon>202101131246555_patient-validation-occupatio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101131637296_taxes.resx">
+      <DependentUpon>202101131637296_taxes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101141018346_salaries.resx">
+      <DependentUpon>202101141018346_salaries.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101141335518_profitloss-salary.resx">
+      <DependentUpon>202101141335518_profitloss-salary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101150945177_dashboard1.resx">
+      <DependentUpon>202101150945177_dashboard1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101181559388_patientnotknowndob1.resx">
+      <DependentUpon>202101181559388_patientnotknowndob1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101181601374_patientnotknowndob.resx">
+      <DependentUpon>202101181601374_patientnotknowndob.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101181606565_patientnotknowndob2.resx">
+      <DependentUpon>202101181606565_patientnotknowndob2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101181635276_qualificationfordocsandstaff.resx">
+      <DependentUpon>202101181635276_qualificationfordocsandstaff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101181640244_docqualification.resx">
+      <DependentUpon>202101181640244_docqualification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101191345515_doctorschedule.resx">
+      <DependentUpon>202101191345515_doctorschedule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101191431113_doctorschedule1.resx">
+      <DependentUpon>202101191431113_doctorschedule1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101192109529_resetdobpatient.resx">
+      <DependentUpon>202101192109529_resetdobpatient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101192116296_reserdobpatient.resx">
+      <DependentUpon>202101192116296_reserdobpatient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101192140310_resetdocstaffqualification.resx">
+      <DependentUpon>202101192140310_resetdocstaffqualification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101201032450_docschedulemessage.resx">
+      <DependentUpon>202101201032450_docschedulemessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101201328287_amountpaidinvoices.resx">
+      <DependentUpon>202101201328287_amountpaidinvoices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101201528196_referals.resx">
+      <DependentUpon>202101201528196_referals.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101202046210_inventorychanges.resx">
+      <DependentUpon>202101202046210_inventorychanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101251247409_justdials1.resx">
+      <DependentUpon>202101251247409_justdials1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101310715537_updatejustdial.resx">
+      <DependentUpon>202101310715537_updatejustdial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101310722126_updatepatient.resx">
+      <DependentUpon>202101310722126_updatepatient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101310839247_updatepatient1.resx">
+      <DependentUpon>202101310839247_updatepatient1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101311318398_invoicesupdate.resx">
+      <DependentUpon>202101311318398_invoicesupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101311530092_Invoicedescription.resx">
+      <DependentUpon>202101311530092_Invoicedescription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101311545080_centerwisegst.resx">
+      <DependentUpon>202101311545080_centerwisegst.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102010834539_invoicetransactions.resx">
+      <DependentUpon>202102010834539_invoicetransactions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102010945118_procedurestring.resx">
+      <DependentUpon>202102010945118_procedurestring.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102011103341_paymentstring.resx">
+      <DependentUpon>202102011103341_paymentstring.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102131041498_IndentityCorrection.resx">
+      <DependentUpon>202102131041498_IndentityCorrection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102220623031_invoiceupdate.resx">
+      <DependentUpon>202102220623031_invoiceupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102230548567_invoicediscount.resx">
+      <DependentUpon>202102230548567_invoicediscount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102230959202_patientsupdate.resx">
+      <DependentUpon>202102230959202_patientsupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102240535538_reportcolumnsadd.resx">
+      <DependentUpon>202102240535538_reportcolumnsadd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102240626133_invoicereportsdisplayid.resx">
+      <DependentUpon>202102240626133_invoicereportsdisplayid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102240813247_invoicecreateduser.resx">
+      <DependentUpon>202102240813247_invoicecreateduser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102240845461_invoicerepotsusername.resx">
+      <DependentUpon>202102240845461_invoicerepotsusername.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102271645244_invoiceDoctorAdd.resx">
+      <DependentUpon>202102271645244_invoiceDoctorAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103070238127_patientsage.resx">
+      <DependentUpon>202103070238127_patientsage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103070420532_messages.resx">
+      <DependentUpon>202103070420532_messages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103300734452_invoicedepartment_addition.resx">
+      <DependentUpon>202103300734452_invoicedepartment_addition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103300830188_inventory_modeofpayment_add.resx">
+      <DependentUpon>202103300830188_inventory_modeofpayment_add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105011950186_departmentTypes.resx">
+      <DependentUpon>202105011950186_departmentTypes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105011954012_addDeptType.resx">
+      <DependentUpon>202105011954012_addDeptType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105040904546_patientReports.resx">
+      <DependentUpon>202105040904546_patientReports.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105050718594_labTest.resx">
+      <DependentUpon>202105050718594_labTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105050836026_updReportTable.resx">
+      <DependentUpon>202105050836026_updReportTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105090849284_reportChanges.resx">
+      <DependentUpon>202105090849284_reportChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105121852324_dateuploadnullable.resx">
+      <DependentUpon>202105121852324_dateuploadnullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105150914384_downloadDatetime.resx">
+      <DependentUpon>202105150914384_downloadDatetime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105291003045_Mig_UserPatientMapping.resx">
+      <DependentUpon>202105291003045_Mig_UserPatientMapping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110161754539_Update JD table.resx">
+      <DependentUpon>202110161754539_Update JD table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110171907476_Add_biometric_model.resx">
+      <DependentUpon>202110171907476_Add_biometric_model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111100954420_Update Feedback Form.resx">
+      <DependentUpon>202111100954420_Update Feedback Form.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>61331</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44303/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

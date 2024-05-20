@@ -1,0 +1,15 @@
+﻿@using System.Collections;
+@model List<LoyalityVMDependent>
+
+@*@foreach (LoyalityVMDependent item in Model)*@
+@for(var i =0;i<Model.Count;i++)
+{
+    <tr>
+        <td>@Model[i].Name</td>
+        <td>@Model[i].Relation</td>
+        <td>@Model[i].Gender</td>
+        <td>@Model[i].DOB</td>
+        <td>@Model[i].Age</td>
+        <td><a href="javascript:void(0);" data-procId= @i style="color:red;" class="delDependent"><i class="fa fa-trash"></i></a></td>
+    </tr>
+}

@@ -1,0 +1,88 @@
+﻿@model IEnumerable<HMS.Models.Invoice>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styleSheets{
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="~/assets/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+
+}
+<div class="row">
+    <div class="col-sm-4 col-3">
+        <h4 class="page-title">Invoices</h4>
+    </div>
+    <div class="col-sm-8 col-9 text-right m-b-20">
+        <a href='@Url.Action("Create")' class="btn btn btn-primary btn-rounded float-right"><i class="fa fa-plus"></i> Create Invoice</a>
+    </div>
+</div>
+<table class="table table-border table-striped custom-table datatable mb-0 patientsTable">
+    <thead>
+        <tr>
+            <th>Invoice No.</th>
+            <th>Patient Name</th>
+            <th>Phone Number</th>
+            <th>Pres. Doctor</th>
+
+            <th>Date</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="myTable">
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.InvoiceDisplayID
+                </td>
+                <td>
+                    @item.Patient.FirstName @item.Patient.LastName
+                </td>
+                <td>@item.Patient.CallingNumber
+                    </td>
+                <td>@item.PresDoctor</td>
+                <td>@item.DateCreated.ToString("dd-MM-yyyy HH:mm:ss")</td>
+                <td>
+                    <label class='@(item.Status=="Cancelled"?"badge badge-danger":item.Status=="Paid"?"badge badge-success":"badge badge-warning")'> @item.Status.ToUpper()</label>
+                </td>
+                <td >
+                    @Html.ActionLink("View", "Details", new { id = item.ID }, new { @class = "btn btn-primary btn-sm", @style = "margin-right:2px;" })
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-warning btn-sm", @style = "margin-right:2px;" })*@
+                    @Html.ActionLink("Pay", "Pay", new { id = item.ID }, new { @class = "btn btn-success btn-sm", @style = "margin-right:2px;" })
+                    @if (item.InvoiceTransactions.Count < 1)
+                    {
+                    @Html.ActionLink("Cancel", "Delete", new { id = item.ID }, new { @class = "btn btn-danger btn-sm", @style = "margin-right:2px;" })
+                    }
+                    else
+                    {
+                        <button onclick="errorfire()" style = "margin-right:2px;" class="btn btn-danger btn-sm">Cancel</button>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script src="~/assets/js/jquery-3.2.1.min.js"></script>
+
+<script src="~/assets/js/jquery.dataTables.min.js"></script>
+
+<script src="~/assets/plugins/SweetAlert/sweetalert2@10.js"></script>
+<script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+<script type="text/javascript">
+    function errorfire() {
+        Swal.fire({
+            icon: 'error',
+            title: 'Cant Cancel Invoice',
+            text: 'Invoice Has Transactions'
+        })
+
+
+    }
+</script>

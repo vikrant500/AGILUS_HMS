@@ -1,0 +1,7 @@
+﻿@using System.Collections;
+@model List<SelectListItem>
+
+@foreach (SelectListItem item in Model)
+{
+    <option value='@item.Value'>@item.Text</option>
+}

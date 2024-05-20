@@ -1,0 +1,248 @@
+﻿@model IEnumerable<HMS.VeiwModels.ExpenceDetails>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styleSheets{
+    <link href="~/assets/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />
+    <link href="~/assets/plugins/EasyAutocomplete/easy-autocomplete.css" rel="stylesheet" />
+    <link href="~/assets/plugins/EasyAutocomplete/easy-autocomplete.themes.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="~/assets/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.bootstrap4.min.css">
+}
+
+<h2>Details</h2>
+
+<div class="row">
+    <div class="col-sm-4 col-3">
+        <h4 class="page-title">ProfitLoss Expence Details</h4>
+    </div>
+</div>
+<div class="row">
+
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label>Search For Date</label>
+            <div class="cal-icon">
+
+                @Html.Editor("Date", "", new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.EditorFor(model => model.First().Date, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.First().Date, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+
+    </div>
+    <div class="col-sm-3 col-9 text-right m-b-20" data-html2canvas-ignore="true">
+        <a href='' class="btn btn btn-primary btn-rounded float-right" id="filter">filter</a>
+        <a href='/DayExpenceDetails' class="btn btn btn-primary btn-rounded float-right" id="clearfilter" style="margin-right:10px">clear</a>
+
+    </div>
+</div>
+<table id="example" class="table table-border table-striped custom-table datatable mb-0 patientsTable">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ItemName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CostPerItem)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalCost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModeOfPayment)
+            </th>
+        </tr>
+    </thead>
+    <tbody id="myTable">
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CostPerItem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalCost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModeOfPayment)
+            </td>
+        </tr>
+        }
+    </tbody>
+
+</table>
+<div id="append" class="col-sm-6">
+    <input type="submit" onclick="Export()" value="Export" class="btn btn-info" />
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |*@
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+
+<script src="~/assets/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script src="~/assets/plugins/SweetAlert/sweetalert2@10.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.69/vfs_fonts.min.js"></script>
+<script src="~/assets/plugins/SweetAlert/sweetalert2@10.js"></script>
+<script src="~/assets/plugins/EasyAutocomplete/jquery.easy-autocomplete.js"></script>
+<script src="~/assets/js/jquery.dataTables.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.bootstrap4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+
+<script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function ($) {
+        console.log($("#Date").val())
+        console.log('hi')
+        $.fn.dataTable.ext.errMode = 'none';
+        if ($("#Date").val() == '') {
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = today.getFullYear();
+
+            today = dd + '/' + mm + '/' + yyyy;
+
+            window.todayDate = today
+            console.log(today)
+        }
+        else {
+            window.todayDate = $("#Date").val()
+        }
+        $('#table').on('error.dt', function (e, settings, techNote, message) {
+            console.log('An error has been reported by DataTables: ', message);
+        });
+        $('.datatable').DataTable().destroy()
+        var table = $('#example').DataTable({
+            "bFilter": true,
+            "order": [[0, 'desc']],
+            
+            buttons: [
+                'copyHtml5',
+                {
+                    extend: 'csvHtml5',
+                    title: 'Invoice Report'
+                },
+                {
+                    extend: 'excelHtml5',
+                    title: 'Invoice Report'
+                },
+                {
+                    extend: 'pdfHtml5',
+
+                    title: 'Daily Expense Report ( ' + window.todayDate + ')',
+                    //download: 'open',
+                    customize: function (doc) {
+                        doc.content[1].table.widths =
+                            Array(doc.content[1].table.body[0].length + 1).join('*').split('');
+                        doc.styles.tableBodyEven.alignment = 'center';
+                        doc.styles.tableBodyOdd.alignment = 'center';
+
+                    },
+                    pageSize: 'A5'
+                }
+
+            ]
+            //buttons: ['copy', 'excel', 'pdf', 'colvis']
+        });
+        table.buttons().container()
+            .appendTo('#append ');
+    });
+</script>
+
+
+
+<script type="text/javascript">
+    $(function () {
+        $("#Date").daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            minYear: 1901,
+            maxDate: moment(),
+            autoUpdateInput: true,
+            maxYear: parseInt(moment().format('YYYY'), 10),
+            locale: {
+                format: 'DD-MM-YYYY'
+            }
+        }, function (start, end, label) {
+
+        });
+        $('#Date').on('apply.daterangepicker', function (ev, picker) {
+            $(this).val(picker.startDate.format('DD-MM-YYYY'));
+        });
+
+        $('#Date').on('cancel.daterangepicker', function (ev, picker) {
+            $(this).val('');
+        });
+        $("#To").daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            minYear: 1901,
+            maxDate: moment(),
+            autoUpdateInput: false,
+            maxYear: parseInt(moment().format('YYYY'), 10),
+            locale: {
+                format: 'DD-MM-YYYY'
+            }
+        }, function (start, end, label) {
+
+
+        });
+        $('#To').on('apply.daterangepicker', function (ev, picker) {
+            $(this).val(picker.startDate.format('DD-MM-YYYY'));
+        });
+
+        $('#To').on('cancel.daterangepicker', function (ev, picker) {
+            $(this).val('');
+        });
+    });
+    $("#filter").click(function(event)
+{
+
+  event.preventDefault();
+  var url = '@Html.Raw(@Url.Action("DayExpenceDetails",  new {@date="From_value"}))';
+
+        url = url.replace("From_value", $("#Date").val());
+
+  window.location.href = url;
+});
+
+</script>
+
+

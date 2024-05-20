@@ -1,0 +1,68 @@
+﻿@model HMS.VeiwModels.DepartmentVm
+
+@{
+    ViewBag.Title = "Create Department";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-8 offset-lg-2">
+        <h4 class="page-title">Add Department</h4>
+    </div>
+</div>
+
+@using (Html.BeginForm()) 
+{
+     
+    
+<div class="row">
+    <div class="col-lg-8 offset-lg-2">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Name<span class="text-danger">*</span></label>
+                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Type<span class="text-danger">*</span></label>
+                            @Html.DropDownListFor(x => Model.DepartmentType, new SelectList(Model.DepartmentTypes, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "CenterID" })
+                            @Html.ValidationMessageFor(model => model.DepartmentType, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        &nbsp;
+                    </div>
+
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-info" />
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        &nbsp;
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            @Html.ActionLink("Back to List", "Index", null, new { @style = "font-size:12px;" })
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}
+
+
+<script src="~/assets/js/jquery-3.2.1.min.js"></script>

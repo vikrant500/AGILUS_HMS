@@ -1,0 +1,43 @@
+﻿@model IEnumerable<HMS.Models.LoyalityProcedure>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section styleSheets{
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="~/assets/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+
+}
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-border table-striped custom-table datatable mb-0 patientsTable">
+    <thead>
+    <tr>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody id="myTable">
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+<script src="~/assets/js/jquery-3.2.1.min.js"></script>
+
+<script src="~/assets/js/jquery.dataTables.min.js"></script>
+
+
+<script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>

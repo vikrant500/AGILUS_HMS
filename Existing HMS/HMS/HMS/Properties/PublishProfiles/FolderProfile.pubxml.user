@@ -1,0 +1,1317 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>D:\Publish\HMS</_PublishTargetUrl>
+    <History>False|2021-11-29T22:02:09.5382071Z;True|2021-10-18T14:21:37.6408791+05:30;True|2021-04-11T00:54:17.6336953+05:30;</History>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="assets/css/bootstrap-datetimepicker.min.css">
+      <publishTime>10/12/2021 15:19:10</publishTime>
+    </File>
+    <File Include="assets/css/bootstrap.min.css">
+      <publishTime>10/12/2021 15:19:10</publishTime>
+    </File>
+    <File Include="assets/css/dataTables.bootstrap4.min.css">
+      <publishTime>10/12/2021 15:19:10</publishTime>
+    </File>
+    <File Include="assets/css/font-awesome.min.css">
+      <publishTime>10/12/2021 15:19:10</publishTime>
+    </File>
+    <File Include="assets/css/fullcalendar.min.css">
+      <publishTime>10/12/2021 15:19:11</publishTime>
+    </File>
+    <File Include="assets/css/select2.min.css">
+      <publishTime>10/12/2021 15:19:11</publishTime>
+    </File>
+    <File Include="assets/css/style.css">
+      <publishTime>10/12/2021 15:19:11</publishTime>
+    </File>
+    <File Include="assets/css/tagsinput.css">
+      <publishTime>10/12/2021 15:19:11</publishTime>
+    </File>
+    <File Include="assets/fonts/fontawesome-webfont3e6e.eot">
+      <publishTime>10/12/2021 15:19:11</publishTime>
+    </File>
+    <File Include="assets/fonts/fontawesome-webfont3e6e.html">
+      <publishTime>10/12/2021 15:19:11</publishTime>
+    </File>
+    <File Include="assets/fonts/fontawesome-webfont3e6e.svg">
+      <publishTime>10/12/2021 15:19:11</publishTime>
+    </File>
+    <File Include="assets/fonts/fontawesome-webfont3e6e.ttf">
+      <publishTime>10/12/2021 15:19:11</publishTime>
+    </File>
+    <File Include="assets/fonts/fontawesome-webfont3e6e.woff">
+      <publishTime>10/12/2021 15:19:11</publishTime>
+    </File>
+    <File Include="assets/fonts/fontawesome-webfontd41d.eot">
+      <publishTime>10/12/2021 15:19:11</publishTime>
+    </File>
+    <File Include="assets/img/attachment.png">
+      <publishTime>10/12/2021 15:19:11</publishTime>
+    </File>
+    <File Include="assets/img/blog/blog-01.jpg">
+      <publishTime>10/12/2021 15:19:13</publishTime>
+    </File>
+    <File Include="assets/img/blog/blog-02.jpg">
+      <publishTime>10/12/2021 15:19:13</publishTime>
+    </File>
+    <File Include="assets/img/blog/blog-03.jpg">
+      <publishTime>10/12/2021 15:19:13</publishTime>
+    </File>
+    <File Include="assets/img/blog/blog-04.jpg">
+      <publishTime>10/12/2021 15:19:14</publishTime>
+    </File>
+    <File Include="assets/img/blog/blog-thumb-01.jpg">
+      <publishTime>10/12/2021 15:19:14</publishTime>
+    </File>
+    <File Include="assets/img/blog/blog-thumb-02.jpg">
+      <publishTime>10/12/2021 15:19:14</publishTime>
+    </File>
+    <File Include="assets/img/blog/blog-thumb-03.jpg">
+      <publishTime>10/12/2021 15:19:14</publishTime>
+    </File>
+    <File Include="assets/img/blog/blog-thumb-04.jpg">
+      <publishTime>10/12/2021 15:19:14</publishTime>
+    </File>
+    <File Include="assets/img/calander.png">
+      <publishTime>10/12/2021 15:19:11</publishTime>
+    </File>
+    <File Include="assets/img/clock.png">
+      <publishTime>10/12/2021 15:19:11</publishTime>
+    </File>
+    <File Include="assets/img/doctor-03.jpg">
+      <publishTime>10/12/2021 15:19:11</publishTime>
+    </File>
+    <File Include="assets/img/doctor-thumb-01.jpg">
+      <publishTime>10/12/2021 15:19:12</publishTime>
+    </File>
+    <File Include="assets/img/doctor-thumb-02.jpg">
+      <publishTime>10/12/2021 15:19:12</publishTime>
+    </File>
+    <File Include="assets/img/doctor-thumb-03.jpg">
+      <publishTime>10/12/2021 15:19:12</publishTime>
+    </File>
+    <File Include="assets/img/doctor-thumb-04.jpg">
+      <publishTime>10/12/2021 15:19:12</publishTime>
+    </File>
+    <File Include="assets/img/doctor-thumb-05.jpg">
+      <publishTime>10/12/2021 15:19:12</publishTime>
+    </File>
+    <File Include="assets/img/doctor-thumb-06.jpg">
+      <publishTime>10/12/2021 15:19:12</publishTime>
+    </File>
+    <File Include="assets/img/doctor-thumb-07.jpg">
+      <publishTime>10/12/2021 15:19:12</publishTime>
+    </File>
+    <File Include="assets/img/doctor-thumb-08.jpg">
+      <publishTime>10/12/2021 15:19:12</publishTime>
+    </File>
+    <File Include="assets/img/doctor-thumb-09.jpg">
+      <publishTime>10/12/2021 15:19:12</publishTime>
+    </File>
+    <File Include="assets/img/doctor-thumb-10.jpg">
+      <publishTime>10/12/2021 15:19:12</publishTime>
+    </File>
+    <File Include="assets/img/doctor-thumb-11.jpg">
+      <publishTime>10/12/2021 15:19:12</publishTime>
+    </File>
+    <File Include="assets/img/doctor-thumb-12.jpg">
+      <publishTime>10/12/2021 15:19:12</publishTime>
+    </File>
+    <File Include="assets/img/favicon.ico">
+      <publishTime>10/12/2021 15:19:12</publishTime>
+    </File>
+    <File Include="assets/img/logo-dark.png">
+      <publishTime>10/12/2021 15:19:12</publishTime>
+    </File>
+    <File Include="assets/img/logo.png">
+      <publishTime>10/12/2021 15:19:12</publishTime>
+    </File>
+    <File Include="assets/img/logo2.png">
+      <publishTime>10/12/2021 15:19:13</publishTime>
+    </File>
+    <File Include="assets/img/patient-thumb-01.jpg">
+      <publishTime>10/12/2021 15:19:13</publishTime>
+    </File>
+    <File Include="assets/img/patient-thumb-02.jpg">
+      <publishTime>10/12/2021 15:19:13</publishTime>
+    </File>
+    <File Include="assets/img/pdfIcon.png">
+      <publishTime>10/12/2021 15:19:13</publishTime>
+    </File>
+    <File Include="assets/img/placeholder-thumb.jpg">
+      <publishTime>10/12/2021 15:19:13</publishTime>
+    </File>
+    <File Include="assets/img/placeholder.jpg">
+      <publishTime>10/12/2021 15:19:13</publishTime>
+    </File>
+    <File Include="assets/img/sent.png">
+      <publishTime>10/12/2021 15:19:13</publishTime>
+    </File>
+    <File Include="assets/img/user-02.jpg">
+      <publishTime>10/12/2021 15:19:13</publishTime>
+    </File>
+    <File Include="assets/img/user-03.jpg">
+      <publishTime>10/12/2021 15:19:13</publishTime>
+    </File>
+    <File Include="assets/img/user-04.jpg">
+      <publishTime>10/12/2021 15:19:13</publishTime>
+    </File>
+    <File Include="assets/img/user-05.jpg">
+      <publishTime>10/12/2021 15:19:13</publishTime>
+    </File>
+    <File Include="assets/img/user-06.jpg">
+      <publishTime>10/12/2021 15:19:13</publishTime>
+    </File>
+    <File Include="assets/img/user.jpg">
+      <publishTime>10/12/2021 15:19:13</publishTime>
+    </File>
+    <File Include="assets/img/video-call.jpg">
+      <publishTime>10/12/2021 15:19:13</publishTime>
+    </File>
+    <File Include="assets/js/app.js">
+      <publishTime>10/12/2021 15:19:14</publishTime>
+    </File>
+    <File Include="assets/js/bootstrap-datetimepicker.min.js">
+      <publishTime>10/12/2021 15:19:14</publishTime>
+    </File>
+    <File Include="assets/js/bootstrap.min.js">
+      <publishTime>10/12/2021 15:19:14</publishTime>
+    </File>
+    <File Include="assets/js/Chart.bundle.js">
+      <publishTime>10/12/2021 15:19:14</publishTime>
+    </File>
+    <File Include="assets/js/chart.js">
+      <publishTime>10/12/2021 15:19:14</publishTime>
+    </File>
+    <File Include="assets/js/dataTables.bootstrap4.min.js">
+      <publishTime>10/12/2021 15:19:14</publishTime>
+    </File>
+    <File Include="assets/js/fullcalendar.min.js">
+      <publishTime>10/12/2021 15:19:14</publishTime>
+    </File>
+    <File Include="assets/js/jquery-3.2.1.min.js">
+      <publishTime>10/12/2021 15:19:14</publishTime>
+    </File>
+    <File Include="assets/js/jquery-ui.min.html">
+      <publishTime>10/12/2021 15:19:14</publishTime>
+    </File>
+    <File Include="assets/js/jquery.dataTables.min.js">
+      <publishTime>10/12/2021 15:19:14</publishTime>
+    </File>
+    <File Include="assets/js/jquery.fullcalendar.js">
+      <publishTime>10/12/2021 15:19:14</publishTime>
+    </File>
+    <File Include="assets/js/jquery.slimscroll.js">
+      <publishTime>10/12/2021 15:19:14</publishTime>
+    </File>
+    <File Include="assets/js/moment.min.js">
+      <publishTime>10/12/2021 15:19:14</publishTime>
+    </File>
+    <File Include="assets/js/popper.min.js">
+      <publishTime>10/12/2021 15:19:14</publishTime>
+    </File>
+    <File Include="assets/js/select2.min.js">
+      <publishTime>10/12/2021 15:19:15</publishTime>
+    </File>
+    <File Include="assets/js/tagsinput.js">
+      <publishTime>10/12/2021 15:19:15</publishTime>
+    </File>
+    <File Include="assets/plugins/daterangepicker/daterangepicker.css">
+      <publishTime>10/12/2021 15:19:15</publishTime>
+    </File>
+    <File Include="assets/plugins/daterangepicker/daterangepicker.js">
+      <publishTime>10/12/2021 15:19:15</publishTime>
+    </File>
+    <File Include="assets/plugins/EasyAutocomplete/easy-autocomplete.css">
+      <publishTime>10/12/2021 15:19:15</publishTime>
+    </File>
+    <File Include="assets/plugins/EasyAutocomplete/easy-autocomplete.themes.css">
+      <publishTime>10/12/2021 15:19:15</publishTime>
+    </File>
+    <File Include="assets/plugins/EasyAutocomplete/jquery.easy-autocomplete.js">
+      <publishTime>10/12/2021 15:19:15</publishTime>
+    </File>
+    <File Include="assets/plugins/FullCalendar/main.css">
+      <publishTime>10/12/2021 15:19:15</publishTime>
+    </File>
+    <File Include="assets/plugins/FullCalendar/main.js">
+      <publishTime>10/12/2021 15:19:15</publishTime>
+    </File>
+    <File Include="assets/plugins/light-gallery/css/lightgallery.min.css">
+      <publishTime>10/12/2021 15:19:15</publishTime>
+    </File>
+    <File Include="assets/plugins/light-gallery/fonts/lgd41d.eot">
+      <publishTime>10/12/2021 15:19:15</publishTime>
+    </File>
+    <File Include="assets/plugins/light-gallery/fonts/lgd641.eot">
+      <publishTime>10/12/2021 15:19:15</publishTime>
+    </File>
+    <File Include="assets/plugins/light-gallery/fonts/lgd641.svg">
+      <publishTime>10/12/2021 15:19:15</publishTime>
+    </File>
+    <File Include="assets/plugins/light-gallery/fonts/lgd641.ttf">
+      <publishTime>10/12/2021 15:19:15</publishTime>
+    </File>
+    <File Include="assets/plugins/light-gallery/fonts/lgd641.woff">
+      <publishTime>10/12/2021 15:19:15</publishTime>
+    </File>
+    <File Include="assets/plugins/light-gallery/img/loading.gif">
+      <publishTime>10/12/2021 15:19:16</publishTime>
+    </File>
+    <File Include="assets/plugins/light-gallery/img/video-play.png">
+      <publishTime>10/12/2021 15:19:16</publishTime>
+    </File>
+    <File Include="assets/plugins/light-gallery/img/vimeo-play.png">
+      <publishTime>10/12/2021 15:19:16</publishTime>
+    </File>
+    <File Include="assets/plugins/light-gallery/img/youtube-play.png">
+      <publishTime>10/12/2021 15:19:16</publishTime>
+    </File>
+    <File Include="assets/plugins/light-gallery/js/lightgallery-all.min.js">
+      <publishTime>10/12/2021 15:19:16</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/af.js">
+      <publishTime>10/12/2021 15:19:16</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/ar-dz.js">
+      <publishTime>10/12/2021 15:19:16</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/ar-kw.js">
+      <publishTime>10/12/2021 15:19:16</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/ar-ly.js">
+      <publishTime>10/12/2021 15:19:16</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/ar-ma.js">
+      <publishTime>10/12/2021 15:19:16</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/ar-sa.js">
+      <publishTime>10/12/2021 15:19:17</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/ar-tn.js">
+      <publishTime>10/12/2021 15:19:17</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/ar.js">
+      <publishTime>10/12/2021 15:19:17</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/az.js">
+      <publishTime>10/12/2021 15:19:17</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/be.js">
+      <publishTime>10/12/2021 15:19:17</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/bg.js">
+      <publishTime>10/12/2021 15:19:17</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/bm.js">
+      <publishTime>10/12/2021 15:19:17</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/bn.js">
+      <publishTime>10/12/2021 15:19:17</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/bo.js">
+      <publishTime>10/12/2021 15:19:17</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/br.js">
+      <publishTime>10/12/2021 15:19:17</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/bs.js">
+      <publishTime>10/12/2021 15:19:17</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/ca.js">
+      <publishTime>10/12/2021 15:19:17</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/cs.js">
+      <publishTime>10/12/2021 15:19:17</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/cv.js">
+      <publishTime>10/12/2021 15:19:17</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/cy.js">
+      <publishTime>10/12/2021 15:19:17</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/da.js">
+      <publishTime>10/12/2021 15:19:17</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/de-at.js">
+      <publishTime>10/12/2021 15:19:17</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/de-ch.js">
+      <publishTime>10/12/2021 15:19:17</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/de.js">
+      <publishTime>10/12/2021 15:19:17</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/dv.js">
+      <publishTime>10/12/2021 15:19:17</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/el.js">
+      <publishTime>10/12/2021 15:19:18</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/en-au.js">
+      <publishTime>10/12/2021 15:19:18</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/en-ca.js">
+      <publishTime>10/12/2021 15:19:18</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/en-gb.js">
+      <publishTime>10/12/2021 15:19:18</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/en-ie.js">
+      <publishTime>10/12/2021 15:19:18</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/en-il.js">
+      <publishTime>10/12/2021 15:19:18</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/en-in.js">
+      <publishTime>10/12/2021 15:19:18</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/en-nz.js">
+      <publishTime>10/12/2021 15:19:18</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/en-SG.js">
+      <publishTime>10/12/2021 15:19:18</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/eo.js">
+      <publishTime>10/12/2021 15:19:18</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/es-do.js">
+      <publishTime>10/12/2021 15:19:18</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/es-us.js">
+      <publishTime>10/12/2021 15:19:18</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/es.js">
+      <publishTime>10/12/2021 15:19:18</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/et.js">
+      <publishTime>10/12/2021 15:19:18</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/eu.js">
+      <publishTime>10/12/2021 15:19:18</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/fa.js">
+      <publishTime>10/12/2021 15:19:18</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/fi.js">
+      <publishTime>10/12/2021 15:19:18</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/fil.js">
+      <publishTime>10/12/2021 15:19:18</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/fo.js">
+      <publishTime>10/12/2021 15:19:18</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/fr-ca.js">
+      <publishTime>10/12/2021 15:19:19</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/fr-ch.js">
+      <publishTime>10/12/2021 15:19:19</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/fr.js">
+      <publishTime>10/12/2021 15:19:19</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/fy.js">
+      <publishTime>10/12/2021 15:19:19</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/ga.js">
+      <publishTime>10/12/2021 15:19:19</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/gd.js">
+      <publishTime>10/12/2021 15:19:19</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/gl.js">
+      <publishTime>10/12/2021 15:19:19</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/gom-deva.js">
+      <publishTime>10/12/2021 15:19:19</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/gom-latn.js">
+      <publishTime>10/12/2021 15:19:19</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/gu.js">
+      <publishTime>10/12/2021 15:19:19</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/he.js">
+      <publishTime>10/12/2021 15:19:19</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/hi.js">
+      <publishTime>10/12/2021 15:19:19</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/hr.js">
+      <publishTime>10/12/2021 15:19:19</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/hu.js">
+      <publishTime>10/12/2021 15:19:19</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/hy-am.js">
+      <publishTime>10/12/2021 15:19:19</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/id.js">
+      <publishTime>10/12/2021 15:19:19</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/is.js">
+      <publishTime>10/12/2021 15:19:20</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/it-ch.js">
+      <publishTime>10/12/2021 15:19:20</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/it.js">
+      <publishTime>10/12/2021 15:19:20</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/ja.js">
+      <publishTime>10/12/2021 15:19:20</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/jv.js">
+      <publishTime>10/12/2021 15:19:20</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/ka.js">
+      <publishTime>10/12/2021 15:19:20</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/kk.js">
+      <publishTime>10/12/2021 15:19:20</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/km.js">
+      <publishTime>10/12/2021 15:19:20</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/kn.js">
+      <publishTime>10/12/2021 15:19:20</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/ko.js">
+      <publishTime>10/12/2021 15:19:20</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/ku.js">
+      <publishTime>10/12/2021 15:19:20</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/ky.js">
+      <publishTime>10/12/2021 15:19:20</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/lb.js">
+      <publishTime>10/12/2021 15:19:20</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/lo.js">
+      <publishTime>10/12/2021 15:19:20</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/lt.js">
+      <publishTime>10/12/2021 15:19:20</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/lv.js">
+      <publishTime>10/12/2021 15:19:20</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/me.js">
+      <publishTime>10/12/2021 15:19:21</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/mi.js">
+      <publishTime>10/12/2021 15:19:21</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/mk.js">
+      <publishTime>10/12/2021 15:19:21</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/ml.js">
+      <publishTime>10/12/2021 15:19:21</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/mn.js">
+      <publishTime>10/12/2021 15:19:21</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/mr.js">
+      <publishTime>10/12/2021 15:19:21</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/ms-my.js">
+      <publishTime>10/12/2021 15:19:21</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/ms.js">
+      <publishTime>10/12/2021 15:19:21</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/mt.js">
+      <publishTime>10/12/2021 15:19:21</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/my.js">
+      <publishTime>10/12/2021 15:19:21</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/nb.js">
+      <publishTime>10/12/2021 15:19:21</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/ne.js">
+      <publishTime>10/12/2021 15:19:21</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/nl-be.js">
+      <publishTime>10/12/2021 15:19:21</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/nl.js">
+      <publishTime>10/12/2021 15:19:21</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/nn.js">
+      <publishTime>10/12/2021 15:19:21</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/oc-lnc.js">
+      <publishTime>10/12/2021 15:19:21</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/pa-in.js">
+      <publishTime>10/12/2021 15:19:21</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/pl.js">
+      <publishTime>10/12/2021 15:19:21</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/pt-br.js">
+      <publishTime>10/12/2021 15:19:21</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/pt.js">
+      <publishTime>10/12/2021 15:19:22</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/ro.js">
+      <publishTime>10/12/2021 15:19:22</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/ru.js">
+      <publishTime>10/12/2021 15:19:22</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/sd.js">
+      <publishTime>10/12/2021 15:19:22</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/se.js">
+      <publishTime>10/12/2021 15:19:22</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/si.js">
+      <publishTime>10/12/2021 15:19:22</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/sk.js">
+      <publishTime>10/12/2021 15:19:22</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/sl.js">
+      <publishTime>10/12/2021 15:19:22</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/sq.js">
+      <publishTime>10/12/2021 15:19:22</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/sr-cyrl.js">
+      <publishTime>10/12/2021 15:19:22</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/sr.js">
+      <publishTime>10/12/2021 15:19:22</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/ss.js">
+      <publishTime>10/12/2021 15:19:22</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/sv.js">
+      <publishTime>10/12/2021 15:19:22</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/sw.js">
+      <publishTime>10/12/2021 15:19:22</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/ta.js">
+      <publishTime>10/12/2021 15:19:22</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/te.js">
+      <publishTime>10/12/2021 15:19:22</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/tet.js">
+      <publishTime>10/12/2021 15:19:22</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/tg.js">
+      <publishTime>10/12/2021 15:19:22</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/th.js">
+      <publishTime>10/12/2021 15:19:22</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/tk.js">
+      <publishTime>10/12/2021 15:19:23</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/tl-ph.js">
+      <publishTime>10/12/2021 15:19:23</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/tlh.js">
+      <publishTime>10/12/2021 15:19:23</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/tr.js">
+      <publishTime>10/12/2021 15:19:23</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/tzl.js">
+      <publishTime>10/12/2021 15:19:23</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/tzm-latn.js">
+      <publishTime>10/12/2021 15:19:23</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/tzm.js">
+      <publishTime>10/12/2021 15:19:23</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/ug-cn.js">
+      <publishTime>10/12/2021 15:19:23</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/uk.js">
+      <publishTime>10/12/2021 15:19:23</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/ur.js">
+      <publishTime>10/12/2021 15:19:23</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/uz-latn.js">
+      <publishTime>10/12/2021 15:19:23</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/uz.js">
+      <publishTime>10/12/2021 15:19:23</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/vi.js">
+      <publishTime>10/12/2021 15:19:23</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/x-pseudo.js">
+      <publishTime>10/12/2021 15:19:23</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/yo.js">
+      <publishTime>10/12/2021 15:19:23</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/zh-cn.js">
+      <publishTime>10/12/2021 15:19:23</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/zh-hk.js">
+      <publishTime>10/12/2021 15:19:23</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/zh-mo.js">
+      <publishTime>10/12/2021 15:19:23</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locale/zh-tw.js">
+      <publishTime>10/12/2021 15:19:24</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locales.js">
+      <publishTime>10/12/2021 15:19:16</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locales.min.js">
+      <publishTime>10/12/2021 15:19:16</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/locales.min.js.map">
+      <publishTime>10/12/2021 15:19:16</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/moment-with-locales.js">
+      <publishTime>10/12/2021 15:19:16</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/moment-with-locales.min.js">
+      <publishTime>10/12/2021 15:19:16</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/moment-with-locales.min.js.map">
+      <publishTime>10/12/2021 15:19:16</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/moment.min.js">
+      <publishTime>10/12/2021 15:19:16</publishTime>
+    </File>
+    <File Include="assets/plugins/moment/moment.min.js.map">
+      <publishTime>10/12/2021 15:19:16</publishTime>
+    </File>
+    <File Include="assets/plugins/summernote/dist/font/summernote4c4d.eot">
+      <publishTime>10/12/2021 15:19:24</publishTime>
+    </File>
+    <File Include="assets/plugins/summernote/dist/font/summernote4c4d.ttf">
+      <publishTime>10/12/2021 15:19:24</publishTime>
+    </File>
+    <File Include="assets/plugins/summernote/dist/font/summernote4c4d.woff">
+      <publishTime>10/12/2021 15:19:24</publishTime>
+    </File>
+    <File Include="assets/plugins/summernote/dist/font/summernoted41d.eot">
+      <publishTime>10/12/2021 15:19:24</publishTime>
+    </File>
+    <File Include="assets/plugins/summernote/dist/summernote-bs4.css">
+      <publishTime>10/12/2021 15:19:24</publishTime>
+    </File>
+    <File Include="assets/plugins/summernote/dist/summernote-bs4.min.js">
+      <publishTime>10/12/2021 15:19:24</publishTime>
+    </File>
+    <File Include="assets/plugins/SweetAlert/sweetalert2%4010.js">
+      <publishTime>10/12/2021 15:19:15</publishTime>
+    </File>
+    <File Include="bin/App_global.asax.compiled">
+      <publishTime>11/30/2021 03:33:24</publishTime>
+    </File>
+    <File Include="bin/App_global.asax.dll">
+      <publishTime>11/30/2021 03:33:23</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>03/02/2015 09:32:26</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.SqlServer.dll">
+      <publishTime>03/02/2015 09:32:26</publishTime>
+    </File>
+    <File Include="bin/HMS.dll">
+      <publishTime>11/30/2021 03:31:55</publishTime>
+    </File>
+    <File Include="bin/HMS.pdb">
+      <publishTime>11/30/2021 03:31:55</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
+      <publishTime>10/12/2021 15:20:25</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.EntityFramework.dll">
+      <publishTime>10/12/2021 15:20:26</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.Owin.dll">
+      <publishTime>10/12/2021 15:20:26</publishTime>
+    </File>
+    <File Include="bin/Microsoft.IdentityModel.Logging.dll">
+      <publishTime>10/12/2021 15:20:28</publishTime>
+    </File>
+    <File Include="bin/Microsoft.IdentityModel.Tokens.dll">
+      <publishTime>10/12/2021 15:20:29</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.dll">
+      <publishTime>10/12/2021 15:20:29</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Host.SystemWeb.dll">
+      <publishTime>10/12/2021 15:20:30</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Cookies.dll">
+      <publishTime>10/12/2021 15:20:31</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.dll">
+      <publishTime>10/12/2021 15:20:30</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.OAuth.dll">
+      <publishTime>10/12/2021 15:20:31</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>10/12/2021 15:20:31</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>10/12/2021 15:20:33</publishTime>
+    </File>
+    <File Include="bin/Owin.dll">
+      <publishTime>10/12/2021 15:20:34</publishTime>
+    </File>
+    <File Include="bin/PagedList.dll">
+      <publishTime>10/12/2021 15:20:34</publishTime>
+    </File>
+    <File Include="bin/PagedList.Mvc.dll">
+      <publishTime>10/12/2021 15:20:34</publishTime>
+    </File>
+    <File Include="bin/System.IdentityModel.Tokens.Jwt.dll">
+      <publishTime>10/12/2021 15:20:35</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>10/12/2021 15:20:27</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>10/12/2021 15:20:27</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>10/12/2021 15:20:27</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.Deployment.dll">
+      <publishTime>10/12/2021 15:20:28</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.dll">
+      <publishTime>10/12/2021 15:20:28</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.Razor.dll">
+      <publishTime>10/12/2021 15:20:28</publishTime>
+    </File>
+    <File Include="bin/Twilio.dll">
+      <publishTime>10/12/2021 15:20:36</publishTime>
+    </File>
+    <File Include="Content/PagedList.css">
+      <publishTime>10/12/2021 15:18:40</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.eot">
+      <publishTime>10/12/2021 15:19:27</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.svg">
+      <publishTime>10/12/2021 15:19:27</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>10/12/2021 15:19:27</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff">
+      <publishTime>10/12/2021 15:19:27</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff2">
+      <publishTime>10/12/2021 15:19:27</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>01/16/2021 19:45:35</publishTime>
+    </File>
+    <File Include="PrecompiledApp.config">
+      <publishTime>11/30/2021 03:33:19</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.js">
+      <publishTime>10/12/2021 15:19:00</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.min.js">
+      <publishTime>10/12/2021 15:19:00</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.4.1.js">
+      <publishTime>10/12/2021 15:19:00</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.4.1.min.js">
+      <publishTime>10/12/2021 15:19:00</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.4.1.min.map">
+      <publishTime>10/12/2021 15:19:00</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.4.1.slim.js">
+      <publishTime>10/12/2021 15:19:00</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.4.1.slim.min.js">
+      <publishTime>10/12/2021 15:19:00</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.4.1.slim.min.map">
+      <publishTime>10/12/2021 15:19:00</publishTime>
+    </File>
+    <File Include="Scripts/modernizr-2.8.3.js">
+      <publishTime>10/12/2021 15:19:00</publishTime>
+    </File>
+    <File Include="TestReportsPDFs/ReadMe.txt">
+      <publishTime>10/12/2021 15:19:00</publishTime>
+    </File>
+    <File Include="Views/Account/Login.cshtml">
+      <publishTime>10/12/2021 15:19:01</publishTime>
+    </File>
+    <File Include="Views/Appointments/Create.cshtml">
+      <publishTime>10/12/2021 15:19:01</publishTime>
+    </File>
+    <File Include="Views/Appointments/Delete.cshtml">
+      <publishTime>10/12/2021 15:19:01</publishTime>
+    </File>
+    <File Include="Views/Appointments/Details.cshtml">
+      <publishTime>10/12/2021 15:19:01</publishTime>
+    </File>
+    <File Include="Views/Appointments/Edit.cshtml">
+      <publishTime>10/12/2021 15:19:01</publishTime>
+    </File>
+    <File Include="Views/Appointments/Index.cshtml">
+      <publishTime>10/12/2021 15:19:01</publishTime>
+    </File>
+    <File Include="Views/Biometrics/Index.cshtml">
+      <publishTime>10/18/2021 00:56:38</publishTime>
+    </File>
+    <File Include="Views/Categories/Create.cshtml">
+      <publishTime>10/12/2021 15:19:01</publishTime>
+    </File>
+    <File Include="Views/Categories/Delete.cshtml">
+      <publishTime>10/12/2021 15:19:01</publishTime>
+    </File>
+    <File Include="Views/Categories/Details.cshtml">
+      <publishTime>10/12/2021 15:19:01</publishTime>
+    </File>
+    <File Include="Views/Categories/Edit.cshtml">
+      <publishTime>10/12/2021 15:19:01</publishTime>
+    </File>
+    <File Include="Views/Categories/Index.cshtml">
+      <publishTime>10/12/2021 15:19:02</publishTime>
+    </File>
+    <File Include="Views/Centers/Create.cshtml">
+      <publishTime>10/12/2021 15:19:02</publishTime>
+    </File>
+    <File Include="Views/Centers/Delete.cshtml">
+      <publishTime>10/12/2021 15:19:02</publishTime>
+    </File>
+    <File Include="Views/Centers/Details.cshtml">
+      <publishTime>10/12/2021 15:19:02</publishTime>
+    </File>
+    <File Include="Views/Centers/Edit.cshtml">
+      <publishTime>10/12/2021 15:19:02</publishTime>
+    </File>
+    <File Include="Views/Centers/Index.cshtml">
+      <publishTime>10/12/2021 15:19:02</publishTime>
+    </File>
+    <File Include="Views/Dashboard/Create.cshtml">
+      <publishTime>10/12/2021 15:19:02</publishTime>
+    </File>
+    <File Include="Views/Dashboard/Delete.cshtml">
+      <publishTime>10/12/2021 15:19:02</publishTime>
+    </File>
+    <File Include="Views/Dashboard/Details.cshtml">
+      <publishTime>10/12/2021 15:19:02</publishTime>
+    </File>
+    <File Include="Views/Dashboard/Edit.cshtml">
+      <publishTime>10/12/2021 15:19:02</publishTime>
+    </File>
+    <File Include="Views/Dashboard/Index.cshtml">
+      <publishTime>10/18/2021 22:39:03</publishTime>
+    </File>
+    <File Include="Views/Departments/Create.cshtml">
+      <publishTime>10/12/2021 15:19:02</publishTime>
+    </File>
+    <File Include="Views/Departments/Delete.cshtml">
+      <publishTime>10/12/2021 15:19:02</publishTime>
+    </File>
+    <File Include="Views/Departments/Details.cshtml">
+      <publishTime>10/12/2021 15:19:02</publishTime>
+    </File>
+    <File Include="Views/Departments/Edit.cshtml">
+      <publishTime>10/12/2021 15:19:02</publishTime>
+    </File>
+    <File Include="Views/Departments/Index.cshtml">
+      <publishTime>10/12/2021 15:19:02</publishTime>
+    </File>
+    <File Include="Views/Doctors/Create.cshtml">
+      <publishTime>10/12/2021 15:19:03</publishTime>
+    </File>
+    <File Include="Views/Doctors/Delete.cshtml">
+      <publishTime>10/12/2021 15:19:03</publishTime>
+    </File>
+    <File Include="Views/Doctors/Details.cshtml">
+      <publishTime>10/12/2021 15:19:03</publishTime>
+    </File>
+    <File Include="Views/Doctors/Edit.cshtml">
+      <publishTime>10/12/2021 15:19:03</publishTime>
+    </File>
+    <File Include="Views/Doctors/Index.cshtml">
+      <publishTime>10/12/2021 15:19:03</publishTime>
+    </File>
+    <File Include="Views/DoctorSalaries/Create.cshtml">
+      <publishTime>10/12/2021 15:19:03</publishTime>
+    </File>
+    <File Include="Views/DoctorSalaries/Delete.cshtml">
+      <publishTime>10/12/2021 15:19:03</publishTime>
+    </File>
+    <File Include="Views/DoctorSalaries/Details.cshtml">
+      <publishTime>10/12/2021 15:19:03</publishTime>
+    </File>
+    <File Include="Views/DoctorSalaries/Edit.cshtml">
+      <publishTime>10/12/2021 15:19:03</publishTime>
+    </File>
+    <File Include="Views/DoctorSalaries/Index.cshtml">
+      <publishTime>10/12/2021 15:19:03</publishTime>
+    </File>
+    <File Include="Views/DoctorSchedules/Create.cshtml">
+      <publishTime>10/12/2021 15:19:03</publishTime>
+    </File>
+    <File Include="Views/DoctorSchedules/Delete.cshtml">
+      <publishTime>10/12/2021 15:19:03</publishTime>
+    </File>
+    <File Include="Views/DoctorSchedules/Details.cshtml">
+      <publishTime>10/12/2021 15:19:03</publishTime>
+    </File>
+    <File Include="Views/DoctorSchedules/Edit.cshtml">
+      <publishTime>10/12/2021 15:19:03</publishTime>
+    </File>
+    <File Include="Views/DoctorSchedules/Index.cshtml">
+      <publishTime>10/12/2021 15:19:03</publishTime>
+    </File>
+    <File Include="Views/Home/Index.cshtml">
+      <publishTime>10/12/2021 15:19:03</publishTime>
+    </File>
+    <File Include="Views/Inventory/Create.cshtml">
+      <publishTime>10/12/2021 15:19:03</publishTime>
+    </File>
+    <File Include="Views/Inventory/Delete.cshtml">
+      <publishTime>10/12/2021 15:19:04</publishTime>
+    </File>
+    <File Include="Views/Inventory/Details.cshtml">
+      <publishTime>10/12/2021 15:19:04</publishTime>
+    </File>
+    <File Include="Views/Inventory/Edit.cshtml">
+      <publishTime>10/12/2021 15:19:04</publishTime>
+    </File>
+    <File Include="Views/Inventory/Index.cshtml">
+      <publishTime>10/12/2021 15:19:04</publishTime>
+    </File>
+    <File Include="Views/InvoiceReports/Create.cshtml">
+      <publishTime>10/12/2021 15:19:04</publishTime>
+    </File>
+    <File Include="Views/InvoiceReports/Delete.cshtml">
+      <publishTime>10/12/2021 15:19:04</publishTime>
+    </File>
+    <File Include="Views/InvoiceReports/Details.cshtml">
+      <publishTime>10/12/2021 15:19:04</publishTime>
+    </File>
+    <File Include="Views/InvoiceReports/Edit.cshtml">
+      <publishTime>10/12/2021 15:19:04</publishTime>
+    </File>
+    <File Include="Views/InvoiceReports/Index.cshtml">
+      <publishTime>10/12/2021 15:19:04</publishTime>
+    </File>
+    <File Include="Views/Invoices/Create.cshtml">
+      <publishTime>10/12/2021 15:19:04</publishTime>
+    </File>
+    <File Include="Views/Invoices/Delete.cshtml">
+      <publishTime>10/12/2021 15:19:04</publishTime>
+    </File>
+    <File Include="Views/Invoices/Details.cshtml">
+      <publishTime>10/12/2021 15:19:04</publishTime>
+    </File>
+    <File Include="Views/Invoices/Edit.cshtml">
+      <publishTime>10/12/2021 15:19:05</publishTime>
+    </File>
+    <File Include="Views/Invoices/Index.cshtml">
+      <publishTime>10/12/2021 15:19:05</publishTime>
+    </File>
+    <File Include="Views/Invoices/Pay.cshtml">
+      <publishTime>10/12/2021 15:19:05</publishTime>
+    </File>
+    <File Include="Views/InvoiceTransactions/Create.cshtml">
+      <publishTime>10/12/2021 15:19:04</publishTime>
+    </File>
+    <File Include="Views/InvoiceTransactions/Delete.cshtml">
+      <publishTime>10/12/2021 15:19:04</publishTime>
+    </File>
+    <File Include="Views/InvoiceTransactions/Details.cshtml">
+      <publishTime>10/12/2021 15:19:04</publishTime>
+    </File>
+    <File Include="Views/InvoiceTransactions/Edit.cshtml">
+      <publishTime>10/12/2021 15:19:04</publishTime>
+    </File>
+    <File Include="Views/InvoiceTransactions/Index.cshtml">
+      <publishTime>10/12/2021 15:19:04</publishTime>
+    </File>
+    <File Include="Views/JustDials/Create.cshtml">
+      <publishTime>10/16/2021 23:56:19</publishTime>
+    </File>
+    <File Include="Views/JustDials/Delete.cshtml">
+      <publishTime>10/12/2021 15:19:05</publishTime>
+    </File>
+    <File Include="Views/JustDials/Details.cshtml">
+      <publishTime>10/12/2021 15:19:05</publishTime>
+    </File>
+    <File Include="Views/JustDials/Edit.cshtml">
+      <publishTime>10/16/2021 23:29:00</publishTime>
+    </File>
+    <File Include="Views/JustDials/Index.cshtml">
+      <publishTime>10/16/2021 23:27:41</publishTime>
+    </File>
+    <File Include="Views/LabTests/Add.cshtml">
+      <publishTime>10/12/2021 15:19:05</publishTime>
+    </File>
+    <File Include="Views/LabTests/AddReport.cshtml">
+      <publishTime>10/12/2021 15:19:05</publishTime>
+    </File>
+    <File Include="Views/LabTests/Index.cshtml">
+      <publishTime>10/12/2021 15:19:05</publishTime>
+    </File>
+    <File Include="Views/Loyalities/Create.cshtml">
+      <publishTime>10/12/2021 15:19:05</publishTime>
+    </File>
+    <File Include="Views/Loyalities/Delete.cshtml">
+      <publishTime>10/12/2021 15:19:05</publishTime>
+    </File>
+    <File Include="Views/Loyalities/Details.cshtml">
+      <publishTime>10/12/2021 15:19:05</publishTime>
+    </File>
+    <File Include="Views/Loyalities/Edit.cshtml">
+      <publishTime>10/12/2021 15:19:05</publishTime>
+    </File>
+    <File Include="Views/Loyalities/Index.cshtml">
+      <publishTime>10/12/2021 15:19:05</publishTime>
+    </File>
+    <File Include="Views/LoyalityProcedures/Create.cshtml">
+      <publishTime>10/12/2021 15:19:06</publishTime>
+    </File>
+    <File Include="Views/LoyalityProcedures/Delete.cshtml">
+      <publishTime>10/12/2021 15:19:06</publishTime>
+    </File>
+    <File Include="Views/LoyalityProcedures/Details.cshtml">
+      <publishTime>10/12/2021 15:19:06</publishTime>
+    </File>
+    <File Include="Views/LoyalityProcedures/Edit.cshtml">
+      <publishTime>10/12/2021 15:19:06</publishTime>
+    </File>
+    <File Include="Views/LoyalityProcedures/Index.cshtml">
+      <publishTime>10/12/2021 15:19:06</publishTime>
+    </File>
+    <File Include="Views/Messages/Create.cshtml">
+      <publishTime>10/12/2021 15:19:06</publishTime>
+    </File>
+    <File Include="Views/Messages/Delete.cshtml">
+      <publishTime>10/12/2021 15:19:06</publishTime>
+    </File>
+    <File Include="Views/Messages/Details.cshtml">
+      <publishTime>10/12/2021 15:19:06</publishTime>
+    </File>
+    <File Include="Views/Messages/Edit.cshtml">
+      <publishTime>10/12/2021 15:19:06</publishTime>
+    </File>
+    <File Include="Views/Messages/Index.cshtml">
+      <publishTime>10/12/2021 15:19:06</publishTime>
+    </File>
+    <File Include="Views/PatientFeedbacks/Create.cshtml">
+      <publishTime>11/10/2021 16:51:31</publishTime>
+    </File>
+    <File Include="Views/PatientFeedbacks/Delete.cshtml">
+      <publishTime>10/12/2021 15:19:06</publishTime>
+    </File>
+    <File Include="Views/PatientFeedbacks/Details.cshtml">
+      <publishTime>10/12/2021 15:19:06</publishTime>
+    </File>
+    <File Include="Views/PatientFeedbacks/Edit.cshtml">
+      <publishTime>10/12/2021 15:19:06</publishTime>
+    </File>
+    <File Include="Views/PatientFeedbacks/Index.cshtml">
+      <publishTime>11/10/2021 15:22:11</publishTime>
+    </File>
+    <File Include="Views/PatientRegistration/Create.cshtml">
+      <publishTime>10/12/2021 15:19:06</publishTime>
+    </File>
+    <File Include="Views/PatientRegistration/Delete.cshtml">
+      <publishTime>10/12/2021 15:19:07</publishTime>
+    </File>
+    <File Include="Views/PatientRegistration/Details.cshtml">
+      <publishTime>10/12/2021 15:19:07</publishTime>
+    </File>
+    <File Include="Views/PatientRegistration/Edit.cshtml">
+      <publishTime>10/12/2021 15:19:07</publishTime>
+    </File>
+    <File Include="Views/PatientRegistration/Index.cshtml">
+      <publishTime>10/12/2021 15:19:07</publishTime>
+    </File>
+    <File Include="Views/Patients/Create.cshtml">
+      <publishTime>10/12/2021 15:19:07</publishTime>
+    </File>
+    <File Include="Views/Patients/Delete.cshtml">
+      <publishTime>10/12/2021 15:19:07</publishTime>
+    </File>
+    <File Include="Views/Patients/Details.cshtml">
+      <publishTime>10/12/2021 15:19:07</publishTime>
+    </File>
+    <File Include="Views/Patients/Edit.cshtml">
+      <publishTime>10/12/2021 15:19:07</publishTime>
+    </File>
+    <File Include="Views/Patients/Index.cshtml">
+      <publishTime>10/12/2021 15:19:07</publishTime>
+    </File>
+    <File Include="Views/Procedures/Create.cshtml">
+      <publishTime>10/12/2021 15:19:07</publishTime>
+    </File>
+    <File Include="Views/Procedures/Delete.cshtml">
+      <publishTime>10/12/2021 15:19:07</publishTime>
+    </File>
+    <File Include="Views/Procedures/Details.cshtml">
+      <publishTime>10/12/2021 15:19:07</publishTime>
+    </File>
+    <File Include="Views/Procedures/Edit.cshtml">
+      <publishTime>10/12/2021 15:19:07</publishTime>
+    </File>
+    <File Include="Views/Procedures/Index.cshtml">
+      <publishTime>10/12/2021 15:19:07</publishTime>
+    </File>
+    <File Include="Views/ProfitLosses/Create.cshtml">
+      <publishTime>10/12/2021 15:19:07</publishTime>
+    </File>
+    <File Include="Views/ProfitLosses/DayExpenceDetails.cshtml">
+      <publishTime>10/12/2021 15:19:07</publishTime>
+    </File>
+    <File Include="Views/ProfitLosses/DayRevenueDetails.cshtml">
+      <publishTime>10/12/2021 15:19:08</publishTime>
+    </File>
+    <File Include="Views/ProfitLosses/Edit.cshtml">
+      <publishTime>10/12/2021 15:19:08</publishTime>
+    </File>
+    <File Include="Views/ProfitLosses/ExpenceDetails.cshtml">
+      <publishTime>10/12/2021 15:19:08</publishTime>
+    </File>
+    <File Include="Views/ProfitLosses/Index.cshtml">
+      <publishTime>10/12/2021 15:19:08</publishTime>
+    </File>
+    <File Include="Views/ProfitLosses/RevenueDetails.cshtml">
+      <publishTime>10/12/2021 15:19:08</publishTime>
+    </File>
+    <File Include="Views/Referals/Create.cshtml">
+      <publishTime>10/12/2021 15:19:08</publishTime>
+    </File>
+    <File Include="Views/Referals/Delete.cshtml">
+      <publishTime>10/12/2021 15:19:08</publishTime>
+    </File>
+    <File Include="Views/Referals/Details.cshtml">
+      <publishTime>10/12/2021 15:19:08</publishTime>
+    </File>
+    <File Include="Views/Referals/Edit.cshtml">
+      <publishTime>10/12/2021 15:19:08</publishTime>
+    </File>
+    <File Include="Views/Referals/Index.cshtml">
+      <publishTime>10/12/2021 15:19:08</publishTime>
+    </File>
+    <File Include="Views/Reports/List.cshtml">
+      <publishTime>10/12/2021 15:19:08</publishTime>
+    </File>
+    <File Include="Views/RoleAdmin/Create.cshtml">
+      <publishTime>10/12/2021 15:19:08</publishTime>
+    </File>
+    <File Include="Views/RoleAdmin/Index.cshtml">
+      <publishTime>10/12/2021 15:19:08</publishTime>
+    </File>
+    <File Include="Views/SalaryDoctors/Create.cshtml">
+      <publishTime>10/12/2021 15:19:08</publishTime>
+    </File>
+    <File Include="Views/SalaryDoctors/Delete.cshtml">
+      <publishTime>10/12/2021 15:19:08</publishTime>
+    </File>
+    <File Include="Views/SalaryDoctors/Details.cshtml">
+      <publishTime>10/12/2021 15:19:09</publishTime>
+    </File>
+    <File Include="Views/SalaryDoctors/Edit.cshtml">
+      <publishTime>10/12/2021 15:19:09</publishTime>
+    </File>
+    <File Include="Views/SalaryDoctors/Index.cshtml">
+      <publishTime>10/12/2021 15:19:09</publishTime>
+    </File>
+    <File Include="Views/Shared/_DoctorOptions.cshtml">
+      <publishTime>10/12/2021 15:19:09</publishTime>
+    </File>
+    <File Include="Views/Shared/_InvoiceProcedures.cshtml">
+      <publishTime>10/12/2021 15:19:09</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>11/30/2021 03:23:19</publishTime>
+    </File>
+    <File Include="Views/Shared/_LayoutCustomer.cshtml">
+      <publishTime>10/12/2021 15:19:09</publishTime>
+    </File>
+    <File Include="Views/Shared/_LoyalityDependents.cshtml">
+      <publishTime>10/12/2021 15:19:09</publishTime>
+    </File>
+    <File Include="Views/Shared/_LoyalityProcedures.cshtml">
+      <publishTime>10/12/2021 15:19:09</publishTime>
+    </File>
+    <File Include="Views/Staffs/Create.cshtml">
+      <publishTime>10/12/2021 15:19:10</publishTime>
+    </File>
+    <File Include="Views/Staffs/Delete.cshtml">
+      <publishTime>10/12/2021 15:19:10</publishTime>
+    </File>
+    <File Include="Views/Staffs/Details.cshtml">
+      <publishTime>10/12/2021 15:19:10</publishTime>
+    </File>
+    <File Include="Views/Staffs/Edit.cshtml">
+      <publishTime>10/12/2021 15:19:10</publishTime>
+    </File>
+    <File Include="Views/Staffs/Index.cshtml">
+      <publishTime>10/12/2021 15:19:10</publishTime>
+    </File>
+    <File Include="Views/StaffSalaries/Create.cshtml">
+      <publishTime>10/12/2021 15:19:09</publishTime>
+    </File>
+    <File Include="Views/StaffSalaries/Delete.cshtml">
+      <publishTime>10/12/2021 15:19:09</publishTime>
+    </File>
+    <File Include="Views/StaffSalaries/Details.cshtml">
+      <publishTime>10/12/2021 15:19:09</publishTime>
+    </File>
+    <File Include="Views/StaffSalaries/Edit.cshtml">
+      <publishTime>10/12/2021 15:19:09</publishTime>
+    </File>
+    <File Include="Views/StaffSalaries/Index.cshtml">
+      <publishTime>10/12/2021 15:19:09</publishTime>
+    </File>
+    <File Include="Views/Taxes/Create.cshtml">
+      <publishTime>10/12/2021 15:19:10</publishTime>
+    </File>
+    <File Include="Views/Taxes/Delete.cshtml">
+      <publishTime>10/12/2021 15:19:10</publishTime>
+    </File>
+    <File Include="Views/Taxes/Details.cshtml">
+      <publishTime>10/12/2021 15:19:10</publishTime>
+    </File>
+    <File Include="Views/Taxes/Edit.cshtml">
+      <publishTime>10/12/2021 15:19:10</publishTime>
+    </File>
+    <File Include="Views/Taxes/Index.cshtml">
+      <publishTime>10/12/2021 15:19:10</publishTime>
+    </File>
+    <File Include="Views/web.config">
+      <publishTime>10/12/2021 15:19:01</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>10/12/2021 15:19:01</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>11/30/2021 03:31:55</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,120 @@
+﻿@model HMS.Models.StaffSalary
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section styleSheets{
+    <link href="~/assets/plugins/EasyAutocomplete/easy-autocomplete.css" rel="stylesheet" />
+    <link href="~/assets/plugins/EasyAutocomplete/easy-autocomplete.themes.css" rel="stylesheet" />
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+     
+
+    <div class="form-horizontal">
+        <h4>StaffSalary</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Staff.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Staff.Name, "staffName", new { htmlAttributes = new { @class = "form-control", @id = "staffName" } })
+                @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Staff.ID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Staff.ID, "staffID", new { htmlAttributes = new { @class = "form-control", @id = "staffID", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" id="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<script src="~/assets/js/jquery-3.2.1.min.js"></script>
+<script src="~/assets/plugins/SweetAlert/sweetalert2@10.js"></script>
+<script src="~/assets/plugins/EasyAutocomplete/jquery.easy-autocomplete.js"></script>
+
+<script type="text/javascript">
+    $(function (){
+    var staffOptions = {
+            url: function (staffName) {
+                var ajaxURL = '@Url.Action("GetStaffACData", "StaffSalaries")' + '?staffName=' + staffName;
+                return ajaxURL;
+            },
+            getValue: "Name",
+            template: {
+                type: "description",
+                fields: {
+                    description: "ID"
+                }
+            },
+
+            list: {
+                onSelectItemEvent: function () {
+                    var value = $("#staffName").getSelectedItemData().ID;
+                    $("#staffName").attr("dataStaId", value);
+
+                    $.ajax({
+                        method: "GET",
+                        url: '@Url.Action("GetStaffData", "StaffSalaries")',
+                        data: { ID: value },
+                        error: function () {
+                            $("#PatientID").val('');
+                            $("#Gender").val('');
+                            $("#ContactNumber").val('');
+                            $("#Address").val('');
+                        },
+                        beforeSend: function () {
+                            //$("#OrderOverlay").show()
+                        },
+                        success: function (response) {
+                            $("#staffID").val(response.ID);
+                            $("#Amount").val(response.Charges);
+
+                        },
+                        complete: function () { $("#OrderOverlay").hide(); }
+                    });
+                },
+                onShowListEvent: function () {
+                    $("#staffName").attr("dataStaId", "");
+                }
+            }
+        };
+        $("#staffName").easyAutocomplete(staffOptions);
+    });
+    $("#submit").click(function(event)
+    {
+
+  event.preventDefault();
+  var url = '@Html.Raw(@Url.Action("CreateStaSalary",  new {@staffID="From_value",@amount="To_value"}))';
+
+        url = url.replace("From_value", $("#staffID").val());
+        url = url.replace("To_value", $("#Amount").val());
+
+  window.location.href = url;
+    });
+</script>

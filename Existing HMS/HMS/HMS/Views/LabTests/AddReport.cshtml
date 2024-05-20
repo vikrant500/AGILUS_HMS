@@ -1,0 +1,148 @@
+﻿@model HMS.Models.TestReports
+@{
+    ViewBag.Title = "Add Report";
+}
+@section styleSheets{
+    <style type="text/css">
+        .upload-btn-wrapper {
+            /* position: relative;
+            overflow: hidden;
+            display: inline-block;*/
+        }
+
+        .btnUpload {
+            color: white;
+            background-color: green;
+            padding: 2px 20px;
+            border-radius: 2px;
+            font-size: 14px;
+        }
+
+        .upload-btn-wrapper input[type=file] {
+            font-size: 10px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 1;
+        }
+    </style>
+}
+<div class="row">
+    <div class="col-lg-8 offset-lg-2">
+        <h4 class="page-title">Add Report</h4>
+    </div>
+</div>
+
+
+@using (Html.BeginForm("AddReport", "LabTests", FormMethod.Post, new { enctype = "multipart/form-data", @id = "frmFileUpload" }))
+{
+
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="card">
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Test ID<span class="text-danger"></span></label>
+                                @Html.EditorFor(model => model.TestID, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off", @readonly = "readonly" } })
+                                @Html.ValidationMessageFor(model => model.TestID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>First Name<span class="text-danger"></span></label>
+                                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
+                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Mobile Number<span class="text-danger">*</span></label>
+                                @Html.EditorFor(model => model.MobileNumber, new { htmlAttributes = new { @class = "form-control", @autocomplete = "chrome-off" } })
+                                @Html.ValidationMessageFor(model => model.MobileNumber, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Test Name<span class="text-danger"></span></label>
+                                @Html.EditorFor(model => model.TestName, new { htmlAttributes = new { @class = "form-control", @autocomplete = "off" } })
+                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Test Date<span class="text-danger">*</span></label>
+                                @Html.EditorFor(model => model.TestDate, new { htmlAttributes = new { @class = "form-control", @autocomplete = "chrome-off" } })
+                                @Html.ValidationMessageFor(model => model.MobileNumber, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>Status<span class="text-danger">*</span></label>
+                                @Html.DropDownListFor(x => Model.Status, new SelectList(Model.Statuses, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "Status" })
+                                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-md-7"><h3>@(Model.Files.Count>0?"Reports:":"No Reports")</h3></div>
+                                @if (Model.Files.Count == 0)
+                                {
+                                    <div class="col-md-5">
+                                        <div class="upload-btn-wrapper">
+                                            <input type="file" name="file" />
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+
+                            @foreach (KeyValuePair<long, string> fName in Model.Files)
+                            {
+                                <div class="row" style="margin-bottom:5px; border:1px solid #ccc; border-radius:5px;">
+                                    <div class="col-md-8">
+                                        <a href='~/TestReportsPDFs/@fName.Value' target="_blank">
+                                            <img src="~/assets/img/pdfIcon.png" style="width:50px; height:50px;" />@fName.Value
+                                        </a>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <a href='@Url.Action("Delete",new {Id=fName.Key})' style="font-size:20px; color:red;"><i class="fa fa-trash"></i></a>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+                        @if (Model.Files.Count == 0)
+                        {
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <input type="submit" value="Upload Report" class="btn btn-info" />
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                &nbsp;
+                            </div>
+                        }
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    @Html.ActionLink("Back to List", "Index", null, new { @style = "font-size:12px;" })
+                                </div>
+                            </div>
+                        </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+}

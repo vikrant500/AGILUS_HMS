@@ -1,0 +1,450 @@
+﻿@model HMS.Models.Loyality
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section styleSheets{
+    <link href="~/assets/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />
+    <link href="~/assets/plugins/EasyAutocomplete/easy-autocomplete.css" rel="stylesheet" />
+    <link href="~/assets/plugins/EasyAutocomplete/easy-autocomplete.themes.css" rel="stylesheet" />
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+     
+
+<div class="form-horizontal">
+    <h4>Loyality</h4>
+    <hr />
+    <div class="row">
+
+
+        <div class="col-sm-8">
+            <div class="form-group">
+                <label>Patient Name<span class="text-danger">*</span></label>
+                @Html.Editor("PatientName", "", new { htmlAttributes = new { @class = "form-control", @dataPatId = "", @style = "width:100% !important" } })
+            </div>
+        </div>
+        <div class="col-sm-4">
+            &nbsp;
+        </div>
+
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label>UHID<span class="text-danger">*</span></label>
+                @Html.Editor("PatientID", "", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label>Gender</label>
+                @Html.Editor("Gender", "", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label>Contact Number</label>
+                @Html.Editor("ContactNumber", "", new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            </div>
+        </div>
+    </div>
+    <br>
+    <h4>Add Procedures</h4>
+
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label>Select Procedure</label>
+                @Html.Editor("ProcName", "", new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label>Rate</label>
+                @Html.Editor("Rate", "", new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label>&nbsp;</label>
+                <input id="btnAddProcedure" type="button" value="+Add Procedure" class="btn btn-info form-control" />
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="form-group">
+                <table class="table table-border table-striped custom-table mb-0 patientsTable">
+                    <thead>
+                        <tr>
+                            <th>Particulars</th>
+                            <th>Rate</th>
+
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="procTable">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <br>
+    <h4>Add Dependents</h4>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label>Name</label>
+                @Html.Editor("Name", "", new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label>Relation</label>
+                @Html.DropDownList("Relation", new List<SelectListItem> { new SelectListItem() { Text = "--Select Relation--", Value = "" },
+                           new SelectListItem() { Text = "Father", Value = "Father" },
+                           new SelectListItem() { Text = "Mother", Value = "Mother" },
+                           new SelectListItem() { Text = "Wife", Value = "Wife" },
+                           new SelectListItem() { Text = "Son", Value = "Son" },
+                           new SelectListItem() { Text = "Daughter", Value = "Daughter" },
+                           new SelectListItem() { Text = "Brother", Value = "Brother" },
+
+                       new SelectListItem() { Text = "Sister", Value = "Sister" }},
+                       htmlAttributes: new { @class = "form-control", id = "Relation" })
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label>Gender</label>
+                @Html.Editor("Genderd", "", new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label>Date of Birth<span class="text-danger">*</span></label>
+                <div class="cal-icon">
+                    @Html.Editor("DOB", "", new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label>Age<span class="text-danger">*</span></label>
+                @Html.Editor("Age", "", new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label>&nbsp;</label>
+                <input id="btnAddDependent" type="button" value="+Add Dependent" class="btn btn-info form-control" />
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="form-group">
+                <table class="table table-border table-striped custom-table mb-0 patientsTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Relation</th>
+                            <th>Gender</th>
+                            <th>DOB</th>
+                            <th>Age</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="depTable">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label>&nbsp;</label>
+            <input id="btnAddMember" type="button" value="+Add member" class="btn btn-info form-control" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+<script src="~/assets/js/jquery-3.2.1.min.js"></script>
+<script src="~/assets/plugins/SweetAlert/sweetalert2@10.js"></script>
+<script src="~/assets/plugins/EasyAutocomplete/jquery.easy-autocomplete.js"></script>
+
+
+
+<script type="text/javascript">
+    $("#btnAddMember").on("click", function () {
+
+        event.preventDefault();
+        $.ajax({
+            method: "GET",
+            url: '@Url.Action("AddMember", "Loyalities")',
+            data: {
+                ID: document.getElementById("PatientID").value
+            },
+            contentType: "html",
+            error: function () {
+                //$("#CityID").empty();
+            },
+            beforeSend: function () {
+                //$("#OrderOverlay").show()
+            },
+            success: function (response) {
+                console.log("completed")
+                window.location.href = '@Url.Action("Index", "Loyalities")'
+
+            },
+            complete: function () {
+
+            }
+        })
+
+
+    });
+$(function () {
+        var procOptions = {
+            url: function (procedureName) {
+                var ajaxURL = '@Url.Action("GetProceduresData","Loyalities")' + '?procedureName='+procedureName;
+                return ajaxURL;
+            },
+            getValue: "Name",
+            template: {
+                type: "description",
+                fields: {
+                    description: "Price"
+                }
+            },
+
+            list: {
+                onSelectItemEvent: function () {
+                    var value = $("#ProcName").getSelectedItemData().ID;
+                    $("#ProcName").attr("data-procId", value);
+                                        $.ajax({
+                        method: "GET",
+                        url: '@Url.Action("GetProcedureACData", "Invoices")',
+                        data: { ID: value },
+                        error: function () {
+                            $("#Rate").val('');
+
+                        },
+                        beforeSend: function () {
+                            //$("#OrderOverlay").show()
+                        },
+                        success: function (response) {
+                            $("#Rate").val(response.Price);
+
+
+                        },
+                        complete: function () { $("#OrderOverlay").hide(); }
+                    });
+                },
+                onShowListEvent: function () {
+                    $("#ProcName").attr("data-procId", "");
+                    $("#Rate").val("");
+                }
+            }
+        };
+        $("#ProcName").easyAutocomplete(procOptions);
+
+        var patientOptions = {
+            url: function (patientName) {
+                var ajaxURL = '@Url.Action("GetPatientACData", "Invoices")' + '?patientName=' + patientName;
+                return ajaxURL;
+            },
+            getValue: "Name",
+            template: {
+                type: "description",
+                fields: {
+                    description: "ID"
+                }
+            },
+
+            list: {
+                onSelectItemEvent: function () {
+                    var value = $("#PatientName").getSelectedItemData().ID;
+                    $("#PatientName").attr("dataPatId", value);
+
+                    $.ajax({
+                        method: "GET",
+                        url: '@Url.Action("GetPatientData", "Invoices")',
+                        data: { ID: value },
+                        error: function () {
+                            $("#PatientID").val('');
+                            $("#Gender").val('');
+                            $("#ContactNumber").val('');
+                            $("#Address").val('');
+                        },
+                        beforeSend: function () {
+                            //$("#OrderOverlay").show()
+                        },
+                        success: function (response) {
+                            $("#PatientID").val(response.ID);
+                            $("#Gender").val(response.Gender);
+                            $("#ContactNumber").val(response.ContactNumber);
+                            $("#Address").val(response.Address);
+
+                        },
+                        complete: function () { $("#OrderOverlay").hide(); }
+                    });
+                },
+                onShowListEvent: function () {
+                    $("#PatientName").attr("dataPatId", "");
+                }
+            }
+        };
+        $("#PatientName").easyAutocomplete(patientOptions);
+
+    $("#btnAddProcedure").on("click", function () {
+        $("#Rate").val("");
+            $.ajax({
+
+                method: "GET",
+                url: '@Url.Action("AddProcedure", "Loyalities")',
+                data: {
+                    _ProcID: $("#ProcName").attr("data-procId") },
+                contentType: "html",
+                error: function () {
+                    //$("#CityID").empty();
+                },
+                beforeSend: function () {
+                    //$("#OrderOverlay").show()
+                },
+                success: function (response) {
+                    $("#procTable").empty();
+                    $("#procTable").html(response);
+
+                },
+                complete: function () { $("#ProcName").val('')}
+            })
+        });
+    $("#btnAddDependent").on("click", function () {
+
+            $.ajax({
+
+                method: "GET",
+                url: '@Url.Action("AddDependent", "Loyalities")',
+                data: {
+                    name: document.getElementById("Name").value, relation: document.getElementById("Relation").value, gender: document.getElementById("Genderd").value, dob: document.getElementById("DOB").value, age: document.getElementById("Age").value
+                },
+                contentType: "html",
+                error: function () {
+                    //$("#CityID").empty();
+                },
+                beforeSend: function () {
+                    //$("#OrderOverlay").show()
+                },
+                success: function (response) {
+                    $("#depTable").empty();
+                    $("#depTable").html(response);
+
+                },
+                complete: function () { $("#Name").val('')}
+            })
+        });
+        $(document).on("click", "a.delProcedure", function (event) {
+            event.preventDefault();
+            $.ajax({
+                method: "GET",
+                url: '@Url.Action("DelProcedure", "Loyalities")',
+                data: {
+                    _ProcID: $(this).attr("data-procId")},
+                contentType: "html",
+                error: function () {
+                    //$("#CityID").empty();
+                },
+                beforeSend: function () {
+                    //$("#OrderOverlay").show()
+                },
+                success: function (response) {
+                    $("#procTable").empty();
+                    $("#procTable").html(response);
+
+                },
+                complete: function () { $("#ProcName").val(''), $("#Units").val(''), $("#Discount").val('')}
+            })
+        });
+    $(document).on("click", "a.delDependent", function (event) {
+            event.preventDefault();
+            $.ajax({
+                method: "GET",
+                url: '@Url.Action("DelDependent", "Loyalities")',
+                data: {
+                    _ProcID: $(this).attr("data-procId")},
+                contentType: "html",
+                error: function () {
+                    //$("#CityID").empty();
+                },
+                beforeSend: function () {
+                    //$("#OrderOverlay").show()
+                },
+                success: function (response) {
+                    $("#depTable").empty();
+                    $("#depTable").html(response);
+
+                },
+                complete: function () { $("#ProcName").val(''), $("#Units").val(''), $("#Discount").val('')}
+            })
+        });
+    $('input[name="DOB"]').daterangepicker({
+        singleDatePicker: true,
+        showDropdowns: true,
+        minYear: 1901,
+        maxDate: moment(),
+        maxYear: parseInt(moment().format('YYYY'), 10),
+        locale: {
+            format: 'YYYY-MM-DD'
+        }
+    }, function (start, end, label) {
+        var years = moment().diff(start, 'years');
+        $("#Age").val(years);
+    });
+
+        $(document).on("submit", "form", function (event) {
+
+            event.preventDefault();
+
+            var formValues = $(this).serialize();
+            url = $("form").attr('action');
+            var formPost = $.post(url, formValues);
+            formPost.done(function (data) {
+                if (data == '1') {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Saved',
+                        text: 'Loyality Member Created'
+                    }).then((result) => {
+                        /* Read more about isConfirmed, isDenied below */
+                        if (result.value==true) {
+                            location.href = '@Url.Action("Index", "Loyalities")';
+                        }
+                    });
+                }
+                else if (data == '0') {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'An error occurred'
+                    });
+                }
+            });
+        });
+    });
+
+</script>

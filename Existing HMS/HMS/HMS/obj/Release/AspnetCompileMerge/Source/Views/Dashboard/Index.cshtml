@@ -1,0 +1,281 @@
+﻿@model HMS.VeiwModels.Dashboard
+
+@{ ViewBag.Title = "Index";
+                Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<div class="content">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+            <div class="dash-widget">
+                <span class="dash-widget-bg1"><i class="fa fa-stethoscope" aria-hidden="true"></i></span>
+                <div class="dash-widget-info text-right">
+                    <h3>@Model.NumOfDoctors</h3>
+                    <span class="widget-title1">Doctors <i class="fa fa-check" aria-hidden="true"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+            <div class="dash-widget">
+                <span class="dash-widget-bg2"><i class="fa fa-user-o"></i></span>
+                <div class="dash-widget-info text-right">
+                    <h3>@Model.NumOfPatients</h3>
+                    <span class="widget-title2">Patients <i class="fa fa-check" aria-hidden="true"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+            <div class="dash-widget">
+                <span class="dash-widget-bg3"><i class="fa fa-user-md" aria-hidden="true"></i></span>
+                <div class="dash-widget-info text-right">
+                    <h3>@Model.AppointmentsAttended</h3>
+                    <span class="widget-title3">Attend <i class="fa fa-check" aria-hidden="true"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+            <div class="dash-widget">
+                <span class="dash-widget-bg4"><i class="fa fa-heartbeat" aria-hidden="true"></i></span>
+                <div class="dash-widget-info text-right">
+                    <h3>@Model.AppointmentsPending</h3>
+                    <span class="widget-title4">Pending <i class="fa fa-check" aria-hidden="true"></i></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="chart-title">
+                        <h4>Appointments Created</h4>
+                        <span id="percentage" class="float-right"><i class="fa fa-caret-up" aria-hidden="true"></i>15% Higher than Last Month</span>
+                    </div>
+                    <canvas id="linegraph"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="chart-title">
+                        <h4>Patients In</h4>
+                        <div class="float-right">
+                            <ul class="chat-user-total">
+                                <li><i class="fa fa-circle current-users" aria-hidden="true"></i>ICU</li>
+                                <li><i class="fa fa-circle old-users" aria-hidden="true"></i> OPD</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <canvas id="bargraph"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-8 col-xl-8">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title d-inline-block">Upcoming Appointments</h4> <a href="/Appointments" class="btn btn-primary float-right">View all</a>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table mb-0">
+                            <thead class="d-none">
+                                <tr>
+                                    <th>Patient Name</th>
+                                    <th>Doctor Name</th>
+                                    <th>Timing</th>
+                                    <th class="text-right">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (HMS.Models.Appointment item in Model.UpcommingAppointments)
+                                {
+                    <tr>
+                        <td style="min-width: 200px;">
+                            <a class="avatar" href="profile.html">B</a>
+                            <h2><a href="profile.html">@item.Patient.FirstName&nbsp;@item.Patient.LastName<span>@item.Patient.City</span></a></h2>
+                        </td>
+                        <td>
+                            <h5 class="time-title p-0">Appointment With</h5>
+                            <p>Dr.&nbsp;@item.Doctor.Name</p>
+                        </td>
+                        <td>
+                            <h5 class="time-title p-0">Timing</h5>
+                            <p>@item.AppointmentDate.TimeOfDay</p>
+                        </td>
+                        <td class="text-right">
+                            <a href="appointments.html" class="btn btn-outline-primary take-btn">Take up</a>
+                        </td>
+                    </tr>}
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4 col-xl-4">
+            <div class="card member-panel">
+                <div class="card-header bg-white">
+                    <h4 class="card-title mb-0">Doctors</h4>
+                </div>
+                <div class="card-body">
+                    <ul class="contact-list">
+                        @foreach (HMS.Models.Doctor item in Model.Doctors)
+                        {
+            <li>
+                <div class="contact-cont">
+                    <div class="float-left user-img m-r-10">
+                        <a href="profile.html" title="@item.Name"><img src="~/assets/img/user.jpg" alt="" class="w-40 rounded-circle"><span class="status online"></span></a>
+                    </div>
+                    <div class="contact-info">
+                        <span class="contact-name text-ellipsis">@item.Name</span>
+                        <span class="contact-date">@item.Speciality</span>
+                    </div>
+                </div>
+            </li>}
+                    </ul>
+                </div>
+                <div class="card-footer text-center bg-white">
+                    <a href="/Doctors" class="text-muted">View all Doctors</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-8 col-xl-8">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title d-inline-block">New Patients </h4> <a href="/patients" class="btn btn-primary float-right">View all</a>
+                </div>
+                <div class="card-block">
+                    <div class="table-responsive">
+                        <table class="table mb-0 new-patient-table">
+                            <tbody>
+                                @foreach (HMS.Models.Patient item in Model.NewPatients)
+                                {
+                    <tr>
+                        <td>
+                            <img width="28" height="28" class="rounded-circle" src="~/assets/img/user.jpg" alt="">
+                            <h2>@item.FirstName &nbsp;@item.LastName</h2>
+                        </td>
+                        <td>@item.EmailID</td>
+                        <td>@item.CallingNumber</td>
+                        <td><button class="btn btn-primary btn-primary-one float-right">@item.CareofGuardian</button></td>
+                    </tr>}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="~/assets/js/jquery-3.2.1.min.js"></script>
+<script src="~/assets/plugins/SweetAlert/sweetalert2@10.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        console.log("gg")
+        // Bar Chart
+        this.data = $.getJSON("/Dashboard/GetLabels", null, function (data) {
+            console.log(data["Label1"]);
+
+
+            charit(data);
+        });
+        function charit(data) {
+            console.log(data["Label1"])
+            console.log(data["Label2"])
+            console.log(data["Num1"])
+            console.log(data["Num2"])
+            var barChartData = {
+
+                labels: data["Label2"],
+
+                datasets: [{
+                    label: 'Patients',
+                    backgroundColor: 'rgba(0, 158, 251, 0.5)',
+                    borderColor: 'rgba(0, 158, 251, 1)',
+                    borderWidth: 1,
+                    data: data["Num2"]
+                }]//, {
+                //    label: 'Dataset 2',
+                //    backgroundColor: 'rgba(255, 188, 53, 0.5)',
+                //    borderColor: 'rgba(255, 188, 53, 1)',
+                //    borderWidth: 1,
+                //    data: [28, 48, 40, 19, 86, 27, 90]
+                //}]
+            };
+
+            var ctx = document.getElementById('bargraph').getContext('2d');
+            window.myBar = new Chart(ctx, {
+                type: 'bar',
+                data: barChartData,
+                options: {
+                    responsive: true,
+                    legend: {
+                        display: false,
+                    }
+                }
+            });
+            if (data['AppointmentPercentage'] > 0) {
+                document.getElementById('percentage').innerHTML = '<i class="fa fa-caret-up" aria-hidden="true"></i>' + data["AppointmentPercentage"] + '% Higher than Last Month'
+
+            }
+            else {
+                document.getElementById('percentage').innerHTML = '<i class="fa fa-caret-down" aria-hidden="true"></i>' + data["AppointmentPercentage"] + "% Lower than Last Month"
+
+            }
+            // Line Chart
+            var lineChartData = {
+                labels: data["Label1"],
+                datasets: [{
+                    label: "Appointments",
+                    backgroundColor: "rgba(0, 158, 251, 0.5)",
+                    data: data["Num1"]
+                    //}, {
+                    //    label: "My Second dataset",
+                    //    backgroundColor: "rgba(255, 188, 53, 0.5)",
+                    //    fill: true,
+                    //    data: [28, 48, 40, 19, 86, 27, 20, 90, 50, 20, 90, 20]
+                }]
+            };
+
+            var linectx = document.getElementById('linegraph').getContext('2d');
+            window.myLine = new Chart(linectx, {
+                type: 'bar',
+                data: lineChartData,
+                options: {
+                    responsive: true,
+                    legend: {
+                        display: false,
+                    },
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false,
+                    }
+                }
+            });
+
+            // Bar Chart 2
+
+            barChart();
+
+            $(window).resize(function () {
+                barChart();
+            });
+
+            function barChart() {
+                $('.bar-chart').find('.item-progress').each(function () {
+                    var itemProgress = $(this),
+                        itemProgressWidth = $(this).parent().width() * ($(this).data('percent') / 100);
+                    itemProgress.css('width', itemProgressWidth);
+                });
+            };
+        }
+    });
+</script>

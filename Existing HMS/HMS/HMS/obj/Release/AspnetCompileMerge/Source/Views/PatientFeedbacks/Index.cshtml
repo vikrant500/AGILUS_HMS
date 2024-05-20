@@ -1,0 +1,104 @@
+﻿@model IEnumerable<HMS.Models.PatientFeedback>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section styleSheets{
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="~/assets/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+
+}
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-border table-striped custom-table datatable mb-0 patientsTable">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PatientName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PatientAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ConsultedDoctor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Receptionist_Behaviour)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WaitingTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hygiene)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Billing)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExperienceWithDoc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SujjestionsToImprove)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedDateTime)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody id="myTable">
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PatientName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PatientAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ConsultedDoctor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Receptionist_Behaviour)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WaitingTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hygiene)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Billing)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExperienceWithDoc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SujjestionsToImprove)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedDateTime)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+<script src="~/assets/js/jquery-3.2.1.min.js"></script>
+
+<script src="~/assets/js/jquery.dataTables.min.js"></script>
+
+
+<script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>

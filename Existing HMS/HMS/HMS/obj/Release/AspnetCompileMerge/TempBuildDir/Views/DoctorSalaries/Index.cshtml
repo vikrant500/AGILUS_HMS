@@ -1,0 +1,270 @@
+﻿@model IEnumerable<HMS.Models.DoctorSalary>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section styleSheets{
+    <link href="~/assets/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />
+    <link href="~/assets/plugins/EasyAutocomplete/easy-autocomplete.css" rel="stylesheet" />
+    <link href="~/assets/plugins/EasyAutocomplete/easy-autocomplete.themes.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="~/assets/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+}
+
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="row">
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label>Doctor</label>
+            @Html.Editor("Doctor", "", new { htmlAttributes = new { @class = "form-control", @id = "doctorName" } })
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label>From</label>
+            <div class="cal-icon">
+
+                @Html.Editor("From", "", new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.EditorFor(model => model.First().Date, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.First().Date, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label>To</label>
+            <div class="cal-icon">
+
+                @Html.Editor("To", "", new { htmlAttributes = new { @class = "form-control" } })
+
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3 col-9 text-right m-b-20" data-html2canvas-ignore="true">
+        <a href='' class="btn btn btn-primary btn-rounded float-right" id="filter">filter</a>
+        <a href='/DoctorSalaries' class="btn btn btn-primary btn-rounded float-right" id="clearfilter" style="margin-right:10px">clear</a>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label>Department</label>
+            @Html.Editor("Department", "", new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+
+
+</div>
+<table class="table table-border table-striped custom-table datatable mb-0 patientsTable">
+    <thead>
+        <tr>
+            <th>
+                PaymentID
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Doctor.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaidDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="myTable">
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Doctor.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaidDate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+<script src="~/assets/js/jquery-3.2.1.min.js"></script>
+<script src="~/assets/plugins/SweetAlert/sweetalert2@10.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script src="~/assets/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+<script src="~/assets/plugins/EasyAutocomplete/jquery.easy-autocomplete.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var procOptions = {
+            url: function (procedureName) {
+                var ajaxURL = '@Url.Action("GetProceduresData","InvoiceReports")' + '?procedureName=' + procedureName;
+                return ajaxURL;
+            },
+            getValue: "Name",
+            template: {
+                type: "description",
+                fields: {
+                    description: "ID"
+                }
+            },
+
+            list: {
+                onSelectItemEvent: function () {
+                    var value = $("#Procedure").getSelectedItemData().ID;
+                    $("#Procedure").attr("data-procId", value);
+                },
+                onShowListEvent: function () {
+                    $("#Procedure").attr("data-procId", "");
+                }
+            }
+        };
+        $("#Procedure").easyAutocomplete(procOptions);
+
+        var deptOptions = {
+            url: function (departmentName) {
+                var ajaxURL = '@Url.Action("GetDepartmentsData","InvoiceReports")' + '?departmentName=' + departmentName;
+                return ajaxURL;
+            },
+            getValue: "Name",
+            template: {
+                type: "description",
+                fields: {
+                    description: "ID"
+                }
+            },
+
+            list: {
+                onSelectItemEvent: function () {
+                    var value = $("#Department").getSelectedItemData().ID;
+                    $("#Department").attr("data-procId", value);
+                },
+                onShowListEvent: function () {
+                    $("#Department").attr("data-procId", "");
+                }
+            }
+        };
+        $("#Department").easyAutocomplete(deptOptions);
+
+        var doctorOptions = {
+            url: function (doctorName) {
+                var ajaxURL = '@Url.Action("GetDoctorACData", "DoctorSalaries")' + '?doctorName=' + doctorName;
+                return ajaxURL;
+            },
+            getValue: "Name",
+            template: {
+                type: "description",
+                fields: {
+                    description: "ID"
+                }
+            },
+
+            list: {
+                onSelectItemEvent: function () {
+                    var value = $("#doctorName").getSelectedItemData().ID;
+                    $("#doctorName").attr("dataStaId", value);
+
+                    $.ajax({
+                        method: "GET",
+                        url: '@Url.Action("GetDoctorData", "DoctorSalaries")',
+                        data: { ID: value },
+                        error: function () {
+                            $("#PatientID").val('');
+                            $("#Gender").val('');
+                            $("#ContactNumber").val('');
+                            $("#Address").val('');
+                        },
+                        beforeSend: function () {
+                            //$("#OrderOverlay").show()
+                        },
+                        success: function (response) {
+                            $("#doctorID").val(response.ID);
+                            $("#Amount").val(response.Charges);
+
+                        },
+                        complete: function () { $("#OrderOverlay").hide(); }
+                    });
+                },
+                onShowListEvent: function () {
+                    $("#doctorName").attr("dataStaId", "");
+                }
+            }
+        };
+        $("#doctorName").easyAutocomplete(doctorOptions);
+    });
+</script>
+<script type="text/javascript">
+    $(function () {
+        $("#From").daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            minYear: 1901,
+            maxDate: moment(),
+            autoUpdateInput: false,
+            maxYear: parseInt(moment().format('YYYY'), 10),
+            locale: {
+                format: 'DD-MM-YYYY'
+            }
+        }, function (start, end, label) {
+
+        });
+        $('#From').on('apply.daterangepicker', function (ev, picker) {
+            $(this).val(picker.startDate.format('DD-MM-YYYY'));
+        });
+
+        $('#From').on('cancel.daterangepicker', function (ev, picker) {
+            $(this).val('');
+        });
+        $("#To").daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            minYear: 1901,
+            maxDate: moment(),
+            autoUpdateInput: false,
+            maxYear: parseInt(moment().format('YYYY'), 10),
+            locale: {
+                format: 'DD-MM-YYYY'
+            }
+        }, function (start, end, label) {
+
+
+        });
+        $('#To').on('apply.daterangepicker', function (ev, picker) {
+            $(this).val(picker.startDate.format('DD-MM-YYYY'));
+        });
+
+        $('#To').on('cancel.daterangepicker', function (ev, picker) {
+            $(this).val('');
+        });
+    });
+    $("#filter").click(function(event)
+{
+
+  event.preventDefault();
+  var url = '@Html.Raw(@Url.Action("Index",  new {@doctor = "Doctor_Name",@from="From_value",@to="To_value",@department="Department_value"}))';
+        url = url.replace("Doctor_Name", $("#doctorName").val());
+        url = url.replace("From_value", $("#From").val());
+        url = url.replace("To_value", $("#To").val());
+        url = url.replace("Department_value", $("#Department").val());
+
+  window.location.href = url;
+});
+
+</script>

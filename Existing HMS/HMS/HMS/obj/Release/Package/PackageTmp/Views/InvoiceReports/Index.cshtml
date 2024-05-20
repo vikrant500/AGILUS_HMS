@@ -1,0 +1,511 @@
+﻿@model IEnumerable<HMS.VeiwModels.InvoiceReport>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section styleSheets{
+    <link href="~/assets/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />
+    <link href="~/assets/plugins/EasyAutocomplete/easy-autocomplete.css" rel="stylesheet" />
+    <link href="~/assets/plugins/EasyAutocomplete/easy-autocomplete.themes.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="~/assets/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+          <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css">
+          <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.bootstrap4.min.css">
+          }
+
+<div id="pdf">
+    <h2>Invoice Report</h2>
+
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label>Doctor</label>
+                @Html.Editor("Doctor", "", new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label>From</label>
+                <div class="cal-icon">
+
+                    @Html.Editor("From", "", new { htmlAttributes = new { @class = "form-control" } })
+                    @*@Html.EditorFor(model => model.First().Date, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.First().Date, "", new { @class = "text-danger" })*@
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label>To</label>
+                <div class="cal-icon">
+
+                    @Html.Editor("To", "", new { htmlAttributes = new { @class = "form-control" } })
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3 col-9 text-right m-b-20" data-html2canvas-ignore="true">
+            <a href='' class="btn btn btn-primary btn-rounded float-right" id="filter">filter</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label>Department</label>
+                @Html.Editor("Department", "", new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label>Procedure</label>
+
+
+                @Html.Editor("Procedure", "", new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.EditorFor(model => model.First().Date, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.First().Date, "", new { @class = "text-danger" })*@
+
+            </div>
+        </div>
+
+    </div>
+
+    <table id="example" class="table table-border table-striped custom-table datatable mb-0 patientsTable">
+        <thead>
+            <tr>
+                <th>
+                    Sl.No
+                </th>
+                <th>
+                    Invoice ID
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateCreated)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PatientId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PatientName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProcedureString)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DepartmentName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Doctor)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalCost)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PaidAmount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PendingAmount)
+                </th>
+                <th>
+                    Payment Mode
+                </th>
+                <th>
+                    Username
+                </th>
+                <th>
+                    Veiw
+                </th>
+            </tr>
+        </thead>
+        @{int count = 0;}  
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr >
+                @{count = count + 1;}
+                <td>
+                    @count
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InvoiceDisplayId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateCreated.Day)-@Html.DisplayFor(modelItem => item.DateCreated.Month)-@Html.DisplayFor(modelItem => item.DateCreated.Year)<br>@Html.DisplayFor(modelItem => item.DateCreated.Hour):@Html.DisplayFor(modelItem => item.DateCreated.Minute):@Html.DisplayFor(modelItem => item.DateCreated.Second)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PatientId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PatientName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProcedureString)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DepartmentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Doctor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalCost)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaidAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PendingAmount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentString)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedBy)
+                </td>
+                <td>
+                    @Html.ActionLink("View", "Details", "Invoices",new { id = item.ID }, new { @class = "btn btn-primary btn-sm", @style = "margin-right:2px;" })
+                </td>
+
+                @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+        </td>*@
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div id="append" class="col-sm-6">
+    <input type="submit" onclick="Export()" value="Export" class="btn btn-info" />
+</div>
+
+<style>
+    #ui-datepicker-div {
+        display: none;
+    }
+</style>
+<script src="~/assets/js/jquery-3.2.1.min.js"></script>
+<script src="~/assets/plugins/SweetAlert/sweetalert2@10.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.69/vfs_fonts.min.js"></script>
+<script src="~/assets/plugins/SweetAlert/sweetalert2@10.js"></script>
+<script src="~/assets/plugins/EasyAutocomplete/jquery.easy-autocomplete.js"></script>
+<script src="~/assets/js/jquery.dataTables.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.bootstrap4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+
+<script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+
+
+<script type="text/javascript">
+    
+    $(document).ready(function ($) {
+        console.log('hi')
+        console.log('hi')
+        $.fn.dataTable.ext.errMode = 'none';
+
+        $('#table').on('error.dt', function (e, settings, techNote, message) {
+            console.log('An error has been reported by DataTables: ', message);
+        });
+        $('.datatable').DataTable().destroy()
+        var table=$('#example').DataTable({
+            "bFilter": true,
+           
+            "scrollX": true,
+            buttons: [
+                'copyHtml5',
+                {
+                    extend: 'csvHtml5',
+                    title: 'Invoice Report'
+                },
+                {
+                    extend: 'excelHtml5',
+                    title: 'Invoice Report'
+                },
+                {
+                    extend: 'pdfHtml5',
+                    customize: function (doc) {
+                       
+                        doc.styles.tableBodyEven.alignment = 'center';
+                        doc.styles.tableBodyOdd.alignment = 'center';
+                        
+
+                    },
+                    exportOptions: {
+                        stripNewlines: false,
+                        columns:[0,1,2,3,4,5,6,7,8,9,10,11,12],
+                        format: {
+                            body: function (data, row, column, node) {
+
+                                //need to change double quotes to single
+                                data = data.replace(/"/g, "'");
+
+                                //split at each new line
+                                splitData = data.split('<br>');
+
+                                data = '';
+                                for (i = 0; i < splitData.length; i++) {
+                                    //add escaped double quotes around each line
+                                    data += splitData[i];
+                                    //if its not the last line add CHAR(13)
+                                    if (i + 1 < splitData.length) {
+                                        data += '\n';
+                                    }
+                                }
+
+                                //Add concat function
+                                data =  data ;
+                                return data;
+
+                            }
+                        } 
+                    },
+                    title: 'Invoice Report',
+                    download: 'open',
+                    orientation: 'landscape',
+                    pageSize: 'A3'
+                }
+            
+            ]
+            //buttons: ['copy', 'excel', 'pdf', 'colvis']
+        });
+        table.buttons().container()
+            .appendTo('#append ');
+    });
+    $(function () {
+        var procOptions = {
+            url: function (procedureName) {
+                var ajaxURL = '@Url.Action("GetProceduresData","InvoiceReports")' + '?procedureName=' + procedureName;
+                return ajaxURL;
+            },
+            getValue: "Name",
+            template: {
+                type: "description",
+                fields: {
+                    description: "ID"
+                }
+            },
+
+            list: {
+                onSelectItemEvent: function () {
+                    var value = $("#Procedure").getSelectedItemData().ID;
+                    $("#Procedure").attr("data-procId", value);
+                },
+                onShowListEvent: function () {
+                    $("#Procedure").attr("data-procId", "");
+                }
+            }
+        };
+        $("#Procedure").easyAutocomplete(procOptions);
+
+         var deptOptions = {
+             url: function (departmentName) {
+                 var ajaxURL = '@Url.Action("GetDepartmentsData","InvoiceReports")' + '?departmentName=' + departmentName;
+                return ajaxURL;
+            },
+            getValue: "Name",
+            template: {
+                type: "description",
+                fields: {
+                    description: "ID"
+                }
+            },
+
+            list: {
+                onSelectItemEvent: function () {
+                    var value = $("#Department").getSelectedItemData().ID;
+                    $("#Department").attr("data-procId", value);
+                },
+                onShowListEvent: function () {
+                    $("#Department").attr("data-procId", "");
+                }
+            }
+        };
+        $("#Department").easyAutocomplete(deptOptions);
+
+        var docOptions = {
+            url: function (doctorName) {
+                var ajaxURL = '@Url.Action("GetDoctorsData","InvoiceReports")' + '?doctorName=' + doctorName;
+                return ajaxURL;
+            },
+            getValue: "Name",
+            template: {
+                type: "description",
+                fields: {
+                    description: "ID"
+                }
+            },
+
+            list: {
+                onSelectItemEvent: function () {
+                    var value = $("#Doctor").getSelectedItemData().ID;
+                    $("#Doctor").attr("data-procId", value);
+                },
+                onShowListEvent: function () {
+                    $("#Doctor").attr("data-procId", "");
+                }
+            }
+        };
+        $("#Doctor").easyAutocomplete(docOptions);
+    });
+</script>
+
+<script type="text/javascript">
+    function Export() {
+        html2canvas(document.getElementById('pdf'), {
+            onrendered: function (canvas) {
+                var data = canvas.toDataURL();
+                var docDefinition = {
+                    content: [
+                        {
+                            text: "Sharanya Polyclinic\n\n",
+
+                            style: 'header',
+                            alignment: 'center'
+                        },
+                        //{
+                        //    alignment: 'justify',
+                        //    columns: [
+                        //        {
+                        //            text: [
+
+                        //                { text: "From: ", fontSize: 10, bold: true, color: '#00a79d' },
+
+                        //                { text: ($("#From").val()), fontSize:10}
+                        //            ]
+                        //        },
+                        //        {
+                        //            text: [
+                        //                { text: "To: ", fontSize: 10, bold: true, color: '#00a79d' },
+                        //                { text: ($("#To").val()), fontSize: 10 }
+                        //            ],
+                        //            alignment:'right'
+                        //        }
+                        //    ]
+                        //},
+                        //{
+                        //    text:'\n'
+                        //},
+                        //{
+                        //    alignment: 'justify',
+                        //    columns: [
+                        //        {
+                        //            text: [
+
+                        //                { text: "Doctor: ", fontSize: 10, bold: true, color: '#00a79d' },
+
+                        //                { text: ($("#Doctor").val()), fontSize: 10 }
+                        //            ]
+                        //        },
+                        //        {
+                        //            text: [
+                        //                { text: "Procedure: ", fontSize: 10, bold: true, color: '#00a79d' },
+                        //                { text: ($("#Procedure").val()), fontSize: 10 }
+                        //            ],
+                        //            alignment: 'center'
+                        //        },
+                        //        {
+                        //            text: [
+                        //                { text: "Department: ", fontSize: 10, bold: true, color: '#00a79d' },
+                        //                { text: ($("#Department").val()), fontSize: 10 }
+                        //            ],
+                        //            alignment: 'right'
+                        //        }
+
+                        //    ]
+                        //},
+                        {
+                            text: '\n'
+                        },
+                        {
+                            image: data,
+                            width: 500
+                        }
+
+                    ],
+                    styles: {
+                        header: {
+                            fontSize: 25,
+                            bold: true,
+                            alignment: 'justify',
+                            color: '#00a79d'
+                        }
+                    }
+                };
+                pdfMake.createPdf(docDefinition).download("InvoiceReport.pdf");
+            }
+        });
+    }
+</script>
+
+
+
+<script type="text/javascript">
+    $(function () {
+        $("#From").daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            minYear: 1901,
+            maxDate: moment(),
+            autoUpdateInput: false,
+            maxYear: parseInt(moment().format('YYYY'), 10),
+            locale: {
+            format: 'DD-MM-YYYY'
+        }
+        }, function (start, end, label) {
+
+        });
+        $('#From').on('apply.daterangepicker', function (ev, picker) {
+            $(this).val(picker.startDate.format('DD-MM-YYYY'));
+        });
+
+        $('#From').on('cancel.daterangepicker', function (ev, picker) {
+            $(this).val('');
+        });
+        $("#To").daterangepicker({
+                    singleDatePicker: true,
+                    showDropdowns: true,
+                    minYear: 1901,
+            maxDate: moment(),
+            autoUpdateInput: false,
+                    maxYear: parseInt(moment().format('YYYY'), 10),
+                    locale: {
+                        format: 'DD-MM-YYYY'
+                    }
+                }, function (start, end, label) {
+
+
+        });
+        $('#To').on('apply.daterangepicker', function (ev, picker) {
+            $(this).val(picker.startDate.format('DD-MM-YYYY'));
+        });
+
+        $('#To').on('cancel.daterangepicker', function (ev, picker) {
+            $(this).val('');
+        });
+    });
+    $("#filter").click(function(event)
+{
+
+  event.preventDefault();
+  var url = '@Html.Raw(@Url.Action("Index",  new {@doctor = "Doctor_Name",@from="From_value",@to="To_value",@procedure="Procedure_value",@department="Department_value"}))';
+        url = url.replace("Doctor_Name", $("#Doctor").val());
+        url = url.replace("From_value", $("#From").val());
+        url = url.replace("To_value", $("#To").val());
+        url = url.replace("Procedure_value", $("#Procedure").val());
+        url = url.replace("Department_value", $("#Department").val());
+
+  window.location.href = url;
+});
+
+</script>

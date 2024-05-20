@@ -1,0 +1,97 @@
+﻿@model HMS.VeiwModels.InvoiceReport
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+     
+
+    <div class="form-horizontal">
+        <h4>InvoiceReport</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.PatientName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PatientName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PatientName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Doctor, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Doctor, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Doctor, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<script src="~/assets/js/jquery-3.2.1.min.js"></script>
+<script src="~/assets/plugins/SweetAlert/sweetalert2@10.js"></script>
+<script src="~/assets/plugins/EasyAutocomplete/jquery.easy-autocomplete.js"></script>
+
+<script type="text/javascript">
+    $(function (){
+    var doctorOptions = {
+            url: function (doctorName) {
+                var ajaxURL = '@Url.Action("GetdoctorACData", "DocotorSalaries")' + '?DoctorName=' + docotorName;
+                return ajaxURL;
+            },
+            getValue: "Name",
+            template: {
+                type: "description",
+                fields: {
+                    description: "ID"
+                }
+            },
+
+            list: {
+                onSelectItemEvent: function () {
+                    var value = $("#doctorName").getSelectedItemData().ID;
+                    $("#docotorName").attr("dataDocId", value);
+
+                    $.ajax({
+                        method: "GET",
+                        url: '@Url.Action("GetDocotorData", "DoctorSalaries")',
+                        data: { ID: value },
+                        error: function () {
+                            $("#PatientID").val('');
+                            $("#Gender").val('');
+                            $("#ContactNumber").val('');
+                            $("#Address").val('');
+                        },
+                        beforeSend: function () {
+                            //$("#OrderOverlay").show()
+                        },
+                        success: function (response) {
+                            $("#DoctorID").val(response.ID);
+                            
+
+                        },
+                        complete: function () { $("#OrderOverlay").hide(); }
+                    });
+                },
+                onShowListEvent: function () {
+                    $("#DoctorName").attr("dataPatId", "");
+                }
+            }
+        };
+        $("#DocotorName").easyAutocomplete(DoctorOptions);
+    });
+</script>

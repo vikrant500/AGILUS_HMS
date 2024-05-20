@@ -1,0 +1,120 @@
+﻿@model HMS.Models.DoctorSalary
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section styleSheets{
+    <link href="~/assets/plugins/EasyAutocomplete/easy-autocomplete.css" rel="stylesheet" />
+    <link href="~/assets/plugins/EasyAutocomplete/easy-autocomplete.themes.css" rel="stylesheet" />
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+     
+
+    <div class="form-horizontal">
+        <h4>DoctorSalary</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Doctor.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Doctor.Name, "doctorName", new { htmlAttributes = new { @class = "form-control", @id = "doctorName" } })
+                @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Doctor.ID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Doctor.ID, "doctorID", new { htmlAttributes = new { @class = "form-control", @id = "doctorID", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" id="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<script src="~/assets/js/jquery-3.2.1.min.js"></script>
+<script src="~/assets/plugins/SweetAlert/sweetalert2@10.js"></script>
+<script src="~/assets/plugins/EasyAutocomplete/jquery.easy-autocomplete.js"></script>
+
+<script type="text/javascript">
+    $(function (){
+    var doctorOptions = {
+            url: function (doctorName) {
+                var ajaxURL = '@Url.Action("GetDoctorACData", "DoctorSalaries")' + '?doctorName=' + doctorName;
+                return ajaxURL;
+            },
+            getValue: "Name",
+            template: {
+                type: "description",
+                fields: {
+                    description: "ID"
+                }
+            },
+
+            list: {
+                onSelectItemEvent: function () {
+                    var value = $("#doctorName").getSelectedItemData().ID;
+                    $("#doctorName").attr("dataDocId", value);
+
+                    $.ajax({
+                        method: "GET",
+                        url: '@Url.Action("GetDoctorData", "DoctorSalaries")',
+                        data: { ID: value },
+                        error: function () {
+                            $("#PatientID").val('');
+                            $("#Gender").val('');
+                            $("#ContactNumber").val('');
+                            $("#Address").val('');
+                        },
+                        beforeSend: function () {
+                            //$("#OrderOverlay").show()
+                        },
+                        success: function (response) {
+                            $("#doctorID").val(response.ID);
+                            $("#Amount").val(response.Charges);
+
+                        },
+                        complete: function () { $("#OrderOverlay").hide(); }
+                    });
+                },
+                onShowListEvent: function () {
+                    $("#doctorName").attr("dataDocId", "");
+                }
+            }
+        };
+        $("#doctorName").easyAutocomplete(doctorOptions);
+    });
+    $("#submit").click(function(event)
+    {
+
+  event.preventDefault();
+  var url = '@Html.Raw(@Url.Action("CreateDocSalary",  new {@doctorID="From_value",@amount="To_value"}))';
+
+        url = url.replace("From_value", $("#doctorID").val());
+        url = url.replace("To_value", $("#Amount").val());
+
+  window.location.href = url;
+    });
+</script>

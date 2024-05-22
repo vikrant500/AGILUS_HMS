@@ -27,6 +27,9 @@ const Footer = () => {
           <Link to={"/about"} className="text-gray-200 uppercase">
             About
           </Link>
+          <Link to={"/blog"} className="text-gray-200 uppercase">
+            Blog
+          </Link>
         </div>
 
         <div className="flex flex-col gap-2">

@@ -62,8 +62,8 @@ const Modal = ({ show, popularDiseases, allDiseases, selectDisease, onClose }) =
     <>
       {show && (
         <div className="modal-overlay fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
-          <div className="modal-content bg-white p-6 rounded-lg shadow-lg w-2/3 h-2/3 relative">
-            <button onClick={handleClose} className="close-button absolute top-2 right-2 text-gray-500 hover:text-gray-700 focus:outline-none z-10">
+          <div className="modal-content bg-white p-10 rounded-lg shadow-lg w-2/3 h-2/3 relative">
+            <button onClick={handleClose} className="close-button absolute top-2 right-2 text-gray-500 hover:text-gray-500 focus:outline-none z-10">
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
@@ -74,7 +74,7 @@ const Modal = ({ show, popularDiseases, allDiseases, selectDisease, onClose }) =
               onChange={handleSearchChange}
               onKeyPress={handleKeyPress}
               placeholder="Search disease"
-              className="search-bar w-full p-4 mb-4 border border-gray-300 rounded"
+              className="search-bar w-full p-4 mb-4 border border-black-300 rounded"
             />
             {!searchTerm && (
               <div className="popular-diseases mb-4">
@@ -94,12 +94,12 @@ const Modal = ({ show, popularDiseases, allDiseases, selectDisease, onClose }) =
             )}
             <div className="other-diseases">
               <h4>All Diseases:</h4>
-              <div className="disease-list overflow-auto max-h-40">
+              <div className="disease-list overflow-auto max-h-80">
                 {filteredDiseases.map((disease, index) => (
                   <div
                     key={index}
                     onClick={() => handleDiseaseClick(disease)}
-                    className="other-disease-item py-2 border-b border-gray-300 cursor-pointer hover:bg-orange-100"
+                    className="other-disease-item py-2 border-b border-grey-300 cursor-pointer hover:bg-blue-100 "
                   >
                     {disease}
                   </div>

@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + '/uploads'));
 
-mongoose.connect('enter mongo connection');
+mongoose.connect('mongodb+srv://Oonga:boonga@helloblog.j41ebc1.mongodb.net/?retryWrites=true&w=majority&appName=helloBlog');
 
 app.post('/register', async (req,res) => {
   const {username,password} = req.body;
@@ -75,13 +75,14 @@ app.post('/post', uploadMiddleware.single('file'), async (req,res) => {
   const {token} = req.cookies;
   jwt.verify(token, secret, {}, async (err,info) => {
     if (err) throw err;
-    const {title,summary,content} = req.body;
+    const {title,summary,content, tags} = req.body;//added tags as a requirement
     const postDoc = await Post.create({
       title,
       summary,
       content,
       cover:newPath,
       author:info.id,
+      tags: tags.split(','),//split the tags by a comma
     });
     res.json(postDoc);
   });
@@ -101,17 +102,18 @@ app.put('/post',uploadMiddleware.single('file'), async (req,res) => {
   const {token} = req.cookies;
   jwt.verify(token, secret, {}, async (err,info) => {
     if (err) throw err;
-    const {id,title,summary,content} = req.body;
+    const {id,title,summary,content,tags} = req.body;
     const postDoc = await Post.findById(id);
     const isAuthor = JSON.stringify(postDoc.author) === JSON.stringify(info.id);
     if (!isAuthor) {
       return res.status(400).json('you are not the author');
     }
-    await postDoc.update({
+    await postDoc.updateOne({
       title,
       summary,
       content,
       cover: newPath ? newPath : postDoc.cover,
+      tags: tags ? tags.split(',') : postDoc.tags, // Convert comma-separated string to array of tags
     });
 
     res.json(postDoc);

@@ -31,6 +31,7 @@ export default function CreatePost(){
     const [summary, setSummary] = useState('');
     const [content, setContent] = useState('');
     const [files, setFiles] = useState('');
+    const [tags, setTags] = useState('');
     const [redirect, setRedirect] = useState(false);
 
     async function createNewPost(ev){
@@ -40,6 +41,7 @@ export default function CreatePost(){
         data.set('summary', summary);
         data.set('content', content);
         data.set('file', files[0]);
+        data.set('tags', tags);
 
         ev.preventDefault();
         
@@ -65,6 +67,7 @@ export default function CreatePost(){
             <input type='title'placeholder='Title' value={title} onChange={ev => setTitle(ev.target.value)}/>
             <input type='summary'placeholder='summary' value={summary} onChange={ev => setSummary(ev.target.value)}/>
             <input type="file" onChange={ev => setFiles(ev.target.files)}/>
+            <input type="text" placeholder="Tags (comma separated)" value={tags} onChange={ev => setTags(ev.target.value)} /> {/* Add tags input */}
             <ReactQuill value={content} onChange={newValue => setContent(newValue)} modules ={modules} formats ={formats}/>
             <button style={{marginTop:"5px"}}>Create Post</button>
         </form>

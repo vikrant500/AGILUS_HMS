@@ -153,3 +153,18 @@ div.post-page a.edit-btn{
 a svg{
   height:20px;
 }
+
+.tags {
+  margin-top: 10px;
+}
+
+.tag {
+  display: inline-block;
+  background-color: #f1f1f1;
+  padding: 5px 10px;
+  margin-right: 5px;
+  border-radius: 5px;
+  font-size: 12px;
+  color: #333;
+}
+

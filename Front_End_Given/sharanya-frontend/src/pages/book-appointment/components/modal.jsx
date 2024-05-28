@@ -84,7 +84,7 @@ const Modal = ({ show, popularDiseases, allDiseases, selectDisease, onClose }) =
                     <button
                       key={index}
                       onClick={() => handleDiseaseClick(disease)}
-                      className="popular-disease-button flex-none h-10 p-2 mr-2 border border-gray-300 rounded hover:bg-gray-200"
+                      className="popular-disease-button flex-none h-10 p-2 mr-2 border border-gray-300 rounded-border hover:bg-gray-200"
                     >
                       {disease}
                     </button>

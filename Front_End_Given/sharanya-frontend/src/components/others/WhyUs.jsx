@@ -21,17 +21,17 @@ const WhyUs = () => {
     }
   ];
 
-  const customColor = "#2C6975"; // Dark green color
-  const lighterColor = "#CDEDC9"; // Lighter green color
+  const darkerColor = "#6BB2A0"; // Darker green color
+  const lighterColor = "#CDE0C9"; // Lighter green color
   const numberColor = "#6BB2A0"; // Number color
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-8">
-      <div className="-mx-8 md:mx-0 flex flex-col justify-center items-center gap-6 p-6 md:col-span-full" style={{ background: `linear-gradient(to bottom, ${customColor}, ${lighterColor})`, color: "#000000", borderRadius: "15px", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", marginTop: "-20px", paddingTop: "20px" }}>
+      <div className="-mx-8 md:mx-0 flex flex-col justify-center items-center gap-6 p-6 md:col-span-full" style={{ background: `linear-gradient(to right, ${darkerColor}, ${lighterColor})`, color: "#000000", borderRadius: "15px", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", marginTop: "-20px", paddingTop: "20px" }}>
         <h4 className="text-2xl font-bold">Why Sharanya Care</h4>
         <p className="text-center">Delivering Seamless Surgical Experience in India</p>
-        <Link to={'/book-appointment'} className="bg-white text-green-700 px-6 py-3 rounded-full shadow hover:bg-gray-100 hover:text-green-600 transition duration-300">
-          BOOK FREE APPOINTMENT
+        <Link to={'/book-appointment'} className="bg-white text-green-700 px-6 py-3 rounded-full shadow hover:bg-gray-100 hover:text-green-800 transition duration-300">
+          BOOK   APPOINTMENT
         </Link>
       </div>
       {WHY_US.map((item, i) => (

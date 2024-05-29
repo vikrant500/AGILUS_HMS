@@ -5,9 +5,8 @@ import Doctors from "./pages/doctors";
 import ResponsiveDrawer from "./components/drawer";
 import Footer from "./components/footer";
 import About from "./pages/about";
-import Blog from "./pages/blog";
+import Blog from "./pages/blog"; // Remove the extra semicolon
 import Treatments from "./pages/treatments";
-import SpecialityDetails from "./components/others/SpecialityDetails";
 import BookAppointment from "./pages/book-appointment";
 import SplashScreen from "./pages/splash-screen";
 
@@ -36,10 +35,8 @@ const App = () => {
               <Route path="/" element={<Home />} />
               <Route path="/doctors" element={<Doctors />} />
               <Route path="/about" element={<About />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/treatment/:treatmentId" element={<Treatments />} />
-              <Route path="/treatment/:treatmentId/specialities/:specialityId" element={<SpecialityDetails />} />
-
+              <Route path="/blog" element={<Blog />} /> {/* Use element prop instead of component */}
+              <Route path="/treatment/:id" element={<Treatments />} />
               <Route path="/book-appointment" element={<BookAppointment />} />
             </Routes>
             <Footer />

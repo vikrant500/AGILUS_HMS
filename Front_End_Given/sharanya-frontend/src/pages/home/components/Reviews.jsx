@@ -46,17 +46,17 @@ const Reviews = () => {
     },
   ];
   return (
-    <div className="bg-gradient-to-r from-[#CDE0C9] to-[#68B2A0] py-10 flex flex-col gap-5">
-      <h3 className="text-3xl font-bold text-center popup">Our Patient Love Us</h3>
-      <p className="text-white-500 text-center">
+    <div className="bg-[#fcfaf7] py-10 flex flex-col gap-4">
+      <h3 className="text-2xl font-bold text-center">Our Patient Love Us</h3>
+      <p className="text-orange-500 text-center">
         Based on 5981 Recommendations | Rated 5.0 Out of 5
       </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 md:px-8 lg:px-18">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 md:px-8 lg:px-16">
         {reviews.map((item, i) => (
-          <div key={i} className="bg-[#E0ECDE] rounded-xl shadow-lg p-2 flex flex-col gap-2">
+          <div key={i} className="bg-white rounded-md p-2 flex flex-col gap-2">
             <div className="flex gap-2">
-            <div className="w-12 h-12 bg-[#2c6975] rounded-full flex justify-center items-center">
+              <div className="w-12 h-12 bg-purple-300 rounded-full flex justify-center items-center">
                 {item.name[0]}
               </div>
               <div>

@@ -30,7 +30,7 @@ const About = () => {
     <>
     <div className="py-10 px-4 md:px-8 flex flex-col gap-4">
       <div className="flex flex-col gap-4">
-        <h4 className="text-xl font-bold">Overview</h4>
+        <h4 className="text-xl font-bold"><center>Overview</center></h4>
         <p>
           Sharanya Care is a new-age healthcare company with a laser-sharp focus
           on simplifying the entire surgery journey of a patient and his/her

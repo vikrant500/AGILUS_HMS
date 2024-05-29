@@ -1,11 +1,9 @@
 import React, { useEffect } from "react";
 import HeroSection from "./components/HeroSection";
-import Specialities from "../../components/others/Specialities";
 import WatchOurAds from "./components/WatchOurAds";
 import Reviews from "./components/Reviews";
 import WhyUs from "../../components/others/WhyUs";
 import FAQ from "../../components/others/FAQ";
-import Treatment from "./components/Treatment";
 import Figures from "../../components/others/Figures";
 import { assets } from "../../assets";
 
@@ -48,78 +46,85 @@ const Home = () => {
       image: assets.specialities.dermatology,
       link: "/treatment/dermatology",
       description:
-        "Dermatology focuses on the diagnosis and treatment of skin, hair, and nail disorders. Dermatologists address a wide range of conditions, from acne to skin cancer, providing comprehensive care for the largest organ of the body.",
+        "Dermatology focuses on diagnosing and treating skin, hair, and nail disorders.<br> <a href='/treatment/dermatology'>Click here to know more.</a>",
     },
     {
       title: "ENT",
       image: assets.specialities.ent,
       link: "/treatment/ent",
       description:
-        "ENT specialists, or otolaryngologists, deal with disorders related to the ear, nose, throat, and head and neck structures. They manage conditions like hearing loss, sinusitis, and throat infections.",
+        "ENT specialists treat ear, nose, and throat disorders.<br> <a href='/treatment/ent'>Click here to know more.</a>",
     },
     {
       title: "Medicine",
       link: "/treatment/medicine",
       image: assets.specialities.medicine,
       description:
-        "Internal Medicine encompasses a broad range of adult healthcare. Internists, or doctors of internal medicine, diagnose and treat various illnesses, offering comprehensive care for the entire body.",
+        "Internists diagnose and treat adult illnesses, offering comprehensive care.<br> <a href='/treatment/medicine'>Click here to know more.</a>",
     },
     {
       title: "Respiratory",
       link: "/treatment/respiratory",
       image: assets.specialities.respiratory,
       description:
-        "Respiratory specialists focus on the diagnosis and treatment of conditions affecting the respiratory system, including diseases like asthma, chronic obstructive pulmonary disease (COPD), and pneumonia.",
+        "Specialists treat respiratory conditions like asthma, COPD, and pneumonia.<br> <a href='/treatment/respiratory'>Click here to know more.</a>",
     },
     {
       title: "Orthopaedic",
       link: "/treatment/orthopaedic",
       image: assets.specialities.orthopedics,
       description:
-        "Orthopaedics deals with the musculoskeletal system, addressing issues related to bones, joints, muscles, ligaments, and tendons. Orthopaedic specialists provide care for fractures, arthritis, and sports injuries.",
+        "Orthopaedic specialists treat musculoskeletal issues like fractures and arthritis.<br> <a href='/treatment/orthopaedic'>Click here to know more.</a>",
     },
     {
       title: "Physiotherapy",
       link: "/treatment/physiotherapy",
       image: assets.specialities.physiotherapy,
       description:
-        "Physiotherapy, or physical therapy, involves the use of exercises and manual techniques to promote healing and improve physical function.",
+        "Physical therapists use exercises and techniques to improve physical function.<br> <a href='/treatment/physiotherapy'>Click here to know more.</a>",
     },
     {
       title: "Dental",
       link: "/treatment/dental",
       image: assets.specialities.dentistry,
       description:
-        "Dentistry focuses on oral health, including the diagnosis and treatment of issues related to teeth, gums, and the oral cavity. Dentists provide services such as cleanings, fillings, and dental surgeries.",
+        "Dentists diagnose and treat oral health issues, providing cleanings, fillings, and surgeries.<br> <a href='/treatment/dental'>Click here to know more.</a>",
     },
     {
       title: "Homoeopathy",
       link: "/treatment/homoeopathy",
       image: assets.specialities.homeopathy,
       description:
-        "Homoeopathy is a system of alternative medicine that uses highly diluted substances to stimulate the body's natural healing processes.",
+        "Homoeopathy uses diluted substances to stimulate the body's healing processes.<br> <a href='/treatment/homoeopathy'>Click here to know more.</a>",
     },
     {
       title: "Diet",
       link: "/treatment/diet",
       image: assets.specialities.diet,
       description:
-        "Dietetics involves the study of nutrition and its impact on health. Dietitians work with individuals to create personalized nutrition plans, addressing specific health goals and dietary needs.",
+        "Dietitians create personalized nutrition plans to meet health goals.<br> <a href='/treatment/diet'>Click here to know more.</a>",
     },
-    // {
-    //   title: "Diagnostics",
-    //   link: "/treatment/diagnostics",
-    //   image: assets.hero,
-    //   description:
-    //     "Diagnostics is the branch of medicine that focuses on the identification of diseases and conditions.It include imaging, laboratory tests, and other techniques to aid in the accurate diagnosis of illnesses.",
-    // },
   ];
 
   return (
-    <div>
+    <div className="p-4 sm:p-6 lg:p-8 mt-20">
       <HeroSection />
-      {/* <Treatment /> */}
-      <Specialities specialities={specialities} />
+      <h2 className="text-3xl font-bold text-center my-8">Specialities</h2> {/* Specialities Section Heading */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1 sm:gap-4 lg:gap-6">
+        {specialities.map((speciality, index) => (
+          <div key={index} className="relative flex flex-col overflow-hidden rounded-lg shadow-lg group mx-auto custom-container">
+            <h2 className="absolute top-0 left-0 bg-black bg-opacity-70 text-white w-full text-center p-2 z-0">{speciality.title}</h2>
+            <img
+              src={speciality.image}
+              alt={speciality.title}
+              className="w-200px h-0px object-contain transition-transform duration-300 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+              <p className="text-white text-center p-2" dangerouslySetInnerHTML={{ __html: speciality.description }}></p>
+            </div>
+          </div>
+        ))}
+      </div>
       <Figures />
       <Reviews />
       <WatchOurAds />

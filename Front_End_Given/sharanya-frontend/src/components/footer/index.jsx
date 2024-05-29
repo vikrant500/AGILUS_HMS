@@ -6,7 +6,7 @@ import { Facebook, Instagram, Twitter } from "@mui/icons-material";
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   return (
-    <div className="flex flex-col gap-4 p-4 bg-primary text-white">
+    <div className="flex flex-col gap-4 p-10 bg-[#2C6975] text-white">
       <div className="">
         <h2 className="text-2xl md:text-4xl font-bold gradient_text">
           <Link to={"/"} className="">
@@ -18,7 +18,7 @@ const Footer = () => {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-8 p-0 md:p-8">
         <div className="flex flex-col gap-2">
           <h4 className="text-xl font-bold">Our Company</h4>
-          <Link to={"/"} className="text-gray-200 uppercase">
+          <Link to={"/"} className="text-gray-200 uppercase"> 
             Home
           </Link>
           <Link to={"/doctors"} className="text-gray-200 uppercase">

@@ -1,12 +1,103 @@
-// pages/BookAppointment/index.jsx
 import React, { useState, useEffect } from "react";
 import Modal from "./components/modal"; // Adjust path according to your structure
- // Adjust path according to your structure
+
+const countryCodes = [
+  { name: "United States", code: "+1" },
+  { name: "Canada", code: "+1" },
+  { name: "United Kingdom", code: "+44" },
+  { name: "Australia", code: "+61" },
+  { name: "India", code: "+91" },
+  { name: "Zimbabwe", code: "+263" },
+  { name: "Zambia", code: "+260" },
+  { name: "Yemen", code: "+967" },
+  { name: "Western Sahara", code: "+212" },
+  { name: "Wallis and Futuna", code: "+681" },
+  { name: "Vietnam", code: "+84" },
+  { name: "Venezuela", code: "+58" },
+  { name: "Vatican", code: "+379" },
+  { name: "Vanuatu", code: "+678" },
+  { name: "Uzbekistan", code: "+998" },
+  { name: "Uruguay", code: "+598" },
+  { name: "Ukraine", code: "+380" },
+  { name: "Uganda", code: "+256" },
+  { name: "United Arab Emirates", code: "+971" },
+  { name: "Tuvalu", code: "+688" },
+  { name: "Turkmenistan", code: "+993" },
+  { name: "Turkey", code: "+90" },
+  { name: "Tunisia", code: "+216" },
+  { name: "Tonga", code: "+676" },
+  { name: "Tokelau", code: "+690" },
+  { name: "Togo", code: "+228" },
+  { name: "Thailand", code: "+66" },
+  { name: "Tanzania", code: "+255" },
+  { name: "Tajikistan", code: "+992" },
+  { name: "Taiwan", code: "+886" },
+  { name: "Syria", code: "+963" },
+  { name: "Switzerland", code: "+41" },
+  { name: "Sweden", code: "+46" },
+  { name: "Swaziland", code: "+268" },
+  { name: "Svalbard and Jan Mayen", code: "+47" },
+  { name: "Suriname", code: "+597" },
+  { name: "Sudan", code: "+249" },
+  { name: "Saint Pierre and Miquelon", code: "+508" },
+  { name: "Saint Martin", code: "+590" },
+  { name: "Saint Helena", code: "+290" },
+  { name: "Sri Lanka", code: "+94" },
+  { name: "Spain", code: "+34" },
+  { name: "South Sudan", code: "+211" },
+  { name: "South Korea", code: "+82" },
+  { name: "South Africa", code: "+27" },
+  { name: "Somalia", code: "+252" },
+  { name: "Solomon Islands", code: "+677" },
+  { name: "Slovenia", code: "+386" },
+  { name: "Slovakia", code: "+421" },
+  { name: "Singapore", code: "+65" },
+  { name: "Sierra Leone", code: "+232" },
+  { name: "Seychelles", code: "+248" },
+  { name: "Serbia", code: "+381" },
+  { name: "Senegal", code: "+221" },
+  { name: "Saudi Arabia", code: "+966" },
+  { name: "Sao Tome and Principe", code: "+239" },
+  { name: "San Marino", code: "+378" },
+  { name: "Samoa", code: "+685" },
+  { name: "Saint Barthelemy", code: "+590" },
+  { name: "Rwanda", code: "+250" },
+  { name: "Russia", code: "+7" },
+  { name: "Romania", code: "+40" },
+  { name: "Reunion", code: "+262" },
+  { name: "Qatar", code: "+974" },
+  { name: "Portugal", code: "+351" },
+  { name: "Poland", code: "+48" },
+  { name: "Philippines", code: "+63" },
+  { name: "Peru", code: "+51" },
+  { name: "Paraguay", code: "+595" },
+  { name: "Papua New Guinea", code: "+675" },
+  { name: "Panama", code: "+507" },
+  { name: "Palestine", code: "+970" },
+  { name: "Palau", code: "+680" },
+  { name: "Pakistan", code: "+92" },
+  { name: "Oman", code: "+968" },
+  { name: "Norway", code: "+47" },
+  { name: "North Korea", code: "+850" },
+  { name: "Niue", code: "+683" },
+  { name: "Nigeria", code: "+234" },
+  { name: "Niger", code: "+227" },
+  { name: "Nicaragua", code: "+505" },
+  { name: "New Zealand", code: "+64" },
+  { name: "New Caledonia", code: "+687" },
+  { name: "Netherlands", code: "+31" },
+  { name: "Nepal", code: "+977" },
+  { name: "Nauru", code: "+674" },
+  { name: "Namibia", code: "+264" },
+  { name: "Mozambique", code: "+258" },
+  { name: "Morocco", code: "+212" },
+];
 
 const BookAppointment = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedDisease, setSelectedDisease] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCountryCode, setSelectedCountryCode] = useState(countryCodes[0].code);
 
   const popularDiseases = [
     "Circumcision",
@@ -15,6 +106,8 @@ const BookAppointment = () => {
     "Fissure",
     "Abortion",
     "Gynecomastia",
+    "Arthritis",
+    "Diabetes"
   ];
 
   const allDiseases = [
@@ -127,7 +220,7 @@ const BookAppointment = () => {
     "Gynaecology",
     "Laparoscopy",
     "Proctology"
-    // Add more diseases as needed
+    // add more diseases here
   ];
 
   useEffect(() => {
@@ -144,45 +237,120 @@ const BookAppointment = () => {
   };
 
   return (
-    <div className="bg-[#fcfaf7] h-screen overflow-hidden flex justify-center items-center">
-      <form className="bg-white p-6 rounded-lg shadow-lg w-96">
-        <div className="mb-4">
-          <label htmlFor="patient-name" className="block font-bold mb-2">
-            Patient Name
-          </label>
-          <input
-            type="text"
-            id="patient-name"
-            name="patient-name"
-            required
-            className="w-full p-2 border border-gray-300 rounded"
-          />
+    <div className="bg-gradient-to-r from-blue-50 to-blue-100 min-h-screen flex justify-center items-center">
+      <form className="bg-white bg-opacity-90 p-6 rounded-lg shadow-2xl w-full max-w-2xl">
+        <h2 className="text-3xl font-bold text-center mb-4 text-blue-600">Book Your Free Consultation</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
+          <div>
+            <label htmlFor="first-name" className="block font-medium mb-1 text-gray-700">
+              First Name
+            </label>
+            <input
+              type="text"
+              id="first-name"
+              name="first-name"
+              required
+              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+          </div>
+          <div>
+            <label htmlFor="last-name" className="block font-medium mb-1 text-gray-700">
+              Last Name
+            </label>
+            <input
+              type="text"
+              id="last-name"
+              name="last-name"
+              required
+              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+          </div>
         </div>
-        <div className="mb-4">
-          <label htmlFor="phone-number" className="block font-bold mb-2">
-            Enter 10 Digit Mobile Number
-          </label>
-          <input
-            type="tel"
-            id="phone-number"
-            name="phone-number"
-            pattern="[0-9]{10}"
-            required
-            className="w-full p-2 border border-gray-300 rounded"
-          />
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
+          <div>
+            <label htmlFor="email-address" className="block font-medium mb-1 text-gray-700">
+              Email Address
+            </label>
+            <input
+              type="email"
+              id="email-address"
+              name="email-address"
+              required
+              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+          </div>
+          <div>
+            <label htmlFor="gender" className="block font-medium mb-1 text-gray-700">
+              Gender
+            </label>
+            <select
+              id="gender"
+              name="gender"
+              required
+              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            >
+              <option value="" disabled selected>select gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="others">Others</option>
+            </select>
+          </div>
         </div>
-        <div className="mb-4 relative">
-          <label htmlFor="disease-search" className="block font-bold mb-2">
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
+          <div>
+            <label htmlFor="date-of-birth" className="block font-medium mb-1 text-gray-700">
+              Date of Birth
+            </label>
+            <input
+              type="date"
+              id="date-of-birth"
+              name="date-of-birth"
+              required
+              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+          </div>
+          <div>
+            <label htmlFor="phone-number" className="block font-medium mb-1 text-gray-700">
+              Enter Mobile Number
+            </label>
+            <div className="flex space-x-2">
+              <select
+                value={selectedCountryCode}
+                onChange={(e) => setSelectedCountryCode(e.target.value)}
+                className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              >
+                {countryCodes.map((country) => (
+                  <option key={country.code} value={country.code}>
+                    {country.code}
+                  </option>
+                ))}
+              </select>
+              <input
+                type="tel"
+                id="phone-number"
+                name="phone-number"
+                pattern="[0-9]{10}"
+                required
+                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="disease-search" className="block font-medium mb-1 text-gray-700">
             Select Disease
           </label>
           <input
             type="text"
             id="disease-search"
-            placeholder="Start typing to select disease"
+            placeholder="Enter your disease"
             value={selectedDisease}
             onClick={toggleModal}
             readOnly
-            className="w-full p-2 border border-gray-300 rounded cursor-pointer"
+            className="w-full p-3 border border-gray-300 rounded-lg cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
           <Modal
             show={modalVisible}
@@ -194,9 +362,22 @@ const BookAppointment = () => {
             setSearchTerm={setSearchTerm}
           />
         </div>
+
+        <div className="mb-3">
+          <label htmlFor="comments" className="block font-medium mb-1 text-gray-700">
+            Comments
+          </label>
+          <textarea
+            id="comments"
+            name="comments"
+            rows="3"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none"
+          ></textarea>
+        </div>
+
         <button
           type="submit"
-          className="w-full py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
+          className="w-full py-3 bg-blue-500 text-white font-bold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
         >
           Book Your FREE Consultation
         </button>

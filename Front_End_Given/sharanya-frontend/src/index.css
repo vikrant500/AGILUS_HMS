@@ -15,9 +15,4 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-  .custom-container {
-  max-width: 500px; /* Adjust the maximum width */
-  max-height: 200px; /* Adjust the maximum height */
-  margin: 1px;
-}
 

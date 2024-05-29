@@ -884,7 +884,13 @@ video {
   border-radius: 0.375rem;
 }
 
+<<<<<<< HEAD
 
+=======
+.rounded-border{
+  border-radius: 2rem;
+}
+>>>>>>> parent of a5655b556 (Specialities css changed)
 
 .border {
   border-width: 1px;

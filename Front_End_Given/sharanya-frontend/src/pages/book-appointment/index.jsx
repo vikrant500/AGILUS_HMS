@@ -106,17 +106,6 @@ const BookAppointment = () => {
     "Fissure",
     "Abortion",
     "Gynecomastia",
-    "Arthritis",
-    "Diabetes"
-  ];
-
-  const allDiseases = [
-    "Circumcision",
-    "Piles",
-    "Cataract",
-    "Fissure",
-    "Abortion",
-    "Gynecomastia",
     "Pilonidal Sinus",
     "Rectal Prolapse",
     "Fissure",
@@ -220,6 +209,17 @@ const BookAppointment = () => {
     "Gynaecology",
     "Laparoscopy",
     "Proctology"
+  ];
+
+  const allDiseases = [
+    "Spondylosis",
+    "Skin Disorders",
+    "Children Disorders",
+    "Weight Loss Therapy",
+    "Weight Gain Therapy",
+    "Gynaecology",
+    "Laparoscopy",
+    "Proctology",
     // add more diseases here
   ];
 
@@ -237,151 +237,182 @@ const BookAppointment = () => {
   };
 
   return (
-    <div className="bg-gradient-to-r from-blue-50 to-blue-100 min-h-screen flex justify-center items-center">
-      <form className="bg-white bg-opacity-90 p-6 rounded-lg shadow-2xl w-full max-w-2xl">
-        <h2 className="text-3xl font-bold text-center mb-4 text-blue-600">Book Your Free Consultation</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
-          <div>
-            <label htmlFor="first-name" className="block font-medium mb-1 text-gray-700">
-              First Name
-            </label>
-            <input
-              type="text"
-              id="first-name"
-              name="first-name"
-              required
-              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-            />
-          </div>
-          <div>
-            <label htmlFor="last-name" className="block font-medium mb-1 text-gray-700">
-              Last Name
-            </label>
-            <input
-              type="text"
-              id="last-name"
-              name="last-name"
-              required
-              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-            />
-          </div>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
-          <div>
-            <label htmlFor="email-address" className="block font-medium mb-1 text-gray-700">
-              Email Address
-            </label>
-            <input
-              type="email"
-              id="email-address"
-              name="email-address"
-              required
-              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-            />
-          </div>
-          <div>
-            <label htmlFor="gender" className="block font-medium mb-1 text-gray-700">
-              Gender
-            </label>
-            <select
-              id="gender"
-              name="gender"
-              required
-              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-            >
-              <option value="" disabled selected>select gender</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="others">Others</option>
-            </select>
-          </div>
-        </div>
+    <div className="bg-gradient-to-r from-blue-50 to-blue-100 min-h-screen flex flex-col lg:flex-row justify-center items-start p-8">
+      <div className="w-full lg:w-1/2 p-8 space-y-8">
+        <h2 className="text-4xl font-extrabold text-blue-600 mb-6">How It Works</h2>
+        <ol className="list-decimal list-inside text-lg text-gray-700 space-y-6 pl-4">
+          <li className="leading-relaxed flex">
+            <span className="font-semibold text-blue-600 mr-2 w-1/3">1. Share your details:</span>
+            <span className="flex-1">Once you share your details, our care coordinator will get in touch with you.</span>
+          </li>
+          <li className="leading-relaxed flex">
+            <span className="font-semibold text-blue-600 mr-2 w-1/3">2. Understand your symptoms:</span>
+            <span className="flex-1">The coordinator will understand your symptoms and health condition in detail.</span>
+          </li>
+          <li className="leading-relaxed flex">
+            <span className="font-semibold text-blue-600 mr-2 w-1/3">3. Schedule consultation:</span>
+            <span className="flex-1">Your consultation will be scheduled at the earliest.</span>
+          </li>
+          <li className="leading-relaxed flex">
+            <span className="font-semibold text-blue-600 mr-2 w-1/3">4. Personalized medical advice:</span>
+            <span className="flex-1">Our specialist will provide you with personalized medical advice and treatment options.</span>
+          </li>
+          <li className="leading-relaxed flex">
+            <span className="font-semibold text-blue-600 mr-2 w-1/3">5. Follow-up and support:</span>
+            <span className="flex-1">We ensure follow-up and support to help you with your recovery and health improvement.</span>
+          </li>
+        </ol>
+        <button className="bg-blue-500 text-white px-4 py-2 rounded-md font-semibold mt-4 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400">
+          CALL US: 18001030343
+        </button>
+      </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3">
-          <div>
-            <label htmlFor="date-of-birth" className="block font-medium mb-1 text-gray-700">
-              Date of Birth
-            </label>
-            <input
-              type="date"
-              id="date-of-birth"
-              name="date-of-birth"
-              required
-              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-            />
-          </div>
-          <div>
-            <label htmlFor="phone-number" className="block font-medium mb-1 text-gray-700">
-              Enter Mobile Number
-            </label>
-            <div className="flex space-x-2">
-              <select
-                value={selectedCountryCode}
-                onChange={(e) => setSelectedCountryCode(e.target.value)}
-                className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-              >
-                {countryCodes.map((country) => (
-                  <option key={country.code} value={country.code}>
-                    {country.code}
-                  </option>
-                ))}
-              </select>
+      <div className="w-full lg:w-1/2 flex justify-center">
+        <form className="bg-white bg-opacity-90 p-8 rounded-lg shadow-2xl w-full max-w-2xl">
+          <h2 className="text-3xl font-bold text-center mb-4 text-blue-600">Book Your Free Consultation</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label htmlFor="first-name" className="block font-medium mb-1 text-gray-700">
+                First Name
+              </label>
               <input
-                type="tel"
-                id="phone-number"
-                name="phone-number"
-                pattern="[0-9]{10}"
+                type="text"
+                id="first-name"
+                name="first-name"
                 required
-                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              />
+            </div>
+            <div>
+              <label htmlFor="last-name" className="block font-medium mb-1 text-gray-700">
+                Last Name
+              </label>
+              <input
+                type="text"
+                id="last-name"
+                name="last-name"
+                required
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
               />
             </div>
           </div>
-        </div>
 
-        <div className="mb-3">
-          <label htmlFor="disease-search" className="block font-medium mb-1 text-gray-700">
-            Select Disease
-          </label>
-          <input
-            type="text"
-            id="disease-search"
-            placeholder="Enter your disease"
-            value={selectedDisease}
-            onClick={toggleModal}
-            readOnly
-            className="w-full p-3 border border-gray-300 rounded-lg cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-400"
-          />
-          <Modal
-            show={modalVisible}
-            onClose={toggleModal}
-            popularDiseases={popularDiseases}
-            allDiseases={allDiseases}
-            selectDisease={selectDisease}
-            searchTerm={searchTerm}
-            setSearchTerm={setSearchTerm}
-          />
-        </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label htmlFor="email-address" className="block font-medium mb-1 text-gray-700">
+                Email Address <span className="text-gray-400">(Optional)</span>
+              </label>
+              <input
+                type="email"
+                id="email-address"
+                name="email-address"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              />
+            </div>
+            <div>
+              <label htmlFor="gender" className="block font-medium mb-1 text-gray-700">
+                Gender
+              </label>
+              <select
+                id="gender"
+                name="gender"
+                required
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              >
+                <option value="" disabled>
+                  Select gender
+                </option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="others">Others</option>
+              </select>
+            </div>
+          </div>
 
-        <div className="mb-3">
-          <label htmlFor="comments" className="block font-medium mb-1 text-gray-700">
-            Comments
-          </label>
-          <textarea
-            id="comments"
-            name="comments"
-            rows="3"
-            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none"
-          ></textarea>
-        </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <div>
+              <label htmlFor="date-of-birth" className="block font-medium mb-1 text-gray-700">
+                Date of Birth
+              </label>
+              <input
+                type="date"
+                id="date-of-birth"
+                name="date-of-birth"
+                required
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              />
+            </div>
+            <div>
+              <label htmlFor="phone-number" className="block font-medium mb-1 text-gray-700">
+                Enter Mobile Number
+              </label>
+              <div className="flex space-x-2">
+                <select
+                  value={selectedCountryCode}
+                  onChange={(e) => setSelectedCountryCode(e.target.value)}
+                  className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                >
+                  {countryCodes.map((country) => (
+                    <option key={country.code} value={country.code}>
+                      {country.code}
+                    </option>
+                  ))}
+                </select>
+                <input
+                  type="tel"
+                  id="phone-number"
+                  name="phone-number"
+                  pattern="[0-9]{10}"
+                  required
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                />
+              </div>
+            </div>
+          </div>
 
-        <button
-          type="submit"
-          className="w-full py-3 bg-blue-500 text-white font-bold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
-        >
-          Book Your FREE Consultation
-        </button>
-      </form>
+          <div className="mb-4">
+            <label htmlFor="disease-search" className="block font-medium mb-1 text-gray-700">
+              Select Disease <span className="text-gray-400">(Optional)</span>
+            </label>
+            <input
+              type="text"
+              id="disease-search"
+              placeholder="Enter your disease"
+              value={selectedDisease}
+              onClick={toggleModal}
+              readOnly
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+            <Modal
+              show={modalVisible}
+              onClose={toggleModal}
+              popularDiseases={popularDiseases}
+              allDiseases={allDiseases}
+              selectDisease={selectDisease}
+            />
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="comments" className="block font-medium mb-1 text-gray-700">
+              Comments
+            </label>
+            <textarea
+              id="comments"
+              name="comments"
+              rows="3"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none"
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            className="w-full py-3 bg-blue-500 text-white
+ font-bold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          >
+            Book Your FREE Consultation
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

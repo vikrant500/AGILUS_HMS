@@ -23,11 +23,11 @@ const Treatment = () => {
     { title: "typanoplasty", image: assets.treatment.typanoplasty },
   ];
   return (
-    <div className="py-10">
+    <div className="py-10 mb-10"> {/* Added mb-10 for margin bottom */}
       <Container>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 p-2 gap-4">
           {TREATMENT.map((item, i) => (
-            <div className="flex flex-col items-center justify-center gap-2">
+            <div key={i} className="flex flex-col items-center justify-center gap-2">
               <div className="w-20 h-20 border-[1px] overflow-hidden border-black rounded-md">
                 <img src={item.image} className="w-full h-full object-cover" alt={item.title} />
               </div>
@@ -38,6 +38,6 @@ const Treatment = () => {
       </Container>
     </div>
   );
-};
+};  
 
 export default Treatment;

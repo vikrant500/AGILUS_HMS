@@ -125,6 +125,9 @@ const Home = () => {
           </div>
         ))}
       </div>
+      {/* Add padding here /}
+      <div style={{ padding: "15px" }} />
+      {/ Sharanya Care Numbers Section */}
       <Figures />
       <Reviews />
       <WatchOurAds />

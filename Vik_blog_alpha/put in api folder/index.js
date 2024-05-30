@@ -4,13 +4,13 @@ const mongoose = require("mongoose");
 const User = require('./models/User');
 const Post = require('./models/Post');
 const bcrypt = require('bcryptjs');
-const app = express();
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const multer = require('multer');
 const uploadMiddleware = multer({ dest: 'uploads/' });
 const fs = require('fs');
 
+const app = express();
 const salt = bcrypt.genSaltSync(10);
 const secret = 'asdfe45we45w345wegw345werjktjwertkj';
 
@@ -23,7 +23,7 @@ mongoose.connect('mongodb+srv://Oonga:boonga@helloblog.j41ebc1.mongodb.net/?retr
 
 app.post('/register', async (req,res) => {
   const {username,password} = req.body;
-  try{
+  try {
     const userDoc = await User.create({
       username,
       password:bcrypt.hashSync(password,salt),
@@ -40,7 +40,6 @@ app.post('/login', async (req,res) => {
   const userDoc = await User.findOne({username});
   const passOk = bcrypt.compareSync(password, userDoc.password);
   if (passOk) {
-    // logged in
     jwt.sign({username,id:userDoc._id}, secret, {}, (err,token) => {
       if (err) throw err;
       res.cookie('token', token).json({
@@ -75,21 +74,28 @@ app.post('/post', uploadMiddleware.single('file'), async (req,res) => {
   const {token} = req.cookies;
   jwt.verify(token, secret, {}, async (err,info) => {
     if (err) throw err;
-    const {title,summary,content, tags} = req.body;//added tags as a requirement
+    const {title,summary,content, tags} = req.body;
     const postDoc = await Post.create({
       title,
       summary,
       content,
       cover:newPath,
       author:info.id,
-      tags: tags.split(','),//split the tags by a comma
+      tags: tags.split(','),
     });
+
+    // Enforce limit of 150 posts
+    const totalPosts = await Post.countDocuments();
+    if (totalPosts > 150) {
+      const oldestPost = await Post.findOne().sort({ createdAt: 1 });
+      await Post.deleteOne({ _id: oldestPost._id });
+    }
+
     res.json(postDoc);
   });
-
 });
 
-app.put('/post',uploadMiddleware.single('file'), async (req,res) => {
+app.put('/post', uploadMiddleware.single('file'), async (req,res) => {
   let newPath = null;
   if (req.file) {
     const {originalname,path} = req.file;
@@ -113,27 +119,72 @@ app.put('/post',uploadMiddleware.single('file'), async (req,res) => {
       summary,
       content,
       cover: newPath ? newPath : postDoc.cover,
-      tags: tags ? tags.split(',') : postDoc.tags, // Convert comma-separated string to array of tags
+      tags: tags ? tags.split(',') : postDoc.tags,
     });
 
     res.json(postDoc);
   });
-
 });
 
-app.get('/post', async (req,res) => {
-  res.json(
-    await Post.find()
-      .populate('author', ['username'])
-      .sort({createdAt: -1})
-      .limit(20)
-  );
+app.get('/posts', async (req,res) => {
+  const { page = 1, limit = 10, search = '' } = req.query;
+  const query = search ? {
+    $or: [
+      { title: new RegExp(search, 'i') },
+      { tags: new RegExp(search, 'i') }
+    ]
+  } : {};
+
+  const posts = await Post.find(query)
+    .populate('author', ['username'])
+    .sort({ createdAt: -1 })
+    .skip((page - 1) * limit)
+    .limit(parseInt(limit));
+
+  const totalPosts = await Post.countDocuments(query);
+  const totalPages = Math.ceil(totalPosts / limit);
+
+  res.json({ posts, totalPages }); // Return totalPages along with posts
+});
+
+// Define the route for suggestions
+app.get('/suggestions', async (req, res) => {
+  try {
+    // Extract the search query from the request query parameters
+    const { q } = req.query;
+
+    // Query the database for posts that match the search query
+    const posts = await Post.find({
+      $or: [
+        { title: new RegExp(q, 'i') },
+        { tags: new RegExp(q, 'i') }
+      ]
+    }).limit(5); // Limit the number of suggestions to 5
+
+    // Extract relevant information from the posts
+    const suggestions = posts.map(post => ({
+      title: post.title,
+      author: post.author, // You may want to populate the author's username here
+      tags: post.tags
+    }));
+
+    // Send the suggestions as a response
+    res.json(suggestions);
+  } catch (error) {
+    // Handle errors
+    console.error('Error fetching suggestions:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
 
 app.get('/post/:id', async (req, res) => {
   const {id} = req.params;
   const postDoc = await Post.findById(id).populate('author', ['username']);
   res.json(postDoc);
-})
+});
 
-app.listen(4000);
+// Start the server
+const PORT = 4000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});

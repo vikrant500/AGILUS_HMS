@@ -10,6 +10,7 @@ import Treatments from "./pages/treatments";
 import SpecialityDetails from "./components/others/SpecialityDetails";
 import BookAppointment from "./pages/book-appointment";
 import SplashScreen from "./pages/splash-screen";
+import PostPage from "./pages/Postpage";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -37,9 +38,9 @@ const App = () => {
               <Route path="/doctors" element={<Doctors />} />
               <Route path="/about" element={<About />} />
               <Route path="/blog" element={<Blog />} />
+              <Route path="/post/:id" element={<PostPage />} /> {/* Add the route for PostPage */}
               <Route path="/treatment/:treatmentId" element={<Treatments />} />
               <Route path="/treatment/:treatmentId/specialities/:specialityId" element={<SpecialityDetails />} />
-
               <Route path="/book-appointment" element={<BookAppointment />} />
             </Routes>
             <Footer />

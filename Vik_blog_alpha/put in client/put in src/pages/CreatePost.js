@@ -31,7 +31,7 @@ export default function CreatePost(){
     const [summary, setSummary] = useState('');
     const [content, setContent] = useState('');
     const [files, setFiles] = useState('');
-    const [tags, setTags] = useState('');
+    const [tags, setTags] = useState('');//tags state added here
     const [redirect, setRedirect] = useState(false);
 
     async function createNewPost(ev){

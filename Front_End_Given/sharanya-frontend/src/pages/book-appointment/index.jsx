@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Modal from "./components/modal"; // Adjust path according to your structure
+import Modal from "./components/modal";
 
 const countryCodes = [
   { name: "United States", code: "+1" },
@@ -100,6 +100,17 @@ const BookAppointment = () => {
   const [selectedCountryCode, setSelectedCountryCode] = useState(countryCodes[0].code);
 
   const popularDiseases = [
+    "Circumcision",
+    "piles",
+    "cataract",
+    "Fissure",
+    "Abortion",
+    "Gynecomastia",
+    "Arthritis",
+    "Diabetes"
+  ];
+
+  const allDiseases = [
     "Circumcision",
     "Piles",
     "Cataract",
@@ -209,17 +220,6 @@ const BookAppointment = () => {
     "Gynaecology",
     "Laparoscopy",
     "Proctology"
-  ];
-
-  const allDiseases = [
-    "Spondylosis",
-    "Skin Disorders",
-    "Children Disorders",
-    "Weight Loss Therapy",
-    "Weight Gain Therapy",
-    "Gynaecology",
-    "Laparoscopy",
-    "Proctology",
     // add more diseases here
   ];
 

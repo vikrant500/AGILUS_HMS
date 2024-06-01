@@ -82,12 +82,13 @@ const doctors = [
   {
     name: "DR. ANJULA NARANG",
     education: [
-      "Homoeopathic Physician",
       "BHMS (DU)",
       "MD (Hom)",
       "SCPH (Mumbai)",
       "Senior Research Fellow (CCRH)"
     ],
+    expertise: ["Homoeopathic Physician"],
+    
     services: [
       "Child Health Care",
       "Skin & Hair Care",
@@ -195,84 +196,93 @@ const DoctorCard = ({ doctor }) => {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className="bg-[#E0ECDE] rounded-xl shadow-lg p-4 transition-all duration-300 ease-in-out">
-      <div onClick={() => setExpanded(!expanded)} className="cursor-pointer">
-        <h4 className="text-xl font-bold text-[#2C6975]">{doctor.name}</h4>
-        <p className="text-md text-[#68B2A0]">
-          {doctor.education.join(", ")}
+    <div
+      className={`bg-[#E0ECDE] hover:bg-[#CDE0C9] rounded-xl shadow-lg p-4 transition-all duration-300 ease-in-out text-black ${
+        expanded ? "max-h-[1000px]" : "h-auto max-h-[200px]"
+      } overflow-hidden w-full`}
+      onClick={() => setExpanded(!expanded)}
+    >
+      <div className="cursor-pointer flex flex-col md:flex-row items-start md:items-center">
+        <h4 className="text-xl font-bold text-[#2C6975] md:w-1/3">{doctor.name}</h4>
+        <p className={`text-md text-[#68B2A0] md:w-2/3 ${!expanded ? "block" : "hidden"}`}>
+          {doctor.expertise.join(", ")}
         </p>
       </div>
-      {expanded && (
-        <div className="mt-4 text-[#2C6975]">
-          {doctor.expertise && (
-            <>
-              <h5 className="font-semibold">Field of Expertise:</h5>
-              <ul className="list-disc pl-4">
-                {doctor.expertise.map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
-            </>
-          )}
-          {doctor.experience && (
-            <>
-              <h5 className="font-semibold">Experience:</h5>
-              <ul className="list-disc pl-4">
-                {doctor.experience.map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
-            </>
-          )}
-          {doctor.services && (
-            <>
-              <h5 className="font-semibold">Services Provided:</h5>
-              <ul className="list-disc pl-4">
-                {doctor.services.map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
-            </>
-          )}
-          {doctor.certifications && (
-            <>
-              <h5 className="font-semibold">Professional Certification:</h5>
-              <ul className="list-disc pl-4">
-                {doctor.certifications.map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
-            </>
-          )}
-          {doctor.conferences && (
-            <>
-              <h5 className="font-semibold">Certified Participant in Conferences:</h5>
-              <ul className="list-disc pl-4">
-                {doctor.conferences.map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
-            </>
-          )}
-        </div>
-      )}
-    </div>
-  );
-};
-
-const DoctorsSection = () => {
-  return (
-    <div className="relative py-20 bg-[#FFFFFF] text-black">
-      <h3 className="text-center text-3xl font-bold mb-10">Our Doctors</h3>
-      <Container>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {doctors.map((doctor, i) => (
-            <DoctorCard key={i} doctor={doctor} />
+      <div className={`mt-4 ${expanded ? "block" : "hidden"} text-[#2C6975]`}>
+        <ul className="list-disc pl-4">
+          {doctor.expertise.map((item, index) => (
+            <li key={index}>{item}</li>
           ))}
-        </div>
-      </Container>
+        </ul>
+        {doctor.education && (
+          <>
+            <h5 className="font-semibold">Education:</h5>
+            <ul className="list-disc pl-4">
+              {doctor.education.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+          </>
+        )}
+        {doctor.experience && (
+          <>
+            <h5 className="font-semibold">Experience:</h5>
+            <ul className="list-disc pl-4">
+              {doctor.experience.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+          </>
+        )}
+        {doctor.services && (
+          <>
+            <h5 className="font-semibold">Services Provided:</h5>
+            <ul className="list-disc pl-4">
+              {doctor.services.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+          </>
+        )}
+        {doctor.certifications && (
+          <>
+            <h5 className="font-semibold">Professional Certification:</h5>
+            <ul className="list-disc pl-4">
+              {doctor.certifications.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
+            </ul>
+          </>
+        )}
+        {doctor.conferences && (
+          <>
+            <h5 className="font-semibold">Certified Participant in Conferences:</h5>
+            <ul className="list-disc pl-4">
+              {doctor.conferences.map((item, index) => (
+                <li key={index}>{item}</li>
+              )
+              )
+              }
+            </ul>
+          </>
+        )
+        }
+      </div>
     </div>
   );
 };
 
-export default DoctorsSection;
+const App = () => {
+  return (
+    <div className="min-h-screen bg-[#FFFFFF] flex flex-col items-center justify-center p-4">
+      <h1 className="text-3xl font-bold mb-6 text-[#2C6975]">Meet Our Doctors</h1>
+      <div className="w-full max-w-4xl space-y-4">
+        {doctors.map((doctor, index) => (
+          <DoctorCard key={index} doctor={doctor} />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default App;

@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate, Link } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { formatISO9075 } from 'date-fns';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import styles from './styles/index.module.css';
 
 export default function IndexPage() {
@@ -10,7 +13,6 @@ export default function IndexPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const location = useLocation();
-  const navigate = useNavigate();
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -45,18 +47,20 @@ export default function IndexPage() {
   const handleSearch = async (e) => {
     e.preventDefault();
     await fetchPosts(1, searchQuery); // Fetch posts corresponding to the search query
-    handleCloseDropdown(); // Close the dropdown
+    setCurrentPage(1);
+    setSuggestions([]); // Clear suggestions
   };
 
   const handleSuggestionClick = (suggestion) => {
     setSearchQuery(suggestion.title);
-    handleCloseDropdown(); // Close the dropdown
-    fetchPosts(1, suggestion.title); // Fetch posts corresponding to the clicked suggestion
+    fetchPosts(1, suggestion.title).then(() => {
+      setSuggestions([]); // Hide the dropdown after fetching posts
+    });
   };
 
   const handlePageChange = (page) => {
     fetchPosts(page, searchQuery);
-    navigate(`/?page=${page}&q=${searchQuery}`);
+    setCurrentPage(page);
   };
 
   const renderPageButtons = () => {
@@ -75,13 +79,25 @@ export default function IndexPage() {
     return buttons;
   };
 
-  const handleCloseDropdown = () => {
-    setSuggestions([]);
+  const reloadPage = () => {
+    window.location.href = '/blog'; // Reload the blog page
+  };
+
+  const carouselSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 2, // Display 2.5 post cards in one horizontal line
+    slidesToScroll: 1, // Scroll one post card at a time
+    //centerMode: true, // Center the current post card
   };
 
   return (
     <div>
-      <h1>Posts</h1>
+        <Link to={location.pathname} onClick={reloadPage} className={styles.postsLink}>
+          <h1 className={styles.postsHeader}>Posts</h1>
+        </Link> 
+          {/* Rest of your component code */}
       <form onSubmit={handleSearch} className={styles.searchForm}>
         <input
           type="text"
@@ -106,7 +122,22 @@ export default function IndexPage() {
         <button type="submit" className={styles.searchButton}>Search</button>
       </form>
       <div className={styles.posts}>
-        {posts.map(post => (
+        {posts.slice(0, 5).map(post => (
+          <Post key={post._id} {...post} />
+        ))}
+      </div>
+      {posts.length > 5 && (
+        <div className={`${styles.carousel} carousel`}>
+          <h2>Featured Posts</h2>
+          <Slider {...carouselSettings}>
+            {posts.slice(5, 10).map(post => (
+              <Post key={post._id} {...post} className={`${styles.carouselPost} carouselPost`} />
+            ))}
+          </Slider>
+        </div>
+      )}
+      <div className={styles.posts}>
+        {posts.slice(10, 15).map(post => (
           <Post key={post._id} {...post} />
         ))}
       </div>
@@ -129,9 +160,9 @@ export default function IndexPage() {
   );
 }
 
-function Post({_id, title, summary, cover, createdAt, author, tags}) {
+function Post({_id, title, summary, cover, createdAt, author, tags, className}) {
   return (
-    <div className={styles.post}>
+    <div className={`${styles.post} ${className}`}>
       <div className={styles.image}>
         <Link to={`/post/${_id}`}>
           <img src={`http://localhost:4000/${cover}`} alt="" />
@@ -139,7 +170,7 @@ function Post({_id, title, summary, cover, createdAt, author, tags}) {
       </div>
       <div className={styles.texts}>
         <Link to={`/post/${_id}`}>
-          <h2>{title}</h2>
+          <h2 className={`${styles.carouselPostTitle}`}>{title}</h2> {/* Apply carouselPostTitle class */}
         </Link>
         <p className={styles.info}>
           <span className={styles.author}>{author.username}</span>
@@ -155,3 +186,5 @@ function Post({_id, title, summary, cover, createdAt, author, tags}) {
     </div>
   );
 }
+
+

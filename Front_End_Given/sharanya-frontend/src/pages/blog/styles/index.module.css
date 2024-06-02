@@ -85,217 +85,137 @@ div.post div.texts h2 {
   font-size: 2rem;
 }
 
-div.post div.texts a {
+div.post div.image {
+  overflow: hidden;
+  border-radius: 10px;
+  position: relative;
+}
+
+div.post div.image img {
+  border-radius: 10px;
+  transition: transform 0.2s;
+}
+
+div.post div.image:hover img {
+  transform: scale(1.05);
+}
+
+.info {
+  margin: 24px 0;
+}
+
+div.post p.info span.author {
+  margin-right: 10px;
+}
+
+div.post p.info time {
+  color: #888;
+  font-size: 0.9rem;
+}
+
+div.post p.summary {
+  margin: 0;
+}
+
+div.post div.tags {
+  margin-top: 10px;
+}
+
+div.post div.tags span.tag {
+  display: inline-block;
+  background: #eee;
+  color: #555;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  margin-right: 5px;
+}
+
+.postsLink {
   text-decoration: none;
   color: inherit;
 }
 
-div.post p.info {
-  margin: 24px 0;
-  color: #888;
-  font-size: 1rem;
-  font-weight: bold;
+.postsHeader {
+  text-align: center;
+  margin: 0;
+  padding: 20px 0;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.headerContainer {
   display: flex;
-  gap: 10px;
-}
-
-div.post p.info a.author {
-  color: #333;
-}
-
-div.post p.summary {
-  margin: 10px 0;
-  line-height: 1.8rem;
-}
-
-form.login,
-form.register {
-  max-width: 400px;
-  margin: 0 auto;
-}
-
-input {
-  display: block;
-  margin-bottom: 5px;
-  width: 100%;
-  padding: 10px;
-  border: 2px solid #ddd;
-  border-radius: 5px;
-  background-color: #fff;
-}
-
-button {
-  cursor: pointer;
-  width: 100%;
-  display: block;
-  background-color: #555;
-  border: 0;
-  color: #fff;
-  border-radius: 5px;
-  padding: 10px;
-  transition: background-color 0.3s;
-}
-
-button:hover {
-  background-color: #444;
-}
-
-form.login h1,
-form.register h1 {
-  text-align: center;
-}
-
-div.post-page div.image {
-  max-height: 300px;
-  display: flex;
-  overflow: hidden;
-}
-
-div.post-page div.image img {
-  object-fit: cover;
-  object-position: center center;
-  width: 100%;
-}
-
-div.post-page a {
-  color: #333;
-  text-decoration: underline;
-}
-
-div.post-page h1 {
-  text-align: center;
-  margin: 10px 0 5px;
-}
-
-div.post-page time {
-  text-align: center;
-  display: block;
-  font-size: 1rem;
-  color: #aaa;
-  margin: 10px 0;
-}
-
-div.post-page div.author {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: .7rem;
-  font-weight: bold;
-}
-
-div.content p {
-  line-height: 1.7rem;
-  margin: 30px 0;
-}
-
-div.content li {
-  margin-bottom: 10px;
-}
-
-div.edit-row {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-div.post-page a.edit-btn {
-  background-color: #333;
-  display: inline-flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 5px;
-  color: #fff;
-  padding: 15px 30px;
-  border-radius: 5px;
-  text-decoration: none;
+  padding: 20px 20px;
+  position: relative;
+  margin-bottom: 10px; /* Adjusted margin to prevent overlap with posts */
 }
 
-a svg {
-  height: 20px;
-}
 
-.tags {
-  margin-top: 10px;
-}
-
-.tag {
-  display: inline-block;
-  background-color: #f1f1f1;
-  padding: 5px 10px;
-  margin-right: 5px;
-  border-radius: 5px;
-  font-size: 12px;
-  color: #333;
-}
-
-/* Add styles for pagination */
-.pagination {
-  margin-top: 20px;
+.leftContainer {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 5px;
 }
 
-.pagination button {
-  padding: 10px 15px;
-  border: none;
+.categories {
+  display: flex;
+  gap: 20px;
+}
+
+.category {
+  padding: 10px;
+  background: none;
   cursor: pointer;
-  background-color: #6bbf7c; /* Green color */
-  color: #fff; /* White text */
-  border-radius: 5px;
-  transition: background-color 0.3s, border 0.3s;
+  transition: transform 0.3s ease;
 }
 
-.pagination button:hover {
-  background-color: #5aa96b;
+.category:hover {
+  transform: scale(1.1);
 }
 
-.pagination button.disabled {
-  background-color: #ccc; /* Grey color for disabled buttons */
-  cursor: not-allowed;
+.searchBarContainer {
+  display: flex;
+  align-items: center;
 }
 
-.pagination button.disabled:hover {
-  background-color: #ccc;
-}
-
-.pagination button.selected {
-  background-color: #fff; /* White background for selected page */
-  color: #6bbf7c; /* Green text for selected page */
-  border: 1px solid #6bbf7c; /* Green border for selected page */
-}
-
-.pagination button.selected:hover {
-  background-color: #f4f4f4;
-}
-
-/* Add styles for search bar dropdown */
 .searchForm {
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-  position: relative;
-  width: 100%;
 }
 
 .searchBar {
-  width: 50%;
-  padding: 10px;
-  border-radius: 20px;
+  padding: 5px;
   border: 1px solid #ccc;
+  border-radius: 100px;
+  outline: none;
+}
+
+.searchButton {
+  padding: 5px 15px;
+  border: none;
+  background: #007BFF;
+  color: white;
+  border-radius: 100px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.searchButton:hover {
+  background: #0056b3;
 }
 
 .suggestions {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  max-width: 50%;
+  position: absolute;
   background: white;
   border: 1px solid #ccc;
-  border-radius: 0 0 20px 20px;
-  position: absolute;
-  top: 40px; /* Positioning below the search bar */
-  z-index: 1;
-  width: 50%; /* Match the search bar width */
+  border-radius: 5px;
+  margin-top: 250px;
+  z-index: 1000;
+  list-style: none;
+  padding: 0;
+  width: 100%;
 }
 
 .suggestionItem {
@@ -304,120 +224,65 @@ a svg {
 }
 
 .suggestionItem:hover {
-  background: #d3ffd3;
+  background: #eee;
 }
 
-.searchButton {
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.pagination button {
   padding: 10px 20px;
-  margin-left: 10px;
-  background: green;
-  color: white;
+  margin: 0 5px;
   border: none;
-  border-radius: 20px;
+  background: #ddd;
   cursor: pointer;
-  transition: background-color 0.3s;
+  border-radius: 5px;
 }
 
-.searchButton:hover {
-  background: darkgreen;
+.pagination button.selected {
+  background: #007BFF;
+  color: white;
 }
-/* styles/index.module.css */
 
-/* Additional styles for the carousel */
+.pagination button:hover {
+  background: #0056b3;
+  color: white;
+}
+
 .carousel {
-  margin: 40px 0;
-  padding: 20px;
-  background: #f9f9f9;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-}
-
-.carousel h2 {
-  text-align: center;
-  margin-bottom: 20px;
+  margin-top: 40px;
 }
 
 .carouselPost {
   padding: 10px;
-  margin: 0 10px;
-  background-color: #e0f7fa; /* Light green background */
-  border-radius: 10px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 300px; /* Set a uniform height */
-}
-
-.carouselPost:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-.carouselPost .texts h2 {
-  font-size: 1.5rem; /* Smaller font size for titles */
-}
-
-.carouselPost .summary {
-  font-size: 1rem;
-  flex-grow: 1;
-  display: -webkit-box;
-  -webkit-line-clamp: 4; /* Limit the summary to 4 lines */
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.carouselPost .image img {
-  max-height: 150px; /* Set a maximum height for images */
-  object-fit: cover;
-  border-radius: 5px;
-}
-
-.slick-slide {
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
-}
-
-.carousel .slick-prev,
-.carousel .slick-next {
-  z-index: 1;
-  color: #333;
-  font-size: 20px;
-}
-
-.carousel .slick-prev:hover,
-.carousel .slick-next:hover {
-  color: #666;
-}
-
-.carousel .slick-dots li button:before {
-  font-size: 12px;
-  color: #333;
-}
-
-.carousel .slick-dots li.slick-active button:before {
-  color: #555;
-}
-
-/* styles/index.module.css */
-
-.postsLink {
-  text-decoration: none;
-}
-
-.postsHeader {
-  font-size: 2.5rem;
-  padding: 10px;
-  cursor: pointer;
-  transition: color 0.3s, background-color 0.3s;
-}
-
-.postsHeader:hover {
-  color: #fff;
-  background-color: #333;
 }
 
 .carouselPostTitle {
-  font-size: 1.2rem; /* Adjust the font size as needed */
+  font-size: 1.2rem;
 }
+
+.separator {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 63px;
+  height: 1px;
+  background: #ccc;
+}
+
+.post {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px ;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+
+

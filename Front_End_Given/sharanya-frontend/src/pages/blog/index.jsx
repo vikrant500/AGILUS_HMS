@@ -5,6 +5,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styles from './styles/index.module.css';
+import { Style } from '@mui/icons-material';
 
 export default function IndexPage() {
   const [posts, setPosts] = useState([]);
@@ -83,6 +84,20 @@ export default function IndexPage() {
     window.location.href = '/blog'; // Reload the blog page
   };
 
+  const handleCategoryClick = (category) => {
+    let tag;
+    if (category === 'category1') {
+      tag = 'game';
+    } else if (category === 'category2') {
+      tag = 'experiment';
+    } else if (category === 'category3'){
+      tag = 'wallpaper'
+      // Handle other categories
+    }
+    fetchPosts(1, tag); // Fetch posts with the specified tag
+  };
+  
+
   const carouselSettings = {
     dots: true,
     infinite: true,
@@ -94,33 +109,51 @@ export default function IndexPage() {
 
   return (
     <div>
-        <Link to={location.pathname} onClick={reloadPage} className={styles.postsLink}>
-          <h1 className={styles.postsHeader}>Posts</h1>
-        </Link> 
-          {/* Rest of your component code */}
-      <form onSubmit={handleSearch} className={styles.searchForm}>
-        <input
-          type="text"
-          placeholder="Search by title or tags..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className={styles.searchBar}
-        />
-        {suggestions.length > 0 && (
-          <ul className={styles.suggestions}>
-            {suggestions.map((suggestion, index) => (
-              <li
-                key={index}
-                onClick={() => handleSuggestionClick(suggestion)}
-                className={styles.suggestionItem}
-              >
-                <strong>{suggestion.title}</strong> by {suggestion.author.username}
-              </li>
-            ))}
-          </ul>
-        )}
-        <button type="submit" className={styles.searchButton}>Search</button>
-      </form>
+      <div className={styles.headerContainer}>
+        <div className={styles.leftContainer}>
+          <div className={styles.categories}>
+            <div className={`${styles.category} ${location.pathname === '/blog' ? styles.active : ''}`} onClick={reloadPage}>
+              View All
+            </div>
+            <div className={`${styles.category} ${location.pathname === '/category1' ? styles.active : ''}`} onClick={() => handleCategoryClick('category1')}>
+              Category 1
+            </div>
+            <div className={`${styles.category} ${location.pathname === '/category2' ? styles.active : ''}`} onClick={() => handleCategoryClick('category2')}>
+              Category 2
+            </div>
+            <div className={`${styles.category} ${location.pathname === '/category3' ? styles.active : ''}`} onClick={() => handleCategoryClick('category3')}>
+              Category 3
+            </div>
+          </div>
+        </div>
+        <div className={styles.searchBarContainer}>
+          <form onSubmit={handleSearch} className={styles.searchForm}>
+            <input
+              type="text"
+              placeholder="Search title or tag..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className={styles.searchBar}
+            />
+            {suggestions.length > 0 && (
+              <ul className={styles.suggestions}>
+                {suggestions.map((suggestion, index) => (
+                  <li
+                    key={index}
+                    onClick={() => handleSuggestionClick(suggestion)}
+                    className={styles.suggestionItem}
+                  >
+                    <strong>{suggestion.title}</strong> by {suggestion.author.username}
+                  </li>
+                ))}
+              </ul>
+            )}
+            <button type="submit" className={styles.searchButton}>Search</button>
+          </form>
+        </div>
+        <div className={styles.separator}></div>
+      </div>
+
       <div className={styles.posts}>
         {posts.slice(0, 5).map(post => (
           <Post key={post._id} {...post} />
@@ -170,7 +203,7 @@ function Post({_id, title, summary, cover, createdAt, author, tags, className}) 
       </div>
       <div className={styles.texts}>
         <Link to={`/post/${_id}`}>
-          <h2 className={`${styles.carouselPostTitle}`}>{title}</h2> {/* Apply carouselPostTitle class */}
+          <h2 className={`${styles.carouselPostTitle}`}>{title}</h2>
         </Link>
         <p className={styles.info}>
           <span className={styles.author}>{author.username}</span>
@@ -186,5 +219,3 @@ function Post({_id, title, summary, cover, createdAt, author, tags, className}) 
     </div>
   );
 }
-
-

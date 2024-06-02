@@ -1,6 +1,7 @@
 import { Diamond, TrackChanges, Visibility } from "@mui/icons-material";
 import React, { useEffect } from "react";
 import Figures from "../../components/others/Figures";
+import Reviews from "../home/components/Reviews"
 
 const About = () => {
   useEffect(() => {
@@ -77,6 +78,9 @@ const About = () => {
       </div>
     </div>
       <Figures />
+      <div style={{ padding: "30px" }} />
+      <Reviews />
+      <div style={{ padding: "30px" }} />
     </>
   );
 };

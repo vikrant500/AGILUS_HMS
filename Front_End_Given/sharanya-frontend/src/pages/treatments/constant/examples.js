@@ -688,7 +688,7 @@ export const examples = {
       list: [],
     },
   },
-  homoepathy: {
+  homoeopathy: {
     faq_list: [
       {
         question:

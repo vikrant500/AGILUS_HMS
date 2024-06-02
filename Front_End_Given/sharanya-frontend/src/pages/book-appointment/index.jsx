@@ -101,7 +101,7 @@ const BookAppointment = () => {
 
   const popularDiseases = [
     "Circumcision",
-    "piles",
+    "Piles",
     "cataract",
     "Fissure",
     "Abortion",
@@ -111,12 +111,6 @@ const BookAppointment = () => {
   ];
 
   const allDiseases = [
-    "Circumcision",
-    "Piles",
-    "Cataract",
-    "Fissure",
-    "Abortion",
-    "Gynecomastia",
     "Pilonidal Sinus",
     "Rectal Prolapse",
     "Fissure",
@@ -211,7 +205,6 @@ const BookAppointment = () => {
     "Anxiety",
     "Depression",
     "Menstrual Problems",
-    "Arthritis",
     "Spondylosis",
     "Skin Disorders",
     "Children Disorders",
@@ -269,7 +262,7 @@ const BookAppointment = () => {
 
       <div className="w-full lg:w-1/2 flex justify-center">
         <form className="bg-white bg-opacity-90 p-8 rounded-lg shadow-2xl w-full max-w-2xl">
-          <h2 className="text-3xl font-bold text-center mb-4 text-blue-600">Book Your Free Consultation</h2>
+          <h2 className="text-3xl font-bold text-center mb-4 text-blue-600">Book Your Consultation</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div>
               <label htmlFor="first-name" className="block font-medium mb-1 text-gray-700">

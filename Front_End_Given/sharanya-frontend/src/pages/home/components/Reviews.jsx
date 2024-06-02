@@ -62,8 +62,8 @@ const Reviews = () => {
   };
 
   return (
-    <div className="bg-gradient-to-r from-[#CDE0C9] to-[#68B2A0] py-10 flex flex-col gap-5">
-      <h3 className="text-3xl font-bold text-center popup">Our Patient Love Us</h3>
+    <div className="bg-gradient-to-r from-grey to-grey py-10 flex flex-col gap-5">
+      <h2 class="faq__title text-primary leading-[120%] text-[30px] xl:text-[44px] font-semibold capitalize tracking-[0.44px] text-center mb-[50px]">Our Patients Love Us</h2>
       <p className="text-white-500 text-center">
         Based on 5981 Recommendations | Rated 5.0 Out of 5
       </p>
@@ -72,7 +72,7 @@ const Reviews = () => {
         <Slider {...settings}>
           {reviews.map((item, i) => (
             <div key={i} className="p-2">
-              <div className="bg-[#E0ECDE] hover:bg-[#2C6975] rounded-xl shadow-lg p-4 flex flex-col gap-2 transition-colors duration-300">
+              <div className="bg-white hover:bg-orange-200 rounded-xl shadow-lg p-4 flex flex-col gap-2 transition-colors duration-300">
                 <div className="flex gap-2">
                   <div className="w-12 h-12 bg-[#2c6975] rounded-full flex justify-center items-center text-white">
                     {item.name[0]}

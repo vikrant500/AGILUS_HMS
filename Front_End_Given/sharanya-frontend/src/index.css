@@ -21,3 +21,26 @@ code {
   margin: 1px;
 }
 
+.btn {
+  @apply rounded-full uppercase tracking-[1.02px] flex items-center justify-center transition-all;
+}
+
+.btn-sm {
+  @apply h-14 px-10;
+}
+
+.btn-lg {
+  @apply h-16 px-[50px];
+}
+
+.btn-accent {
+  @apply bg-orange-500 text-white hover:bg-orange-600;
+}
+
+.btn-white {
+  @apply bg-white text-secondary hover:bg-white/90;
+}
+
+.btn-outline {
+  @apply bg-transparent border-2 border-accent text-secondary hover:bg-accent hover:border-transparent hover:text-white;
+}

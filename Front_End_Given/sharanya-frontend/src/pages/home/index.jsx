@@ -109,29 +109,36 @@ const Home = () => {
   return (
     <div className="p-4 sm:p-6 lg:p-8 mt-20">
       <HeroSection />
-      <h2 className="text-3xl font-bold text-center my-8">Specialities</h2> {/* Specialities Section Heading */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1 sm:gap-4 lg:gap-6">
-        {specialities.map((speciality, index) => (
-          <div key={index} className="relative flex flex-col overflow-hidden rounded-lg shadow-lg group mx-auto custom-container">
-            <h2 className="absolute top-0 left-0 bg-black bg-opacity-70 text-white w-full text-center p-2 z-0">{speciality.title}</h2>
-            <img
-              src={speciality.image}
-              alt={speciality.title}
-              className="w-200px h-0px object-contain transition-transform duration-300 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-              <p className="text-white text-center p-2" dangerouslySetInnerHTML={{ __html: speciality.description }}></p>
+      <div style={{ padding: "70px" }} />
+      <h2 className="faq__title text-primary leading-[120%] text-[30px] xl:text-[44px] font-semibold capitalize tracking-[0.44px] text-center mb-[50px]">
+        Specialities
+      </h2> {/* Specialities Section Heading */}
+      <div className="max-w-screen-xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1 sm:gap-4 lg:gap-6 mx-auto">
+          {specialities.map((speciality, index) => (
+            <div key={index} className="relative flex flex-col overflow-hidden rounded-lg shadow-lg group mx-auto custom-container">
+              <div className="bg-orange-400 absolute bottom-0 left-0 text-white text-base tracking-[2.24px] font-medium uppercase py-[6px] px-[18px]">
+                {speciality.title}
+              </div>
+              <img
+                src={speciality.image}
+                alt={speciality.title}
+                className="w-200px h-200px object-contain transition-transform duration-300 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-orange-500 bg-opacity-50 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                <p className="text-white text-center p-2" dangerouslySetInnerHTML={{ __html: speciality.description }}></p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-      {/* Add padding here /}
-      <div style={{ padding: "15px" }} />
-      {/ Sharanya Care Numbers Section */}
+      <div style={{ padding: "70px" }} />
       <Figures />
+      <div style={{ padding: "30px" }} />
       <Reviews />
-      <WatchOurAds />
+      <div style={{ padding: "70px" }} />
       <WhyUs />
+      <div style={{ padding: "70px" }} />
       <FAQ faq_list={faq_list} />
     </div>
   );

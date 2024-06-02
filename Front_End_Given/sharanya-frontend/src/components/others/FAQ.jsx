@@ -27,7 +27,7 @@ const Accordion = styled((props) => (
 
 const AccordionSummary = styled((props) => (
   <MuiAccordionSummary
-    expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "0.9rem", color: "#6BB2A0" }} />}
+    expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "0.9rem", color: "#f97316" }} />}
     {...props}
   />
 ))(({ theme }) => ({
@@ -42,7 +42,7 @@ const AccordionSummary = styled((props) => (
   borderBottom: "1px solid rgba(0, 0, 0, .125)",
   transition: "background-color 0.3s ease",
   "&:hover": {
-    backgroundColor: "#CDEDC9",
+    backgroundColor: "#ffedd5",
   },
 }));
 
@@ -59,10 +59,8 @@ const FAQ = ({ faq_list }) => {
   };
 
   return (
-    <div className="bg-gradient-to-r from-[#2C6975] via-[#6BB2A0] to-[#CDEDC9] px-[6%] py-16">
-      <h3 className="font-bold text-3xl text-center text-[#EDECEDE] mb-8">
-        Frequently Asked Questions
-      </h3>
+    <div className="bg-gradient-to-r from-grey via-grey to-grey px-[6%] py-16">
+      <h2 class="faq__title text-primary leading-[120%] text-[30px] xl:text-[44px] font-semibold capitalize tracking-[0.44px] text-center mb-[50px]">We've got answers</h2>
       <div className="my-6">
         <Container>
           {faq_list.map((question, index) => (
@@ -72,7 +70,7 @@ const FAQ = ({ faq_list }) => {
               onChange={handleChange(`panel${index}`)}
             >
               <AccordionSummary>
-                <HelpOutlineIcon sx={{ color: "#2C6975", marginRight: "8px" }} />
+                <HelpOutlineIcon sx={{ color: "#f97316", marginRight: "8px" }} />
                 <Typography className="font-semibold text-lg text-[#2C6975]">
                   {question.question}
                 </Typography>

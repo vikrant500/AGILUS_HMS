@@ -109,6 +109,7 @@ export default function IndexPage() {
 
   return (
     <div>
+      <h1 className={styles.blogTitle}>MyBlog</h1>
       <div className={styles.headerContainer}>
         <div className={styles.leftContainer}>
           <div className={styles.categories}>

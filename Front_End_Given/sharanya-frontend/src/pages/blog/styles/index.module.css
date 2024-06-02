@@ -148,7 +148,7 @@ div.post div.tags span.tag {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 20px;
+  padding: 0px 20px;
   position: relative;
   margin-bottom: 10px; /* Adjusted margin to prevent overlap with posts */
 }
@@ -269,7 +269,7 @@ div.post div.tags span.tag {
   position: absolute;
   left: 0;
   right: 0;
-  top: 63px;
+  top: 40px;
   height: 1px;
   background: #ccc;
 }
@@ -285,4 +285,10 @@ div.post div.tags span.tag {
 }
 
 
+.blogTitle {
+  text-align: left;
+  margin: 20px;
+  font-size: 3rem; /* Make the font size bigger */
+  font-weight: bold; /* Make the font bold */
+}
 

@@ -5,7 +5,6 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styles from './styles/index.module.css';
-import { Style } from '@mui/icons-material';
 
 export default function IndexPage() {
   const [posts, setPosts] = useState([]);
@@ -96,7 +95,6 @@ export default function IndexPage() {
     }
     fetchPosts(1, tag); // Fetch posts with the specified tag
   };
-  
 
   const carouselSettings = {
     dots: true,
@@ -108,10 +106,11 @@ export default function IndexPage() {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       <h1 className={styles.blogTitle}>MyBlog</h1>
       <div className={styles.headerContainer}>
         <div className={styles.leftContainer}>
+          
           <div className={styles.categories}>
             <div className={`${styles.category} ${location.pathname === '/blog' ? styles.active : ''}`} onClick={reloadPage}>
               View All
@@ -127,6 +126,7 @@ export default function IndexPage() {
             </div>
           </div>
         </div>
+        
         <div className={styles.searchBarContainer}>
           <form onSubmit={handleSearch} className={styles.searchForm}>
             <input
@@ -152,17 +152,20 @@ export default function IndexPage() {
             <button type="submit" className={styles.searchButton}>Search</button>
           </form>
         </div>
-        <div className={styles.separator}></div>
+       
       </div>
 
       <div className={styles.posts}>
-        {posts.slice(0, 5).map(post => (
-          <Post key={post._id} {...post} />
+        {posts.slice(0, 3).map(post => (
+          <Post key={post._id} {...post} className={styles.fullWidthPost} />
+        ))}
+        {posts.slice(3).map(post => (
+          <Post key={post._id} {...post} className={styles.smallPost} />
         ))}
       </div>
       {posts.length > 5 && (
         <div className={`${styles.carousel} carousel`}>
-          <h2>Featured Posts</h2>
+          <h1>Featured Posts</h1>
           <Slider {...carouselSettings}>
             {posts.slice(5, 10).map(post => (
               <Post key={post._id} {...post} className={`${styles.carouselPost} carouselPost`} />
@@ -172,7 +175,7 @@ export default function IndexPage() {
       )}
       <div className={styles.posts}>
         {posts.slice(10, 15).map(post => (
-          <Post key={post._id} {...post} />
+          <Post key={post._id} {...post} className={styles.smallPost} />
         ))}
       </div>
       <div className={styles.pagination}>
@@ -193,7 +196,6 @@ export default function IndexPage() {
     </div>
   );
 }
-
 function Post({_id, title, summary, cover, createdAt, author, tags, className}) {
   return (
     <div className={`${styles.post} ${className}`}>

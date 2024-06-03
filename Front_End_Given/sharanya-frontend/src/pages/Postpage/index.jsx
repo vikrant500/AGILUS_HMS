@@ -1,4 +1,3 @@
-// src/pages/PostPage/PostPage.jsx
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { formatISO9075 } from "date-fns";
@@ -17,18 +16,20 @@ export default function PostPage() {
   if (!postInfo) return '';
 
   return (
-    <div className={styles.postPage}>
-      <h1>{postInfo.title}</h1>
-      <time>{formatISO9075(new Date(postInfo.createdAt))}</time>
-      <div className={styles.author}>by @{postInfo.author.username}</div>
-      <div className={styles.image}>
-        <img src={`http://localhost:4000/${postInfo.cover}`} alt="" />
-      </div>
-      <div className={styles.content} dangerouslySetInnerHTML={{ __html: postInfo.content }} />
-      <div className={styles.tags}>
-        {postInfo.tags.map(tag => (
-          <span key={tag} className={styles.tag}>{tag}</span>
-        ))}
+    <div className={styles.pageWrapper}>
+      <div className={styles.postPage}>
+        <h1>{postInfo.title}</h1>
+        <time>{formatISO9075(new Date(postInfo.createdAt))}</time>
+        <div className={styles.author}>by @{postInfo.author.username}</div>
+        <div className={styles.image}>
+          <img src={`http://localhost:4000/${postInfo.cover}`} alt="" />
+        </div>
+        <div className={styles.content} dangerouslySetInnerHTML={{ __html: postInfo.content }} />
+        <div className={styles.tags}>
+          {postInfo.tags.map(tag => (
+            <span key={tag} className={styles.tag}>{tag}</span>
+          ))}
+        </div>
       </div>
     </div>
   );

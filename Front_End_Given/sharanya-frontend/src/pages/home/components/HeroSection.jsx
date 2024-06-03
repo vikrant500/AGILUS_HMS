@@ -24,7 +24,7 @@ const HeroSection = () => {
       
       {/* description */}
       <p className="text-secondary text-[17px] leading-8 mb-[42px] md:max-w-xl">
-        BOOK FREE APPOINTMENTs With Our Expert Doctors Near You
+        BOOK APPOINTMENTs With Our Expert Doctors Near You
         <br />
         Get consultation for 50+ diseases across India
         <br />

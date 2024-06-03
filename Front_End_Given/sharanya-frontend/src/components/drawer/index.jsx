@@ -133,7 +133,7 @@ export default function ResponsiveDrawer() {
                     </NavLink>
                     <Link to={"/book-appointment"}>
                       <button className="bg-orange-500 border-2 border-orange-500 hover:border-white rounded-md px-4 py-2 hover:bg-orange-700 hover:text-white duration-200">
-                        BOOK FREE APPOINTMENT
+                        BOOK APPOINTMENT
                       </button>
                     </Link>
                   </div>

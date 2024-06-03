@@ -46,7 +46,7 @@ const Footer = () => {
         <div className="flex flex-col gap-2">
           <h4 className="text-xl font-bold">For Patients</h4>
           <Link to={"/book-appointment"} className="text-gray-200">
-            BOOK FREE APPOINTMENT
+            BOOK APPOINTMENT
           </Link>
         </div>
 

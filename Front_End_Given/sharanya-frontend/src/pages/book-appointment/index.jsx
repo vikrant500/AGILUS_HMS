@@ -269,7 +269,7 @@ const BookAppointment = () => {
 
       <div className="w-full lg:w-1/2 flex justify-center">
         <form className="bg-white bg-opacity-90 p-8 rounded-lg shadow-2xl w-full max-w-2xl">
-          <h2 className="text-3xl font-bold text-center mb-4 text-blue-600">Book Your Free Consultation</h2>
+          <h2 className="text-3xl font-bold text-center mb-4 text-blue-600">Book Your Consultation</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div>
               <label htmlFor="first-name" className="block font-medium mb-1 text-gray-700">
@@ -409,7 +409,7 @@ const BookAppointment = () => {
             className="w-full py-3 bg-blue-500 text-white
  font-bold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
           >
-            Book Your FREE Consultation
+            Book Your Consultation
           </button>
         </form>
       </div>

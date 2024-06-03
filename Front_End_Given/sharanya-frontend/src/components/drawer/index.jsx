@@ -84,24 +84,24 @@ export default function ResponsiveDrawer() {
   );
 
   return (
-    <div div className="sticky top-0 z-10">
+    <div className="sticky top-0 z-10">
       <div>
         <div>
           {["left"].map((anchor) => (
             <React.Fragment key={anchor}>
               {/* <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button> */}
-              <div className="p-4 bg-primary text-white ">
-                <div className="flex justify-between  items-center">
-                  <h2 className="text-2xl md:text-4xl font-bold duration-200 hover:scale-110 gradient_text">
+              <div className="p-4 bg-[#2C6975] text-white">
+                <div className="flex justify-between items-center">
+                  <h2 className="text-2xl md:text-4xl font-bold duration-200 hover:scale-110 gradient_text text-orange-500 bg-white p-4 rounded-full">
                     <Link to={"/"} className="">
                       Sharanya Care
                     </Link>
                   </h2>
-                  <div className=" gap-6 items-center hidden lg:flex">
+                  <div className="gap-6 items-center hidden lg:flex">
                     <NavLink
                       to={"/"}
                       className={({ isActive }) =>
-                        isActive ? "text-orange-500 font-bold" : "text-gray-200"
+                        isActive ? "text-orange-500 font-bold" : "text-white hover:text-orange-500"
                       }
                     >
                       HOME
@@ -109,7 +109,7 @@ export default function ResponsiveDrawer() {
                     <NavLink
                       to={"/doctors"}
                       className={({ isActive }) =>
-                        isActive ? "text-orange-500 font-bold" : "text-gray-200"
+                        isActive ? "text-orange-500 font-bold" : "text-white hover:text-orange-500"
                       }
                     >
                       DOCTORS
@@ -118,7 +118,7 @@ export default function ResponsiveDrawer() {
                     <NavLink
                       to={"/about"}
                       className={({ isActive }) =>
-                        isActive ? "text-orange-500 font-bold" : "text-gray-200"
+                        isActive ? "text-orange-500 font-bold" : "text-white hover:text-orange-500"
                       }
                     >
                       ABOUT
@@ -126,14 +126,14 @@ export default function ResponsiveDrawer() {
                     <NavLink
                       to={"/blog"}
                       className={({ isActive }) =>
-                        isActive ? "text-orange-500 font-bold" : "text-gray-200"
+                        isActive ? "text-orange-500 font-bold" : "text-white hover:text-orange-500"
                       }
                     >
                       BLOG
                     </NavLink>
                     <Link to={"/book-appointment"}>
-                      <button className="bg-orange-500 border-2 border-orange-500 hover:border-white rounded-md px-4 py-2 hover:bg-white hover:text-black duration-200">
-                        BOOK APPOINTMENT
+                      <button className="bg-orange-500 border-2 border-orange-500 hover:border-white rounded-md px-4 py-2 hover:bg-orange-700 hover:text-white duration-200">
+                        BOOK FREE APPOINTMENT
                       </button>
                     </Link>
                   </div>

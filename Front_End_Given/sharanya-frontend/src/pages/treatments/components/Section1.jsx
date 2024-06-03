@@ -23,7 +23,7 @@ const Section1 = ({ section_1_data }) => {
 
         <div className="flex flex-col gap-4">
           <p className="text-xl font-bold">
-            BOOK APPOINTMENTs With Our Expert Doctors Near You
+            BOOK FREE APPOINTMENTs With Our Expert Doctors Near You
           </p>
         </div>
       </div>

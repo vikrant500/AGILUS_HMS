@@ -1,0 +1,158 @@
+/* index.module.css */
+/* Adjust the styles for suggestions to ensure it appears below the search bar */
+.headerContainer {
+  position: relative; /* Set the container as relative for absolute positioning */
+}
+
+.headerContainer .suggestions {
+  position: absolute;
+  background: white;
+  border: 1px solid #ccc;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  z-index: 1; /* Ensure it appears above other content */
+  top: 100%; /* Position below the search bar */
+  left: 0; /* Align with the left edge of the search bar */
+  width: 100%; /* Take full width of the container */
+}
+
+.headerContainer .searchBar::placeholder {
+  color: rgb(71, 68, 68); /* Placeholder text color */
+}
+
+.headerContainer .suggestionItem {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.blogTitle {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.categories {
+  display: flex;
+  gap: 10px;
+}
+
+.category {
+  cursor: pointer;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.category.active {
+  background-color: #ccc;
+}
+
+.searchForm {
+  display: flex;
+  align-items: center;
+}
+
+
+.suggestions {
+  position: absolute;
+  background: white;
+  border: 1px solid #ccc;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.suggestionItem {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.searchButton {
+  background-color: blue;
+  padding: 5px 10px;
+}
+
+.posts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.fullWidthPost {
+  flex: 1 1 100%;
+}
+
+.smallPost {
+  flex: 1 1 calc(33.333% - 20px);
+}
+
+.post {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.image img {
+  width: 100%;
+  height: auto;
+}
+
+.texts {
+  padding: 10px;
+}
+
+.carousel {
+  margin: 20px 0;
+}
+
+.carouselPost {
+  width: 100%;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.pagination button {
+  padding: 5px 10px;
+}
+
+.pagination .selected {
+  background-color: #ccc;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tags {
+  margin-top: 10px;
+}
+
+.tag {
+  display: inline-block;
+  background-color: #eee;
+  padding: 2px 5px;
+  margin-right: 5px;
+  border-radius: 3px;
+}

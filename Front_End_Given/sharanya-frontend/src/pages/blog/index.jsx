@@ -74,7 +74,8 @@ export default function IndexPage() {
     fetchPosts(page, searchQuery);
     setCurrentPage(page);
   };
-    const renderPageButtons = () => {
+
+  const renderPageButtons = () => {
     const buttons = [];
     for (let i = 1; i <= totalPages; i++) {
       buttons.push(
@@ -122,10 +123,9 @@ export default function IndexPage() {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.blogTitle}>MyBlog</h1>
+      <h1 className={styles.blogTitle}>Blog</h1>
       <div className={styles.headerContainer}>
         <div className={styles.leftContainer}>
-          
           <div className={styles.categories}>
             <div className={`${styles.category} ${location.pathname === '/blog' ? styles.active : ''}`} onClick={reloadPage}>
               View All
@@ -169,46 +169,37 @@ export default function IndexPage() {
         </div>
        
       </div>
-
+  
       <div className={styles.mainContent}>
         <div className={styles.leftSidebar}>
-          {posts.slice(0, 3).map(post => (
+          {posts.slice(0, 6).map(post => (
             <Post key={post._id} {...post} className={styles.fullWidthPost} />
-          ))}
-          {posts.slice(3).map(post => (
-            <Post key={post._id} {...post} className={styles.smallPost} />
           ))}
         </div>
         <div className={styles.rightSidebar}>
-  <h1 className={styles.tagHeading}>Tags</h1>
-  <div className={styles.tagsContainer}>
-  {['experiment', 'test', 'xyz', 'cars', 'wallpaper', 'movie','game'].map((tag, index) => (
-    <div key={index} className={styles.tagItem} onClick={() => handleTagClick(tag)}>{tag}</div>
-  ))}
-  {tags.map((tag, index) => (
-    <div key={index} className={styles.tagItem} onClick={() => handleTagClick(tag)}>{tag}</div>
-  ))}
-</div>
-
-
+          <h1 className={styles.tagHeading}>Tag Cloud</h1>
+          <div className={styles.tagsContainer}>
+            {['experiment', 'test', 'xyz', 'cars', 'wallpaper', 'movie', 'game', 'influsencer', 'winnerwinnerchickendinner', 'PuneVisitWasLit', 'mongo', 'fuck everything', 'react', 'shit', 'fun', 'exciting', 'whatever tag we can put now', 'hello', 'hi', 'bye', 'action', 'pvp', 'gg'].map((tag, index) => (
+              <div key={index} className={styles.tagItem} onClick={() => handleTagClick(tag)}>{tag}</div>
+            ))}
+            {tags.map((tag, index) => (
+              <div key={index} className={styles.tagItem} onClick={() => handleTagClick(tag)}>{tag}</div>
+            ))}
+          </div>
         </div>
       </div>
-
-      {posts.length > 5 && (
+  
+      {posts.length > 6 && (
         <div className={`${styles.carousel} carousel`}>
           <h1>Featured Posts</h1>
           <Slider {...carouselSettings}>
-            {posts.slice(5, 10).map(post => (
+            {posts.slice(6).map(post => (
               <Post key={post._id} {...post} className={`${styles.carouselPost} carouselPost`} />
             ))}
           </Slider>
         </div>
       )}
-      <div className={styles.posts}>
-        {posts.slice(10, 15).map(post => (
-          <Post key={post._id} {...post} className={styles.smallPost} />
-        ))}
-      </div>
+  
       <div className={styles.pagination}>
         <button
           disabled={currentPage === 1}

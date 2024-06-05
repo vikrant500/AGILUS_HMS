@@ -3,6 +3,19 @@ import { Link } from "react-router-dom";
 
 const Specialities = ({ specialities }) => {
   const [hoveredIndex, setHoveredIndex] = useState(-1);
+  const [showInfo, setShowInfo] = useState(false);
+
+  const handleMouseEnter = (index) => {
+    setHoveredIndex(index);
+    setTimeout(() => {
+      setShowInfo(true);
+    }, 350); // Delay time in milliseconds
+  };
+
+  const handleMouseLeave = () => {
+    setShowInfo(false);
+    setHoveredIndex(-1);
+  };
 
   return (
     <div className="bg-white text-black py-10 flex flex-col gap-4">
@@ -11,15 +24,15 @@ const Specialities = ({ specialities }) => {
         {specialities.map((item, i) => (
           <div
             key={i}
-            className="bg-white rounded-md p-2 flex gap-2 w-full shadow-xl transition-transform duration-300 ease-in-out transform hover:scale-105 hover:bg-orange-200 hover:shadow-2xl cursor-pointer relative"
-            style={{ transition: "all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55)" }}
-            onMouseEnter={() => setHoveredIndex(i)}
-            onMouseLeave={() => setHoveredIndex(-1)}
+            className="bg-white rounded-md p-2 flex gap-2 w-full shadow-xl transition-transform duration-4000 ease-in-out transform hover:scale-105 hover:bg-orange-200 hover:shadow-1xl cursor-pointer relative"
+            style={{ transition: "all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55)" }}
+            onMouseEnter={() => handleMouseEnter(i)}
+            onMouseLeave={handleMouseLeave}
           >
-            <Link to={item.link} className={hoveredIndex === i ? "opacity-0 absolute inset-0 flex justify-center items-center" : "opacity-100 flex justify-center items-center"}>
+            <Link to={item.link} className="w-full flex justify-center items-center">
               <h4 className="text-xl font-bold text-orange-500">{item.title}</h4>
             </Link>
-            <div className={hoveredIndex !== i ? "opacity-0 absolute inset-0" : "opacity-100"}>
+            <div className={showInfo && hoveredIndex === i ? "opacity-100" : "opacity-0 absolute inset-0"}>
               {item?.image && (
                 <div className="flex-shrink-0 w-24 h-24 overflow-hidden rounded-md bg-red-200">
                   <img
@@ -30,8 +43,8 @@ const Specialities = ({ specialities }) => {
                 </div>
               )}
               <div className="flex flex-col gap-2">
-                <h4 className="text-xl font-bold text-orange-500">{item.title}</h4>
                 <p className="text-sm">{item.description}</p>
+                <Link to={item.link} className="text-green-500 underline">Click here to know more</Link>
               </div>
             </div>
           </div>
@@ -41,4 +54,4 @@ const Specialities = ({ specialities }) => {
   );
 };
 
-export default Specialities;
+export default Specialities;

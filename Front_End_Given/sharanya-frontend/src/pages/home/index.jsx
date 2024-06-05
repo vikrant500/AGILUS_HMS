@@ -46,64 +46,55 @@ const Home = () => {
       image: assets.specialities.dermatology,
       link: "/treatment/dermatology",
       description:
-        "Dermatology focuses on diagnosing and treating skin, hair, and nail disorders.<br> <a href='/treatment/dermatology'>Click here to know more.</a>",
-    },
+      "Dermatology focuses on diagnosing and treating skin, hair, and nail disorders.<br> <a href='/treatment/dermatology' class='text-green-500'>Click here to know more.</a>",    },
     {
       title: "ENT",
       image: assets.specialities.ent,
       link: "/treatment/ent",
       description:
-        "ENT specialists treat ear, nose, and throat disorders.<br> <a href='/treatment/ent'>Click here to know more.</a>",
-    },
+      "ENT specialists treat ear, nose, and throat disorders.<br> <a href='/treatment/ent' class='text-green-500'>Click here to know more.</a>",    },
     {
       title: "Medicine",
       link: "/treatment/medicine",
       image: assets.specialities.medicine,
       description:
-        "Internists diagnose and treat adult illnesses, offering comprehensive care.<br> <a href='/treatment/medicine'>Click here to know more.</a>",
-    },
+      "Internists diagnose and treat adult illnesses, offering comprehensive care.<br> <a href='/treatment/medicine' class='text-green-500'>Click here to know more.</a>",    },
     {
       title: "Respiratory",
       link: "/treatment/respiratory",
       image: assets.specialities.respiratory,
       description:
-        "Specialists treat respiratory conditions like asthma, COPD, and pneumonia.<br> <a href='/treatment/respiratory'>Click here to know more.</a>",
-    },
+      "Specialists treat respiratory conditions like asthma, COPD, and pneumonia.<br> <a href='/treatment/respiratory' class='text-green-500'>Click here to know more.</a>",    },
     {
       title: "Orthopaedic",
       link: "/treatment/orthopaedic",
       image: assets.specialities.orthopedics,
       description:
-        "Orthopaedic specialists treat musculoskeletal issues like fractures and arthritis.<br> <a href='/treatment/orthopaedic'>Click here to know more.</a>",
-    },
+      "Orthopaedic specialists treat musculoskeletal issues like fractures and arthritis.<br> <a href='/treatment/orthopaedic' class='text-green-500'>Click here to know more.</a>",    },
     {
       title: "Physiotherapy",
       link: "/treatment/physiotherapy",
       image: assets.specialities.physiotherapy,
       description:
-        "Physical therapists use exercises and techniques to improve physical function.<br> <a href='/treatment/physiotherapy'>Click here to know more.</a>",
-    },
+      "Physical therapists use exercises and techniques to improve physical function.<br> <a href='/treatment/physiotherapy' class='text-green-500'>Click here to know more.</a>",    },
     {
       title: "Dental",
       link: "/treatment/dental",
       image: assets.specialities.dentistry,
       description:
-        "Dentists diagnose and treat oral health issues, providing cleanings, fillings, and surgeries.<br> <a href='/treatment/dental'>Click here to know more.</a>",
-    },
+      "Dentists diagnose and treat oral health issues, providing cleanings, fillings, and surgeries.<br> <a href='/treatment/dental' class='text-green-500'>Click here to know more.</a>",    },
     {
       title: "Homoeopathy",
       link: "/treatment/homoeopathy",
       image: assets.specialities.homeopathy,
       description:
-        "Homoeopathy uses diluted substances to stimulate the body's healing processes.<br> <a href='/treatment/homoeopathy'>Click here to know more.</a>",
-    },
+      "Homoeopathy uses diluted substances to stimulate the body's healing processes.<br> <a href= '/treatment/homoeopathy' class='text-green-500'>Click here to know more.</a>",    },
     {
       title: "Diet",
       link: "/treatment/diet",
       image: assets.specialities.diet,
       description:
-        "Dietitians create personalized nutrition plans to meet health goals.<br> <a href='/treatment/diet'>Click here to know more.</a>",
-    },
+      "Dietitians create personalized nutrition plans to meet health goals.<br> <a href='/treatment/diet' class='text-green-500'>Click here to know more.</a>",    },
   ];
 
   return (
@@ -144,4 +135,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Home;

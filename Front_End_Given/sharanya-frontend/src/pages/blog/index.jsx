@@ -16,6 +16,7 @@ export default function IndexPage() {
   const location = useLocation();
 
   useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to top when the component mounts
     const params = new URLSearchParams(location.search);
     const page = parseInt(params.get('page')) || 1;
     const search = params.get('q') || '';

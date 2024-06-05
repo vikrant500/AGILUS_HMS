@@ -74,7 +74,7 @@ const About = () => {
       <div className="py-10 px-4 md:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {data.map((item, i) => (
-            <div key={i} className="group border-[1px] border-gray-200 px-6 py-10 rounded-lg flex flex-col gap-6 transition-transform transform hover:scale-105 hover:shadow-lg hover:bg-orange-300 transition-all duration-350 ease-in-out">
+            <div key={i} className="group border-[1px] border-gray-200 px-6 py-10 rounded-lg flex flex-col gap-6 transition-transform transform hover:scale-105 hover:shadow-lg hover:bg-orange-300 transition-all duration-500 ease-in-out">
               <div className="h-20 w-20 rounded-full bg-gradient-to-r from-orange-400 to-orange-500 flex items-center justify-center mx-auto shadow-md">
                 {item.icon}
               </div>

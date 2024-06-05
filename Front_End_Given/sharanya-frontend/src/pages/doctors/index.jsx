@@ -260,19 +260,20 @@ const DoctorCard = ({ doctor }) => {
             <ul className="list-disc pl-4">
               {doctor.conferences.map((item, index) => (
                 <li key={index}>{item}</li>
-              )
-              )
-              }
+              ))}
             </ul>
           </>
-        )
-        }
+        )}
       </div>
     </div>
   );
 };
 
 const App = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#FFFFFF] flex flex-col items-center justify-center p-4">
       <h1 className="text-3xl font-bold mb-6 text-[#2C6975]">Meet Our Doctors</h1>

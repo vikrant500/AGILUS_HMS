@@ -180,7 +180,7 @@ app.get('/suggestions', async (req, res) => {
 app.get('/post/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const post = await Post.findById(id);
+    const post = await Post.findById(id).populate('author', ['username']);
     if (!post) {
       return res.status(404).json({ message: 'Post not found' });
     }

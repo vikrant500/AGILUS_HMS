@@ -1,48 +1,26 @@
-/* index.module.css */
-/* Adjust the styles for suggestions to ensure it appears below the search bar */
-.headerContainer {
-  position: relative; /* Set the container as relative for absolute positioning */
-}
-
-.headerContainer .suggestions {
-  position: absolute;
-  background: white;
-  border: 1px solid #ccc;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  z-index: 1; /* Ensure it appears above other content */
-  top: 100%; /* Position below the search bar */
-  left: 0; /* Align with the left edge of the search bar */
-  width: 100%; /* Take full width of the container */
-}
-
-.headerContainer .searchBar::placeholder {
-  color: rgb(71, 68, 68); /* Placeholder text color */
-}
-
-.headerContainer .suggestionItem {
-  padding: 10px;
-  cursor: pointer;
-}
+/* styles/index.module.css */
 
 .container {
-  width: 90%;
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 20px;
 }
 
-
 .blogTitle {
-  text-align: center;
+  font-size: 2.5rem;
   margin-bottom: 20px;
 }
 
 .headerContainer {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  width: 100%;
   margin-bottom: 20px;
+}
+
+.leftContainer, .searchBarContainer {
+  flex: 1;
 }
 
 .categories {
@@ -51,29 +29,49 @@
 }
 
 .category {
+  padding: 10px 20px;
   cursor: pointer;
-  padding: 5px 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
 
-.category.active {
-  background-color: #ccc;
+.category.active, .category:hover {
+  background-color: #e0e0e0;
 }
 
 .searchForm {
   display: flex;
-  align-items: center;
+  position: relative;
 }
 
+.searchBar {
+  flex: 4;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px 0 0 4px;
+}
+
+.searchButton {
+  flex: 1;
+  padding: 5px 10px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  border-radius: 0 4px 4px 0;
+}
 
 .suggestions {
   position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
   background: white;
-  border: 1px solid #ccc;
-  list-style: none;
-  padding: 0;
-  margin: 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1;
 }
 
 .suggestionItem {
@@ -81,176 +79,165 @@
   cursor: pointer;
 }
 
-.searchButton {
-  background-color: blue;
-  padding: 5px 10px;
+.suggestionItem:hover {
+  background-color: #f8f9fa;
 }
 
-.posts {
+.mainContent {
   display: flex;
-  flex-wrap: wrap;
+  width: 100%;
+}
+
+.leftSidebar {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
   gap: 20px;
 }
 
-.fullWidthPost {
-  flex: 1 1 100%;
+.rightSidebar {
+  flex: 1;
+  padding: 20px;
+  margin-left: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
 }
 
-.smallPost {
-  flex: 1 1 calc(33.333% - 20px);
+.rightSidebar h2 {
+  margin-bottom: 10px;
+}
+
+.rightSidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.rightSidebar ul li {
+  margin-bottom: 8px;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.rightSidebar ul li:hover {
+  background-color: #e0e0e0;
 }
 
 .post {
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  overflow: hidden;
   display: flex;
-  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.image {
+  max-width: 33%;
+  flex: 1;
 }
 
 .image img {
   width: 100%;
-  height: auto;
+  border-radius: 4px;
 }
 
 .texts {
-  padding: 10px;
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.carousel {
-  margin: 20px 0;
+.texts h2 {
+  margin: 0;
+  font-size: 1.5rem;
 }
 
-.carouselPost {
-  width: 100%;
+.texts .info {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.texts .summary {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.texts .tags {
+  display: flex;
+  gap: 5px;
+}
+
+.texts .tag {
+  background-color: #007bff;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.8rem;
 }
 
 .pagination {
   display: flex;
-  justify-content: center;
-  align-items: center;
   gap: 10px;
   margin-top: 20px;
 }
 
 .pagination button {
-  padding: 5px 10px;
+  padding: 10px 20px;
+  border: 1px solid #ddd;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.pagination button.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 
 .pagination .selected {
-  background-color: #ccc;
+  background-color: #007bff;
+  color: white;
 }
 
-.info {
-  display: flex;
-  justify-content: space-between;
+.carousel {
+  width: 100%;
+  margin-top: 40px;
 }
 
-.tags {
-  margin-top: 20px;
+.carouselPost {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin: 0 10px;
+}
+
+.carouselPostTitle {
+  font-size: 1.2rem;
+  margin: 0;
+}
+.tagHeading {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.tagsContainer {
   display: flex;
   flex-wrap: wrap;
-}
-
-.tagContainer {
-  border-bottom: 1px solid #ccc; /* Add a line under tags */
-}
-/* Adjust the hover effect for tags inside the tag component */
-.tagContainer .tagItem:hover {
-  background-color: orange; /* Change background color on hover */
-}
-
-
-.tag {
-  display: inline-block; /* Adjust size based on content */
-  margin-right: 8px; /* Add spacing between tags */
-  margin-bottom: 8px; /* Add spacing between rows */
-  padding: 8px 8px 4px 8px; /* Add padding to the tags (top, right, bottom, left) */
-  border-radius: 4px; /* Add border radius */
-}
-
-.tag:hover {
-  background-color: orange; /* Change background color on hover */
-}
-
-.tag a {
-  text-decoration: none; /* Remove underline from tag links */
-  color: inherit; /* Inherit text color */
-}
-
-
-.sidebar {
-  flex: 1;
-  padding: 60px 20px;
-  background-color: transparent;
-  border-radius: 10px;
-  width: calc(25% - 5px); /* Adjust width of sidebar */
-  width: 430px; /* Set the width of the sidebar */
-  height: 100%; /* Set the height of the sidebar */
-  padding: 47px; /* Add padding to the sidebar */
-  background-color: transparent; /* Make the sidebar transparent */
-  /* Add any other styles you want to apply to the sidebar */
-}
-
-.tagList {
-  list-style: none;
-  padding: 0;
-}
-
-
-
-
-.tagItem:hover {
-  background-color: #ced4da;
-}
-.mainContent {
-  display: flex;
-  justify-content: space-between; /* Adjust spacing between main content and sidebar */
-  max-width: 1000px; /* Adjust the maximum width of the content */
-  margin-top: 20px; /* Add margin-top for space between header and content */
-}
-
-.posts {
-  width: calc(90% ); /* Adjust width of posts area */
-}
-
-
-.content {
-  max-width: 800px;
-  width: 100%;
-}
-
-
-
-.tagList {
-  list-style: none;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Adjust for 2 tags per line */
-  gap: 10px; /* Adjust the gap between tags */
+  gap: 10px;
 }
 
 .tagItem {
-  margin: 5px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-  display: inline-block; /* Ensure the box wraps around the text */
-  padding: 5px 10px; /* Adjust padding as needed */
+  padding: 5px 10px;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .tagItem:hover {
-  background-color: orange;
+  background-color: #007bff;
+  color: white;
 }
-.blogTitle {
-  text-align: center;
-  margin-bottom: 30px; /* Increase margin for better spacing */
-  font-size: 3rem; /* Increase font size for a bigger heading */
-  color: #333; /* Change font color */
-  
-}
-.sidebarDivider {
-  width: 100%;
-  border-top: 1px solid #ccc; /* Style and color of the line */
-  margin: 10px 0; /* Adjust margin as needed */
-}
+
+

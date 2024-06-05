@@ -1,47 +1,29 @@
-/* index.module.css */
-/* Adjust the styles for suggestions to ensure it appears below the search bar */
-.headerContainer {
-  position: relative; /* Set the container as relative for absolute positioning */
-}
-
-.headerContainer .suggestions {
-  position: absolute;
-  background: white;
-  border: 1px solid #ccc;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  z-index: 1; /* Ensure it appears above other content */
-  top: 100%; /* Position below the search bar */
-  left: 0; /* Align with the left edge of the search bar */
-  width: 100%; /* Take full width of the container */
-}
-
-.headerContainer .searchBar::placeholder {
-  color: rgb(71, 68, 68); /* Placeholder text color */
-}
-
-.headerContainer .suggestionItem {
-  padding: 10px;
-  cursor: pointer;
-}
+/* styles/index.module.css */
 
 .container {
-  width: 90%;
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 20px;
 }
 
 .blogTitle {
-  text-align: center;
+  font-weight: bolder;
+  color: #ff7f50;
+  font-size: 2.5rem;
   margin-bottom: 20px;
 }
 
 .headerContainer {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  width: 100%;
   margin-bottom: 20px;
+}
+
+.leftContainer,
+.searchBarContainer {
+  flex: 1;
 }
 
 .categories {
@@ -50,149 +32,56 @@
 }
 
 .category {
+  padding: 10px 20px;
   cursor: pointer;
-  padding: 5px 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: 0px solid #ddd;
+  border-bottom: 1px solid black;
+  transition: all .2s;
 }
 
-.category.active {
-  background-color: #ccc;
+.category.active,
+.category:hover {
+  background-color: #e0e0e0;
 }
 
 .searchForm {
   display: flex;
-  align-items: center;
+  position: relative;
 }
 
-
-.suggestions {
-  position: absolute;
-  background: white;
-  border: 1px solid #ccc;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.suggestionItem {
+.searchBar {
+  flex: 4;
   padding: 10px;
-  cursor: pointer;
-}
-
-.searchButton {
-  background-color: blue;
-  padding: 5px 10px;
-}
-
-.posts {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.fullWidthPost {
-  flex: 1 1 100%;
-}
-
-.smallPost {
-  flex: 1 1 calc(33.333% - 20px);
-}
-
-.post {
   border: 1px solid #ddd;
-  border-radius: 5px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
+  border-radius: 4px 0 0 4px;
 }
 
-.image img {
-  width: 100%;
-  height: auto;
-}
-
-.texts {
-  padding: 10px;
-}
-
-.carousel {
-  margin: 20px 0;
-}
-
-.carouselPost {
-  width: 100%;
-}
-
-.pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.pagination button {
-  padding: 5px 10px;
-}
-
-.pagination .selected {
-  background-color: #ccc;
-}
-
-.info {
-  display: flex;
-  justify-content: space-between;
-}
-
-.tags {
-  margin-top: 10px;
-}
-
-.tag {
-  display: inline-block;
-  background-color: #eee;
-  padding: 2px 5px;
-  margin-right: 5px;
-  border-radius: 3px;
-}
-.title {
-  font-size: 1.2rem; /* Increase the font size */
-  font-weight: bold; /* Make the font weight bold */
-  color: #FF7F50; /* Orange 500 color */
-}
-.tag {
-  display: inline-block;
-  background-color: #2F575D; /* Change background color to #2F575D */
-  color: #fff; /* White text color */
-  padding: 2px 5px;
-  margin-right: 5px;
-  border-radius: 3px;
-}
 .searchButton {
-  background-color: #2F575D; /* Set the background color to #2F575D */
+  flex: 1;
   padding: 5px 10px;
-  color: #fff; /* Set the text color to white */
   border: none;
-  border-radius: 5px;
+  background-color: #2c6975;
+  color: white;
   cursor: pointer;
+  border-radius: 0 4px 4px 0;
 }
 
 .searchButton:hover {
-  background-color: #808080; /* Change background color to grey (#808080) on hover */
+  background-color: #ff7f50; /* orange-500 */
+  transition: all .3s;
 }
 
 .suggestions {
   position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
   background: white;
-  border: 1px solid #ccc;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  z-index: 1; /* Ensure it appears above other content */
-  top: calc(100% + 10px); /* Position below the search bar */
-  left: 0; /* Align with the left edge of the search bar */
-  width: 100%; /* Take full width of the container */
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1;
 }
 
 .suggestionItem {
@@ -201,6 +90,177 @@
 }
 
 .suggestionItem:hover {
-  background-color: #2C6975; /* Change background color to orange (#FFA500) on hover */
-  color: #fff; /* Set text color to white on hover */
+  background-color: #f8f9fa;
+}
+
+.mainContent {
+  display: flex;
+  width: 100%;
+}
+
+.leftSidebar {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+  flex: 2;
+}
+
+.rightSidebar {
+  flex: 1;
+  padding: 0px 50px;
+  margin-left: 20px;
+  background-color: transparent;
+  border-radius: 8px;
+}
+
+.rightSidebar h2 {
+  margin-bottom: 10px;
+}
+
+.rightSidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.rightSidebar ul li {
+  margin-bottom: 8px;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.rightSidebar ul li:hover {
+  background-color: #e0ecde;
+}
+
+.post {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.image {
+  width: 100%;
+}
+
+.image img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.texts {
+  flex: 1;
+  padding: 20px;
+}
+
+.texts h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #ff7f50; /* orange-500 */
+  font-weight: bold;
+}
+
+.texts .info {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.texts .summary {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.texts .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.texts .tag {
+  background-color: #2c6975;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.pagination {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.pagination button {
+  padding: 10px 20px;
+  border: 1px solid #ddd;
+  background-color: #ff7f50; /* orange-500 */
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.pagination button.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.pagination .selected {
+  background-color: gray;
+  color: white;
+}
+
+.carousel {
+  width: 100%;
+  margin-top: 40px;
+}
+
+.carouselPost {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin: 0 10px;
+}
+
+.carouselPostTitle {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.postTitle {
+  color: #ff7f50; /* orange-500 */
+  font-weight: bold;
+}
+
+.tagHeading {
+  padding: 20PX 0PX;
+  font-size: 24px;
+  font-weight: bolder;
+  border-bottom: 2px solid rgb(207, 207, 207);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.tagsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  color: #aaa;
+}
+
+.tagItem {
+  font-size: 16px;
+  padding: 10px 10px;
+  border: 1px solid #cecece;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all .2s;
+}
+
+.tagItem:hover {
+  background-color: #ff7f50;
+  color: grey;
 }

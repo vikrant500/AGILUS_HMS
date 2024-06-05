@@ -1,24 +1,21 @@
-/* PostPage.module.css */
-
 .pageWrapper {
-  background-color: #333; /* Dark background color for the entire page */
+  background-color: #28363D;
   padding: 0px;
-  width: 100%; /* Make the content area full width */
-  min-height: 100vh; /* Make sure the content area takes up the full height of the viewport */
+  width: 100%;
+  min-height: 100vh;
   display: flex;
-  justify-content: center; /* Center the content horizontally */
-  align-items: center; /* Center the content vertically */
+  justify-content: center;
+  align-items: center;
 }
 
 .postPage {
-  color: #222; /* Text color for the content area */
-  background-color: #fff; /* White background color for the content area */
-  border-radius: 0px; /* Add rounded corners */
+  color: #222;
+  background-color: #fff;
+  border-radius: 0px;
   padding: 20px;
-  max-width: 1400px; /* Control the width of the content area */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for better appearance */
+  max-width: 1200px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
 
 .postPage img {
   max-width: 100%;
@@ -26,9 +23,9 @@
 
 .postPage .image {
   display: flex;
-  justify-content: center;  /* Center the image container */
+  justify-content: center;
   overflow: hidden;
-  width: 60%; /* Adjust the width as needed */
+  width: 60%;
   margin: 0 auto;
 }
 
@@ -44,9 +41,12 @@
   text-decoration: underline;
 }
 
-.postPage h1 {
+.postPage .title {
   text-align: center;
   margin: 10px 0 5px;
+  font-size: 3rem;
+  color: #FF7F50;
+  font-weight: bold;
 }
 
 .postPage time {
@@ -59,13 +59,33 @@
 
 .postPage .author {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px; /* Adjusted margin to separate from title */
   font-size: .7rem;
   font-weight: bold;
+  color: #000;
+}
+
+.postPage .tags {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 10px auto 20px;
+  width: 70%;
+}
+
+.postPage .tag {
+  display: inline-block;
+  background-color: #2F575D; /* Changed tag background color */
+  padding: 5px 10px;
+  margin-right: 5px;
+  border-radius: 5px;
+  font-size: 12px;
+  color: white; /* Changed tag text color */
 }
 
 .postPage .content {
-  width: 70%; /* Adjust the width as needed to be slightly more than the image */
+  width: 70%;
   margin: 0 auto;
   line-height: 1.7rem;
 }
@@ -94,21 +114,6 @@
   text-decoration: none;
 }
 
-.postPage .tags {
-  margin-top: 10px;
-}
-
-.postPage .tag {
-  display: inline-block;
-  background-color: #f1f1f1;
-  padding: 5px 10px;
-  margin-right: 5px;
-  border-radius: 5px;
-  font-size: 12px;
-  color: #333;
-}
-
-/* General Styles */
 * {
   box-sizing: border-box;
 }
@@ -118,7 +123,7 @@ a {
 }
 
 body {
-  background-color: #ffffff; /* Background color for the entire page */
+  background-color: #ffffff;
   color: #222;
 }
 
@@ -188,7 +193,7 @@ div.post p.info {
 }
 
 div.post p.info a.author {
-  color: #333;
+  color: black;
 }
 
 div.post p.summary {
@@ -294,23 +299,6 @@ a svg {
   height: 20px;
 }
 
-.tags {
-  margin-top: 10px;
-}
-
-.tag {
-  display: inline-block;
-  background-color: #f1f1f1;
-  padding: 5px 10px;
-  margin-right: 5px;
-  border-radius: 5px;
-  font-size: 12px;
-  color: #333;
-}
-
-/* app.css */
-
-/* Add styles for pagination */
 .pagination {
   margin-top: 20px;
   display: flex;
@@ -322,17 +310,17 @@ a svg {
   margin: 0 2px;
   border: none;
   cursor: pointer;
-  background-color: #6bbf7c; /* Green color */
-  color: #fff; /* White text */
+  background-color: #6bbf7c;
+  color: #fff;
   border-radius: 5px;
 }
 
 .pagination button:hover {
-  border: 1px solid #6bbf7c; /* Green border on hover */
+  border: 1px solid #6bbf7c;
 }
 
 .pagination button.disabled {
-  background-color: #ccc; /* Grey color for disabled buttons */
+  background-color: #ccc;
   cursor: not-allowed;
 }
 
@@ -341,21 +329,20 @@ a svg {
 }
 
 .pagination button.selected {
-  background-color: #fff; /* White background for selected page */
-  color: #6bbf7c; /* Green text for selected page */
+  background-color: #fff;
+  color: #6bbf7c;
 }
 
 .pagination button.selected:hover {
-  border: 1px solid #6bbf7c; /* Green border for selected page on hover */
+  border: 1px solid #6bbf7c;
 }
 
-/* Add styles for search bar dropdown */
 .search-form {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
-  position: relative; /* Added for suggestion dropdown positioning */
+  position: relative;
 }
 
 .search-bar {
@@ -374,9 +361,9 @@ a svg {
   border: 1px solid #ccc;
   border-radius: 0 0 20px 20px;
   position: absolute;
-  top: 40px; /* Positioning below the search bar */
+  top: 40px;
   z-index: 1;
-  width: 50%; /* Match the search bar width */
+  width: 50%;
 }
 
 .suggestion-item {

@@ -180,19 +180,21 @@ function Post({ _id, title, summary, cover, createdAt, author, tags, className }
         </Link>
       </div>
       <div className={styles.texts}>
-        <Link to={`/post/${_id}`}>
-          <h2 className={styles.title}>{title}</h2>
+      <Link to={`/post/${_id}`}>
+         <h2 className={`${styles.title} ${styles.postTitle}`}>{title}</h2>
         </Link>
+
         <p className={styles.info}>
           <span className={styles.author}>{author.username}</span>
           <time>{formatISO9075(new Date(createdAt))}</time>
         </p>
         <p className={styles.summary}>{summary}</p>
         <div className={styles.tags}>
-          {tags && tags.map((tag, index) => (
-            <span key={index} className={styles.tag}>{tag}</span>
-          ))}
+  {tags && tags.map((tag, index) => (
+    <span key={index} className={styles.tag}>{tag}</span>
+       ))}
         </div>
+
       </div>
     </div>
   );

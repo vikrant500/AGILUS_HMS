@@ -156,3 +156,51 @@
   margin-right: 5px;
   border-radius: 3px;
 }
+.title {
+  font-size: 1.2rem; /* Increase the font size */
+  font-weight: bold; /* Make the font weight bold */
+  color: #FF7F50; /* Orange 500 color */
+}
+.tag {
+  display: inline-block;
+  background-color: #2F575D; /* Change background color to #2F575D */
+  color: #fff; /* White text color */
+  padding: 2px 5px;
+  margin-right: 5px;
+  border-radius: 3px;
+}
+.searchButton {
+  background-color: #2F575D; /* Set the background color to #2F575D */
+  padding: 5px 10px;
+  color: #fff; /* Set the text color to white */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.searchButton:hover {
+  background-color: #808080; /* Change background color to grey (#808080) on hover */
+}
+
+.suggestions {
+  position: absolute;
+  background: white;
+  border: 1px solid #ccc;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  z-index: 1; /* Ensure it appears above other content */
+  top: calc(100% + 10px); /* Position below the search bar */
+  left: 0; /* Align with the left edge of the search bar */
+  width: 100%; /* Take full width of the container */
+}
+
+.suggestionItem {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.suggestionItem:hover {
+  background-color: #2C6975; /* Change background color to orange (#FFA500) on hover */
+  color: #fff; /* Set text color to white on hover */
+}

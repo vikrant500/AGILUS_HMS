@@ -161,6 +161,8 @@ export default function IndexPage() {
                     className={styles.suggestionItem}
                   >
                     <strong>{suggestion.title}</strong> by {suggestion.author.username}
+                    <br />
+                    Tags: {suggestion.tags.join(', ')}
                   </li>
                 ))}
               </ul>
@@ -234,6 +236,7 @@ function Post({_id, title, summary, cover, createdAt, author, tags, className}) 
         </Link>
         <p className={styles.info}>
           <span className={styles.author}>{author.username}</span>
+          <br></br>
           <time>{formatISO9075(new Date(createdAt))}</time>
         </p>
         <p className={styles.summary}>{summary}</p>

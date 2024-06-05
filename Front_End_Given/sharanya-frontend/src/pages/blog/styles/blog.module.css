@@ -32,6 +32,7 @@
   padding: 20px;
 }
 
+
 .blogTitle {
   text-align: center;
   margin-bottom: 20px;
@@ -146,61 +147,110 @@
 }
 
 .tags {
-  margin-top: 10px;
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
 }
+
+.tagContainer {
+  border-bottom: 1px solid #ccc; /* Add a line under tags */
+}
+/* Adjust the hover effect for tags inside the tag component */
+.tagContainer .tagItem:hover {
+  background-color: orange; /* Change background color on hover */
+}
+
 
 .tag {
-  display: inline-block;
-  background-color: #eee;
-  padding: 2px 5px;
-  margin-right: 5px;
-  border-radius: 3px;
-}
-.title {
-  font-size: 1.2rem; /* Increase the font size */
-  font-weight: bold; /* Make the font weight bold */
-  color: #FF7F50; /* Orange 500 color */
-}
-.tag {
-  display: inline-block;
-  background-color: #2F575D; /* Change background color to #2F575D */
-  color: #fff; /* White text color */
-  padding: 2px 5px;
-  margin-right: 5px;
-  border-radius: 3px;
-}
-.searchButton {
-  background-color: #2F575D; /* Set the background color to #2F575D */
-  padding: 5px 10px;
-  color: #fff; /* Set the text color to white */
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  display: inline-block; /* Adjust size based on content */
+  margin-right: 8px; /* Add spacing between tags */
+  margin-bottom: 8px; /* Add spacing between rows */
+  padding: 8px 8px 4px 8px; /* Add padding to the tags (top, right, bottom, left) */
+  border-radius: 4px; /* Add border radius */
 }
 
-.searchButton:hover {
-  background-color: #808080; /* Change background color to grey (#808080) on hover */
+.tag:hover {
+  background-color: orange; /* Change background color on hover */
 }
 
-.suggestions {
-  position: absolute;
-  background: white;
-  border: 1px solid #ccc;
+.tag a {
+  text-decoration: none; /* Remove underline from tag links */
+  color: inherit; /* Inherit text color */
+}
+
+
+.sidebar {
+  flex: 1;
+  padding: 60px 20px;
+  background-color: transparent;
+  border-radius: 10px;
+  width: calc(25% - 5px); /* Adjust width of sidebar */
+  width: 430px; /* Set the width of the sidebar */
+  height: 100%; /* Set the height of the sidebar */
+  padding: 47px; /* Add padding to the sidebar */
+  background-color: transparent; /* Make the sidebar transparent */
+  /* Add any other styles you want to apply to the sidebar */
+}
+
+.tagList {
   list-style: none;
   padding: 0;
-  margin: 0;
-  z-index: 1; /* Ensure it appears above other content */
-  top: calc(100% + 10px); /* Position below the search bar */
-  left: 0; /* Align with the left edge of the search bar */
-  width: 100%; /* Take full width of the container */
 }
 
-.suggestionItem {
-  padding: 10px;
-  cursor: pointer;
+
+
+
+.tagItem:hover {
+  background-color: #ced4da;
+}
+.mainContent {
+  display: flex;
+  justify-content: space-between; /* Adjust spacing between main content and sidebar */
+  max-width: 1000px; /* Adjust the maximum width of the content */
+  margin-top: 20px; /* Add margin-top for space between header and content */
 }
 
-.suggestionItem:hover {
-  background-color: #2C6975; /* Change background color to orange (#FFA500) on hover */
-  color: #fff; /* Set text color to white on hover */
+.posts {
+  width: calc(90% ); /* Adjust width of posts area */
+}
+
+
+.content {
+  max-width: 800px;
+  width: 100%;
+}
+
+
+
+.tagList {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Adjust for 2 tags per line */
+  gap: 10px; /* Adjust the gap between tags */
+}
+
+.tagItem {
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+  display: inline-block; /* Ensure the box wraps around the text */
+  padding: 5px 10px; /* Adjust padding as needed */
+}
+
+.tagItem:hover {
+  background-color: orange;
+}
+.blogTitle {
+  text-align: center;
+  margin-bottom: 30px; /* Increase margin for better spacing */
+  font-size: 3rem; /* Increase font size for a bigger heading */
+  color: #333; /* Change font color */
+  
+}
+.sidebarDivider {
+  width: 100%;
+  border-top: 1px solid #ccc; /* Style and color of the line */
+  margin: 10px 0; /* Adjust margin as needed */
 }

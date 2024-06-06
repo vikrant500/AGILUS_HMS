@@ -235,6 +235,9 @@ const BookAppointment = () => {
     setSelectedDisease(disease);
     setModalVisible(false);
   };
+  const clearSelectedDisease = () => {
+    setSelectedDisease("");
+  };
 
   return (
     <div className="bg-gradient-to-r from-blue-50 to-blue-100 min-h-screen flex flex-col lg:flex-row justify-center items-start p-8">
@@ -262,9 +265,9 @@ const BookAppointment = () => {
             <span className="flex-1">We ensure follow-up and support to help you with your recovery and health improvement.</span>
           </li>
         </ol>
-        <button className="bg-blue-500 text-white px-4 py-2 rounded-md font-semibold mt-4 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400">
+        <a href="tel:18001030343" className="bg-blue-500 text-white px-4 py-2 rounded-md font-semibold mt-4 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400">
           CALL US: 18001030343
-        </button>
+        </a>
       </div>
 
       <div className="w-full lg:w-1/2 flex justify-center">
@@ -370,19 +373,29 @@ const BookAppointment = () => {
             </div>
           </div>
 
-          <div className="mb-4">
+          <div className="mb-4 relative">
             <label htmlFor="disease-search" className="block font-medium mb-1 text-gray-700">
               Select Disease <span className="text-gray-400">(Optional)</span>
             </label>
-            <input
-              type="text"
-              id="disease-search"
-              placeholder="Enter your disease"
-              value={selectedDisease}
-              onClick={toggleModal}
-              readOnly
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-400"
-            />
+            <div className="relative">
+              <input
+                type="text"
+                id="disease-search"
+                placeholder="Enter your disease"
+                value={selectedDisease}
+                onClick={toggleModal}
+                readOnly
+                className="w-2/4 px-3 py-2 border border-gray-300 rounded-lg cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-400"
+              />
+              {selectedDisease && (
+                <button
+                  type="button"
+                  onClick={clearSelectedDisease}
+                  className="absolute right-6 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-700 focus:outline-none">
+                  clear
+                </button>
+              )}
+            </div>
             <Modal
               show={modalVisible}
               onClose={toggleModal}

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { INFORMATION } from "../../../constants/info";
-import { assets } from "../../../assets";
+import specialitiespic from "../../../assets/images/Specialitiespic/healthcheck.jpg";
 const Section1 = ({ section_1_data }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -29,7 +29,7 @@ const Section1 = ({ section_1_data }) => {
       </div>
 
       <div className="order-1 md:order-2">
-
+      <img src={specialitiespic} alt="Health Check" className="w-full h-auto hidden xl:flex max-w-[814px] self-end" />
       </div>
     </div>
   );

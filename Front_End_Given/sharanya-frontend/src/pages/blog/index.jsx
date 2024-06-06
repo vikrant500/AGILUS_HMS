@@ -194,7 +194,7 @@ export default function IndexPage() {
   
       {posts.length > 6 && (
         <div className={`${styles.carousel} carousel`}>
-          <h1>Featured Posts</h1>
+          <h1 className={styles.featuredPostsTitle}>Featured Posts</h1>
           <Slider {...carouselSettings}>
             {posts.slice(6).map(post => (
               <Post key={post._id} {...post} className={`${styles.carouselPost} carouselPost`} />

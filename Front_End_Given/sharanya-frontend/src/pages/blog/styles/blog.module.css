@@ -133,6 +133,14 @@
   background-color: #e0ecde;
 }
 
+.featuredPostsTitle {
+  font-size: 2.5rem; /* Adjust size as needed */
+  font-weight: bold;
+  color: #ff7f50;
+  margin-bottom: 20px; /* Optional: Add some spacing below the heading */
+}
+
+
 .post {
   display: flex;
   flex-direction: column;

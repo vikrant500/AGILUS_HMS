@@ -1,11 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { Container } from "@mui/system";
 
-import { Close } from "@mui/icons-material";
-import { assets } from "../../assets";
+// Update the path to the assets directory as per your project structure
+import DoctorImage1 from "../../assets/images/Doctorportrait/Doctor1.png";
+import DoctorImage2 from "../../assets/images/Doctorportrait/Doctor2.png";
+import DoctorImage3 from "../../assets/images/Doctorportrait/Doctor3.png";
+import DoctorImage4 from "../../assets/images/Doctorportrait/Doctor4.png";
+import DoctorImage5 from "../../assets/images/Doctorportrait/Doctor5.png";
+import DoctorImage6 from "../../assets/images/Doctorportrait/Doctor6.png";
+import DoctorImage7 from "../../assets/images/Doctorportrait/Doctor7.png";
+
+// Continue to import all doctor images
+
 const doctors = [
   {
     name: "DR. PRADEEP AGGARWAL",
+    image: DoctorImage1,
     education: [
       "MBBS, MD (Int Medicine - Cardio, Diabetes)",
       "PGDUS, Adult (AIIMS)",
@@ -38,6 +47,7 @@ const doctors = [
   },
   {
     name: "DR. SHWETA ANAND",
+    image: DoctorImage2,
     education: ["MBBS, DNB, FSM"],
     expertise: ["Pulmonary & Critical Care Specialist"],
     experience: ["Formerly at NITRD", "ESIC Hospital"],
@@ -61,6 +71,7 @@ const doctors = [
   },
   {
     name: "DR. NIKHIL KUMAR",
+    image: DoctorImage3,
     education: ["Dental Surgeon, BDS"],
     experience: [
       "Junior Resident at Sanjay Gandhi Hospital",
@@ -81,6 +92,7 @@ const doctors = [
   },
   {
     name: "DR. ANJULA NARANG",
+    image: DoctorImage4,
     education: [
       "BHMS (DU)",
       "MD (Hom)",
@@ -103,6 +115,7 @@ const doctors = [
   },
   {
     name: "NUTRITIONIST MEGHA BISWAS",
+    image: DoctorImage5,
     education: [
       "Graduate with Diploma in Dietetics, Health and Nutrition",
       "Graduate with Diploma in Yoga Therapy"
@@ -127,7 +140,8 @@ const doctors = [
     ]
   },
   {
-    name: "DR. ANAMIKA (Physiotherapist)",
+    name: "DR. ANAMIKA ",
+    image: DoctorImage6,
     education: [
       "Bachelor of Physiotherapy (BPT)",
       "Member of Delhi Council of Physiotherapy (DCPT) - PR-4164"
@@ -156,11 +170,13 @@ const doctors = [
       "Awareness of Tuberculosis in Community"
     ],
     expertise: [
-      "Worked with many neurological, orthopaedical, and paediatric patients in field of physiotherapy"
+      "Worked with many neurological, orthopaedical, and paediatric patients in field of physiotherapy",
+      "Physiotherapist"
     ]
   },
   {
     name: "DR. SHASHANK SAURABH",
+    image: DoctorImage7,
     education: [
       "MBBS, DNB - ENT & HNS",
       "Fellowship in Otology (KKR-Chennai)",
@@ -198,22 +214,28 @@ const DoctorCard = ({ doctor }) => {
   return (
     <div
       className={`bg-[#E0ECDE] hover:bg-[#CDE0C9] rounded-xl shadow-lg p-4 transition-all duration-300 ease-in-out text-black ${
-        expanded ? "max-h-[1000px]" : "h-auto max-h-[200px]"
+        expanded ? "max-h-[1000px]" : "h-auto max-h-[300px]"
       } overflow-hidden w-full`}
       onClick={() => setExpanded(!expanded)}
     >
-      <div className="cursor-pointer flex flex-col md:flex-row items-start md:items-center">
-        <h4 className="text-xl font-bold text-[#2C6975] md:w-1/3">{doctor.name}</h4>
-        <p className={`text-md text-[#68B2A0] md:w-2/3 ${!expanded ? "block" : "hidden"}`}>
-          {doctor.expertise.join(", ")}
-        </p>
+      <div className="cursor-pointer flex items-start">
+        <div className="flex-shrink-0">
+          <img
+            src={doctor.image}
+            alt={doctor.name}
+            className="w-24 h-24 rounded-full mb-4 md:mb-0"
+          />
+          <h4 className="text-xl font-bold text-[#2C6975] mt-2 text-center">{doctor.name}</h4>
+        </div>
+        <div className="ml-4 flex-1">
+          <ul className="list-disc pl-4 text-md text-[#68B2A0]">
+            {doctor.expertise.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+        </div>
       </div>
       <div className={`mt-4 ${expanded ? "block" : "hidden"} text-[#2C6975]`}>
-        <ul className="list-disc pl-4">
-          {doctor.expertise.map((item, index) => (
-            <li key={index}>{item}</li>
-          ))}
-        </ul>
         {doctor.education && (
           <>
             <h5 className="font-semibold">Education:</h5>

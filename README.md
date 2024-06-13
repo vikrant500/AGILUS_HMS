@@ -9,23 +9,23 @@
 
 ## Setup
 
-1. **Installing the program:**
+1. **Clone the repository:**
 
 ```BASH
    git clone https://github.com/vikrant500/AGILUS_HMS.git
 ```
 
-2. Open the `Front_End_Given` folder and from there copy the `sharanya-frontend` into your local machine (Ex: copy the folder on desktop). This is to prevent committing cache.
+-  Open the `Front_End_Given` folder and from there copy the `sharanya-frontend` into your local machine (Ex: copy the folder on desktop). This is to prevent committing cache.
 
-3. Open the folder in preferred code editor (Ex: Visual Studio Code).
+-  Open the folder in preferred code editor (Ex: Visual Studio Code).
 
-4. **Install dependencies:**
+2. **Install dependencies:**
    
 ```bash
    npm install
 ```
 
-5. **Check MongoDB connection:**
+3. **Check MongoDB connection:**
 
 	Open `api/index.js` and verify the MongoDB connection string at line 22. If it doesn't work, verify the new IP address in MongoDB Atlas.
 	

@@ -21,7 +21,7 @@ export default function Post({_id,title,summary,cover,content,createdAt,author, 
         <p className="summary">{summary}</p>
         <div className="tags">
                 {tags && tags.map((tag, index) => (
-                    <span key={index} className="tag">{tag}</span>
+                    <span key={index} className="tag">{tag}</span>//tags
                 ))}
             </div>
       </div>

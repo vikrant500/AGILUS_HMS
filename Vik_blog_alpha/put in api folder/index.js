@@ -150,28 +150,22 @@ app.get('/posts', async (req,res) => {
 // Define the route for suggestions
 app.get('/suggestions', async (req, res) => {
   try {
-    // Extract the search query from the request query parameters
     const { q } = req.query;
-
-    // Query the database for posts that match the search query
     const posts = await Post.find({
       $or: [
         { title: new RegExp(q, 'i') },
         { tags: new RegExp(q, 'i') }
       ]
-    }).limit(5); // Limit the number of suggestions to 5
+    }).limit(5).populate('author', 'username'); // Populate author's username
 
-    // Extract relevant information from the posts
     const suggestions = posts.map(post => ({
       title: post.title,
-      author: post.author, // You may want to populate the author's username here
+      author: post.author,
       tags: post.tags
     }));
 
-    // Send the suggestions as a response
     res.json(suggestions);
   } catch (error) {
-    // Handle errors
     console.error('Error fetching suggestions:', error);
     res.status(500).json({ error: 'Internal server error' });
   }

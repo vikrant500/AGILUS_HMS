@@ -8,6 +8,7 @@ export default function IndexPage() {
   const [totalPages, setTotalPages] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
   const [suggestions, setSuggestions] = useState([]);
+  const [tags] = useState([]); // Add tags state
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -26,24 +27,38 @@ export default function IndexPage() {
   }, [location.search]);
 
   useEffect(() => {
-    if (searchQuery) {
+    if (searchQuery && !tags.includes(searchQuery)) { // Only fetch suggestions if the search query is not a tag
       fetch(`http://localhost:4000/suggestions?q=${searchQuery}`)
         .then(response => response.json())
         .then(data => setSuggestions(data));
     } else {
       setSuggestions([]);
     }
-  }, [searchQuery]);
+  }, [searchQuery, tags]);
 
-  const handleSearch = (e) => {
+  const fetchPosts = async (page, search) => {
+    try {
+      const response = await fetch(`http://localhost:4000/posts?page=${page}&search=${search}`);
+      const data = await response.json();
+      setPosts(data.posts);
+      setTotalPages(data.totalPages);
+    } catch (error) {
+      console.error('Error fetching posts:', error);
+    }
+  };
+
+  const handleSearch = async (e) => {
     e.preventDefault();
-    navigate(`/?page=1&q=${searchQuery}`);
+    await fetchPosts(1, searchQuery); // Fetch posts corresponding to the search query
+    setCurrentPage(1);
+    setSuggestions([]); // Clear suggestions
   };
 
   const handleSuggestionClick = (suggestion) => {
     setSearchQuery(suggestion.title);
-    setSuggestions([]);
-    navigate(`/?page=1&q=${suggestion.title}`);
+    fetchPosts(1, suggestion.title).then(() => {
+      setSuggestions([]); // Hide the dropdown after fetching posts
+    });
   };
 
   const handlePageChange = (page) => {
@@ -86,6 +101,8 @@ export default function IndexPage() {
                 className="suggestion-item"
               >
                 <strong>{suggestion.title}</strong> by {suggestion.author.username}
+                <br />
+                Tags: {suggestion.tags.join(', ')}
               </li>
             ))}
           </ul>

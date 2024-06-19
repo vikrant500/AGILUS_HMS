@@ -2,11 +2,15 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
-import { Container, IconButton } from "@mui/material";
+import { IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link, NavLink } from "react-router-dom";
 import { sub_menu_buttons } from "../../constants/menu";
 // import { assets } from "../../assets";
+
+// Import the logo image
+import Logo from "../../assets/images/sharanyacutwhitebg.jpg";
+
 export default function ResponsiveDrawer() {
   const [state, setState] = React.useState({
     top: false,
@@ -89,19 +93,27 @@ export default function ResponsiveDrawer() {
         <div>
           {["left"].map((anchor) => (
             <React.Fragment key={anchor}>
-              {/* <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button> */}
               <div className="p-4 bg-[#2C6975] text-white">
                 <div className="flex justify-between items-center">
-                  <h2 className="text-2xl md:text-4xl font-bold duration-200 hover:scale-110 gradient_text text-orange-500 bg-white p-4 rounded-full">
-                    <Link to={"/"} className="">
-                      Sharanya Care
-                    </Link>
-                  </h2>
+                  <Link to={"/"} className="flex items-center">
+                    <div className="flex items-center duration-200 hover:scale-110 bg-white p-4 rounded-full">
+                      <img
+                        src={Logo}
+                        alt="Sharanya Care Logo"
+                        className="w-12 h-12 mr-2"
+                      />
+                      <h2 className="text-2xl md:text-4xl font-bold gradient_text text-orange-500">
+                        Sharanya Care
+                      </h2>
+                    </div>
+                  </Link>
                   <div className="gap-6 items-center hidden lg:flex">
                     <NavLink
                       to={"/"}
                       className={({ isActive }) =>
-                        isActive ? "text-orange-500 font-bold" : "text-white hover:text-orange-500"
+                        isActive
+                          ? "text-orange-500 font-bold"
+                          : "text-white hover:text-orange-500"
                       }
                     >
                       HOME
@@ -109,7 +121,9 @@ export default function ResponsiveDrawer() {
                     <NavLink
                       to={"/doctors"}
                       className={({ isActive }) =>
-                        isActive ? "text-orange-500 font-bold" : "text-white hover:text-orange-500"
+                        isActive
+                          ? "text-orange-500 font-bold"
+                          : "text-white hover:text-orange-500"
                       }
                     >
                       DOCTORS
@@ -118,7 +132,9 @@ export default function ResponsiveDrawer() {
                     <NavLink
                       to={"/about"}
                       className={({ isActive }) =>
-                        isActive ? "text-orange-500 font-bold" : "text-white hover:text-orange-500"
+                        isActive
+                          ? "text-orange-500 font-bold"
+                          : "text-white hover:text-orange-500"
                       }
                     >
                       ABOUT
@@ -126,7 +142,9 @@ export default function ResponsiveDrawer() {
                     <NavLink
                       to={"/blog"}
                       className={({ isActive }) =>
-                        isActive ? "text-orange-500 font-bold" : "text-white hover:text-orange-500"
+                        isActive
+                          ? "text-orange-500 font-bold"
+                          : "text-white hover:text-orange-500"
                       }
                     >
                       BLOG

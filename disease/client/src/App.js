@@ -16,8 +16,8 @@ import CreateDisease from './pages/CreateDisease';
 import PostPage from './pages/PostPage';
 import EditPost from './pages/EditPost';
 import AboutDisease from './pages/AboutDisease';
-
-  
+import DiseasePage from './pages/DiseasePage';
+import EditDisease from './pages/EditDisease';
 
 function App() {
 
@@ -42,6 +42,10 @@ function App() {
 
           <Route path={'/about_disease'} element={<AboutDisease />} />
 
+          <Route path="/disease/:id" element={<DiseasePage />} />
+
+          <Route path="/editdisease/:id" element={<EditDisease />} />
+
           <Route path='/edit/:id' element={<EditPost />} />
 
         </Route>
@@ -49,13 +53,7 @@ function App() {
       </Routes>
 
     </UserContextProvider>
-
-
-
       
-
-      
-
 );
 
 }

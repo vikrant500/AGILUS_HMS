@@ -5,13 +5,13 @@ const User = require('./models/User');
 const Post = require('./models/Post');
 const Disease = require('./models/Disease');
 const bcrypt = require('bcryptjs');
-const app = express();
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const multer = require('multer');
 const uploadMiddleware = multer({ dest: 'uploads/' });
 const fs = require('fs');
 
+const app = express();
 const salt = bcrypt.genSaltSync(10);
 const secret = 'asdfe45we45w345wegw345werjktjwertkj';
 
@@ -20,11 +20,11 @@ app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + '/uploads'));
 
-mongoose.connect('<enter your mongo key here>');
+mongoose.connect('mongodb+srv://ruii_15:puiii@helloblog.j41ebc1.mongodb.net/?retryWrites=true&w=majority&appName=helloBlog');
 
 app.post('/register', async (req,res) => {
   const {username,password} = req.body;
-  try{
+  try {
     const userDoc = await User.create({
       username,
       password:bcrypt.hashSync(password,salt),
@@ -34,8 +34,6 @@ app.post('/register', async (req,res) => {
     console.log(e);
     res.status(400).json(e);
   }
-  // const {username,password} = req.body;
-  // res.json({username,password});
 });
 
 app.post('/login', async (req,res) => {
@@ -43,7 +41,6 @@ app.post('/login', async (req,res) => {
   const userDoc = await User.findOne({username});
   const passOk = bcrypt.compareSync(password, userDoc.password);
   if (passOk) {
-    // logged in
     jwt.sign({username,id:userDoc._id}, secret, {}, (err,token) => {
       if (err) throw err;
       res.cookie('token', token).json({
@@ -68,32 +65,42 @@ app.post('/logout', (req,res) => {
   res.cookie('token', '').json('ok');
 });
 
-app.post('/post', uploadMiddleware.single('file'), async (req,res) => {
-  const {originalname,path} = req.file;
-  const parts = originalname.split('.');
-  const ext = parts[parts.length - 1];
-  const newPath = path+'.'+ext;
-  fs.renameSync(path, newPath);
-
-  const {token} = req.cookies;
-  jwt.verify(token, secret, {}, async (err,info) => {
+app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
+  const { token } = req.cookies;
+  jwt.verify(token, secret, {}, async (err, info) => {
     if (err) throw err;
-    const {title,summary,content} = req.body;
+    const { title, summary, content, tags } = req.body;
+
+    let newPath = null;
+    if (req.file) {
+      const { originalname, path } = req.file;
+      const parts = originalname.split('.');
+      const ext = parts[parts.length - 1];
+      newPath = path + '.' + ext;
+      fs.renameSync(path, newPath);
+    }
+
     const postDoc = await Post.create({
       title,
       summary,
       content,
-      cover:newPath,
-      author:info.id,
+      cover: newPath,
+      author: info.id,
+      tags: tags.split(','),
     });
+
+    // Enforce limit of 150 posts
+    const totalPosts = await Post.countDocuments();
+    if (totalPosts > 150) {
+      const oldestPost = await Post.findOne().sort({ createdAt: 1 });
+      await Post.deleteOne({ _id: oldestPost._id });
+    }
+
     res.json(postDoc);
   });
-  // const {title,summary,content} = req.body;
-  // res.json({title,summary,content});
-
 });
 
-app.put('/post',uploadMiddleware.single('file'), async (req,res) => {
+app.put('/post', uploadMiddleware.single('file'), async (req,res) => {
   let newPath = null;
   if (req.file) {
     const {originalname,path} = req.file;
@@ -106,38 +113,74 @@ app.put('/post',uploadMiddleware.single('file'), async (req,res) => {
   const {token} = req.cookies;
   jwt.verify(token, secret, {}, async (err,info) => {
     if (err) throw err;
-    const {id,title,summary,content} = req.body;
+    const {id,title,summary,content,tags} = req.body;
     const postDoc = await Post.findById(id);
     const isAuthor = JSON.stringify(postDoc.author) === JSON.stringify(info.id);
     if (!isAuthor) {
       return res.status(400).json('you are not the author');
     }
-    await postDoc.update({
+    await postDoc.updateOne({
       title,
       summary,
       content,
       cover: newPath ? newPath : postDoc.cover,
+      tags: tags ? tags.split(',') : postDoc.tags,
     });
 
     res.json(postDoc);
   });
-
 });
 
-app.get('/post', async (req,res) => {
-  res.json(
-    await Post.find()
-      .populate('author', ['username'])
-      .sort({createdAt: -1})
-      .limit(20)
-  );
+app.get('/posts', async (req,res) => {
+  const { page = 1, limit = 10, search = '' } = req.query;
+  const query = search ? {
+    $or: [    
+      { title: new RegExp(search, 'i') },
+      { tags: new RegExp(search, 'i') }
+    ]
+  } : {};
+
+  const posts = await Post.find(query)
+    .populate('author', ['username'])
+    .sort({ createdAt: -1 })
+    .skip((page - 1) * limit)
+    .limit(parseInt(limit));
+
+  const totalPosts = await Post.countDocuments(query);
+  const totalPages = Math.ceil(totalPosts / limit);
+
+  res.json({ posts, totalPages }); // Return totalPages along with posts
+});
+
+// Define the route for suggestions
+app.get('/suggestions', async (req, res) => {
+  try {
+    const { q } = req.query;
+    const posts = await Post.find({
+      $or: [
+        { title: new RegExp(q, 'i') },
+        { tags: new RegExp(q, 'i') }
+      ]
+    }).limit(5).populate('author', 'username'); // Populate author's username
+
+    const suggestions = posts.map(post => ({
+      title: post.title,
+      author: post.author,
+      tags: post.tags
+    }));
+
+    res.json(suggestions);
+  } catch (error) {
+    console.error('Error fetching suggestions:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
 
 app.get('/post/:id', async (req, res) => {
   const {id} = req.params;
   const postDoc = await Post.findById(id).populate('author', ['username']);
   res.json(postDoc);
-})
+});
 
 app.post('/disease', uploadMiddleware.single('file'), async (req, res) => {
   const {token} = req.cookies;
@@ -158,14 +201,56 @@ app.get('/disease', async (req, res) => {
   res.json(await Disease.find()
   .populate('doctor', ['username'])
   .sort({createdAt: -1})
-  .limit(20)
+  .limit(150)
   );
 });
 
-app.listen(4000);
+app.get('/disease/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const disease = await Disease.findById(id).populate('doctor', 'username');
+    if (!disease) {
+      return res.status(404).json({ error: 'Disease not found' });
+    }
+    res.json(disease);
+  } catch (error) {
+    console.error('Error fetching disease:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
-
-
-// 9ZHNcfdZHdpknoLW
-
-// mongodb+srv://500vikrant:9ZHNcfdZHdpknoLW@blogtut.ojxglc7.mongodb.net/?retryWrites=true&w=majority&appName=BlogTut
+app.put('/disease', uploadMiddleware.single('file'), async (req, res) => {
+  const { id, name, description } = req.body;
+  const { token } = req.cookies;
+  jwt.verify(token, secret, {}, async (err, info) => {
+    if (err) throw err;
+    const diseaseDoc = await Disease.findById(id);
+    if (diseaseDoc.doctor.toString() === info.id) {
+      diseaseDoc.name = name;
+      diseaseDoc.description = description;
+      await diseaseDoc.save();
+      res.json(diseaseDoc);
+    } else {
+      res.status(403).json({ error: 'Unauthorized' });
+    }
+  });
+});
+app.delete('/post/:id', async (req, res) => {
+  const { token } = req.cookies;
+  jwt.verify(token, secret, {}, async (err, info) => {
+    if (err) throw err;
+    const { id } = req.params;
+    const postDoc = await Post.findById(id);
+    if (postDoc.author.toString() === info.id) {
+      await postDoc.deleteOne();
+      res.json('Post deleted');
+    } else {
+      res.status(403).json({ error: 'Unauthorized' });
+    }
+  });
+});
+// Start the server
+const PORT = 4000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});

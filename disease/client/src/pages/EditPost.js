@@ -8,6 +8,7 @@ export default function EditPost() {
   const [summary,setSummary] = useState('');
   const [content,setContent] = useState('');
   const [files, setFiles] = useState('');
+  const [tags, setTags] = useState('');//new state for tags
   const [redirect,setRedirect] = useState(false);
 
   useEffect(() => {
@@ -17,6 +18,7 @@ export default function EditPost() {
           setTitle(postInfo.title);
           setContent(postInfo.content);
           setSummary(postInfo.summary);
+          setTags(postInfo.tags.join(', ')); // Set initial tags
         });
       });
   }, []);
@@ -28,18 +30,29 @@ export default function EditPost() {
     data.set('summary', summary);
     data.set('content', content);
     data.set('id', id);
+    data.set('tags', tags); // Include tags in form data
+   
     if (files?.[0]) {
       data.set('file', files?.[0]);
     }
-    const response = await fetch('http://localhost:4000/post', {
-      method: 'PUT',
-      body: data,
-      credentials: 'include',
-    });
-    if (response.ok) {
-      setRedirect(true);
-    }
+
+    
+
+    try {
+      const response = await fetch('http://localhost:4000/post', {
+          method: 'PUT',
+          body: data,
+          credentials: 'include',
+      });
+      if (response.ok) {
+          setRedirect(true);
+      } else {
+          console.error('Failed to update the post', response.statusText);
+      }
+  } catch (error) {
+      console.error('Error during fetch', error);
   }
+}
 
   if (redirect) {
     return <Navigate to={'/post/'+id} />
@@ -57,6 +70,7 @@ export default function EditPost() {
              onChange={ev => setSummary(ev.target.value)} />
       <input type="file"
              onChange={ev => setFiles(ev.target.files)} />
+      <input type="text" placeholder="Tags (comma separated)" value={tags} onChange={ev => setTags(ev.target.value)} /> {/* Add tags input */}       
       <Editor onChange={setContent} value={content} />
       <button style={{marginTop:'5px'}}>Update post</button>
     </form>

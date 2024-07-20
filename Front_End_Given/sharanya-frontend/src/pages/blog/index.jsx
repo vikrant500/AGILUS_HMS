@@ -99,11 +99,11 @@ export default function IndexPage() {
   const handleCategoryClick = (category) => {
     let tag;
     if (category === 'category1') {
-      tag = 'game';
+      tag = 'Operation';
     } else if (category === 'category2') {
-      tag = 'experiment';
+      tag = 'Medical Service';
     } else if (category === 'category3'){
-      tag = 'wallpaper'
+      tag = 'Events'
       // Handle other categories
     }
     fetchPosts(1, tag); // Fetch posts with the specified tag

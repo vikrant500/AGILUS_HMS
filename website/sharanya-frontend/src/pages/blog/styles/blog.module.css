@@ -1,0 +1,274 @@
+/* styles/index.module.css */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.blogTitle {
+  font-weight: bolder;
+  color: #ff7f50;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.leftContainer,
+.searchBarContainer {
+  flex: 1;
+}
+
+.categories {
+  display: flex;
+  gap: 10px;
+}
+
+.category {
+  padding: 10px 20px;
+  cursor: pointer;
+  border: 0px solid #ddd;
+  border-bottom: 1px solid black;
+  transition: all .2s;
+}
+
+.category.active,
+.category:hover {
+  background-color: #e0e0e0;
+}
+
+.searchForm {
+  display: flex;
+  position: relative;
+}
+
+.searchBar {
+  flex: 4;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px 0 0 4px;
+}
+
+.searchButton {
+  flex: 1;
+  padding: 5px 10px;
+  border: none;
+  background-color: #2c6975;
+  color: white;
+  cursor: pointer;
+  border-radius: 0 4px 4px 0;
+}
+
+.searchButton:hover {
+  background-color: #ff7f50; /* orange-500 */
+  transition: all .3s;
+}
+
+.suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1;
+}
+
+.suggestionItem {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.suggestionItem:hover {
+  background-color: #f8f9fa;
+}
+
+.mainContent {
+  display: flex;
+  width: 100%;
+}
+
+.leftSidebar {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+  flex: 2;
+}
+
+.rightSidebar {
+  flex: 1;
+  padding: 0px 50px;
+  margin-left: 20px;
+  background-color: transparent;
+  border-radius: 8px;
+}
+
+.rightSidebar h2 {
+  margin-bottom: 10px;
+}
+
+.rightSidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.rightSidebar ul li {
+  margin-bottom: 8px;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.rightSidebar ul li:hover {
+  background-color: #e0ecde;
+}
+
+.featuredPostsTitle {
+  font-size: 2.5rem; /* Adjust size as needed */
+  font-weight: bold;
+  color: #ff7f50;
+  margin-bottom: 20px; /* Optional: Add some spacing below the heading */
+}
+
+
+.post {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.image {
+  width: 100%;
+}
+
+.image img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.texts {
+  flex: 1;
+  padding: 20px;
+}
+
+.texts h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #ff7f50; /* orange-500 */
+  font-weight: bold;
+}
+
+.texts .info {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.texts .summary {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.texts .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.texts .tag {
+  background-color: #2c6975;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.pagination {
+  display: flex;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.pagination button {
+  padding: 10px 20px;
+  border: 1px solid #ddd;
+  background-color: #ff7f50; /* orange-500 */
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.pagination button.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.pagination .selected {
+  background-color: gray;
+  color: white;
+}
+
+.carousel {
+  width: 100%;
+  margin-top: 40px;
+}
+
+.carouselPost {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin: 0 10px;
+}
+
+.carouselPostTitle {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.postTitle {
+  color: #ff7f50; /* orange-500 */
+  font-weight: bold;
+}
+
+.tagHeading {
+  padding: 20PX 0PX;
+  font-size: 24px;
+  font-weight: bolder;
+  border-bottom: 2px solid rgb(207, 207, 207);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.tagsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  color: #aaa;
+}
+
+.tagItem {
+  font-size: 16px;
+  padding: 10px 10px;
+  border: 1px solid #cecece;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all .2s;
+}
+
+.tagItem:hover {
+  background-color: #ff7f50;
+  color: grey;
+}

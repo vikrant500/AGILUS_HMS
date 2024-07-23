@@ -1,0 +1,117 @@
+.pageWrapper {
+  background-color: #28363D;
+  padding: 0px;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.postPage {
+  color: #222;
+  background-color: #fff;
+  border-radius: 0px;
+  padding: 20px;
+  max-width: 1200px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.postPage img {
+  max-width: 100%;
+}
+
+.postPage .image {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  width: 60%;
+  margin: 0 auto;
+}
+
+.postPage .image img {
+  object-fit: cover;
+  object-position: center center;
+  width: 100%;
+  max-width: 100%;
+}
+
+.postPage a {
+  color: #333;
+  text-decoration: underline;
+}
+
+.postPage .title {
+  text-align: center;
+  margin: 10px 0 5px;
+  font-size: 3rem;
+  color: #FF7F50;
+  font-weight: bold;
+}
+
+.postPage time {
+  text-align: center;
+  display: block;
+  font-size: 1rem;
+  color: #aaa;
+  margin: 10px 0;
+}
+
+.postPage .author {
+  text-align: center;
+  margin-bottom: 10px; /* Adjusted margin to separate from title */
+  font-size: .7rem;
+  font-weight: bold;
+  color: #000;
+}
+
+.postPage .tags {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 10px auto 20px;
+  width: 70%;
+}
+
+.postPage .tag {
+  display: inline-block;
+  background-color: #2F575D; /* Changed tag background color */
+  padding: 5px 10px;
+  margin-right: 5px;
+  border-radius: 5px;
+  font-size: 12px;
+  color: white; /* Changed tag text color */
+}
+
+.postPage .content {
+  width: 70%;
+  margin: 0 auto;
+  line-height: 1.7rem;
+}
+
+.postPage .content p {
+  margin: 30px 0;
+}
+
+.postPage .content li {
+  margin-bottom: 10px;
+}
+
+.postPage .editRow {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.postPage .editBtn {
+  background-color: #333;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #fff;
+  padding: 15px 30px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+

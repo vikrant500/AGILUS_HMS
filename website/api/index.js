@@ -9,7 +9,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const multer = require('multer');
-const uploadMiddleware = multer({ dest: 'uploads/' });
+const upload = multer({ storage: multer.memoryStorage() });
 const fs = require('fs');
 
 const app = express();
@@ -66,7 +66,7 @@ app.post('/logout', (req, res) => {
   res.cookie('token', '').json('ok');
 });
 
-app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
+app.post('/post', upload.single('file'), async (req, res) => {
   const { token } = req.cookies;
   jwt.verify(token, secret, {}, async (err, info) => {
     if (err) throw err;
@@ -74,8 +74,7 @@ app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
 
     let cover = null;
     if (req.file) {
-      cover = fs.readFileSync(req.file.path); // Read the file data
-      fs.unlinkSync(req.file.path); // Delete the file after reading
+      cover = req.file.buffer;
     }
 
     const postDoc = await Post.create({
@@ -97,14 +96,10 @@ app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
   });
 });
 
-app.put('/post', uploadMiddleware.single('file'), async (req, res) => {
-  let newPath = null;
+app.put('/post', upload.single('file'), async (req, res) => {
+  let newFile = null;
   if (req.file) {
-    const { originalname, path } = req.file;
-    const parts = originalname.split('.');
-    const ext = parts[parts.length - 1];
-    newPath = path + '.' + ext;
-    fs.renameSync(path, newPath);
+    newFile = req.file.buffer;
   }
 
   const { token } = req.cookies;
@@ -120,7 +115,7 @@ app.put('/post', uploadMiddleware.single('file'), async (req, res) => {
       title,
       summary,
       content,
-      cover: newPath ? fs.readFileSync(newPath) : postDoc.cover, // Read the file data if newPath is set
+      cover: newFile || postDoc.cover,
       tags: tags ? tags.split(',') : postDoc.tags,
     });
 
@@ -179,7 +174,7 @@ app.get('/post/:id', async (req, res) => {
   res.json(postDoc);
 });
 
-app.post('/disease', uploadMiddleware.single('file'), async (req, res) => {
+app.post('/disease', upload.single('file'), async (req, res) => {
   const { token } = req.cookies;
   jwt.verify(token, secret, {}, async (err, info) => {
     if (err) throw err;
@@ -216,7 +211,7 @@ app.get('/disease/:id', async (req, res) => {
   }
 });
 
-app.put('/disease', uploadMiddleware.single('file'), async (req, res) => {
+app.put('/disease', upload.single('file'), async (req, res) => {
   const { id, name, description } = req.body;
   const { token } = req.cookies;
   jwt.verify(token, secret, {}, async (err, info) => {
